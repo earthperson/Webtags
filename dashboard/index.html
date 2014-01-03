@@ -66,23 +66,34 @@
 						<button type="button" class="btn btn-primary btn-lg btn-block">
 							<span class="glyphicon glyphicon-tag"></span> Add tag
 						</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block">Get JSON</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block">Import JSON</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block">Export JSON</button>
 					</p>
 					<div class="panel panel-info">
 						<div class="panel-heading">
 							<h3 class="panel-title">Options</h3>
 						</div>
 						<div class="panel-body">
-							<p>Type of the webtags label</p>
-							<div class="radio">
-								<label>
-									<input type="radio" name="type" value="rounded" checked>Rounded
-								</label>
+							<div class="form-group">
+								<span class="help-block">Type of the webtags label:</span>
+								<div class="radio">
+									<label>
+										<input type="radio" name="type" value="rounded" checked>Rounded
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="type" value="square">Square
+									</label>
+								</div>
 							</div>
-							<div class="radio">
-								<label>
-									<input type="radio" name="type" value="square">Square
-								</label>
+							<div class="form-group">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" value="border">
+										Show border and link to the <a href="https://github.com/earthperson/webtags" target="_blank">GitHub project page</a> at the right bottom corner.
+									</label>
+								</div>
 							</div>
 						</div>
 					</div>
