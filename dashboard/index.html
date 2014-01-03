@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>webtags</title>
+		<title>Webtags dashboard</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -18,7 +18,55 @@
 		<script type="text/javascript" src="main.js"></script>
 	</head>
 	<body>
-		
+		<div class="container">
+			<div class="page-header">
+				<h1>Webtags</h1>
+				<p class="lead">Dashboard for <a href="https://github.com/earthperson/webtags">webtags</a>.</p>			
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-xs-2">
+							<div class="row">
+								<div class="col-xs-6">
+									<label class="checkbox-inline">
+										<input type="checkbox" value="">
+									</label>
+								</div>
+								<div class="col-xs-6">
+									<div class="form-group">
+										<button type="button" class="btn btn-danger">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-10">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="sr-only">Label</label>
+										<input type="text" class="form-control" placeholder="Label">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="sr-only">URL</label>
+										<input type="url" class="form-control" placeholder="URL">	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-primary btn-lg btn-block">
+						<span class="glyphicon glyphicon-tag"></span> Add tag
+					</button>
+				</div>
+			</div>
+		</div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="vendor/bootstrap/vendor/jquery.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
