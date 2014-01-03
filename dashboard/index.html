@@ -17,87 +17,94 @@
 		<link type="text/css" rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div class="container">
-			<div class="page-header">
-				<h1>Webtags</h1>
-				<p class="lead">Dashboard for <a href="https://github.com/earthperson/webtags" target="_blank">webtags</a>.</p>
-			</div>
-			<div class="row">
-				<div class="col-md-8">
-					<div class="row">
-						<div class="col-xs-2">
-							<div class="row">
-								<div class="col-xs-6">
-									<div class="form-group hidden">
-										<label class="checkbox-inline">
-											<input type="checkbox" value="">
+		<div id="wrap">
+			<div class="container">
+				<div class="page-header">
+					<h1>Webtags</h1>
+					<p class="lead">Dashboard for <a href="https://github.com/earthperson/webtags" target="_blank">webtags</a>.</p>
+				</div>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-xs-2">
+								<div class="row">
+									<div class="col-xs-6">
+										<div class="form-group hidden">
+											<label class="checkbox-inline">
+												<input type="checkbox" value="">
+											</label>
+										</div>
+									</div>
+									<div class="col-xs-6">
+										<div class="form-group hidden">
+											<button type="button" class="btn btn-sm btn-danger">
+												<span class="glyphicon glyphicon-remove"></span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-10">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="sr-only">Label</label>
+											<input type="text" class="form-control input-sm" placeholder="Label">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="sr-only">URL</label>
+											<input type="url" class="form-control input-sm" placeholder="URL">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<p>
+							<button type="button" class="btn btn-primary btn-lg btn-block">
+								<span class="glyphicon glyphicon-tag"></span> Add tag
+							</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block">Import JSON</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block">Export JSON</button>
+						</p>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Options</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<span class="help-block">Type of the webtags label:</span>
+									<div class="radio">
+										<label>
+											<input type="radio" name="type" value="rounded" checked>Rounded
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="type" value="square">Square
 										</label>
 									</div>
 								</div>
-								<div class="col-xs-6">
-									<div class="form-group hidden">
-										<button type="button" class="btn btn-sm btn-danger">
-											<span class="glyphicon glyphicon-remove"></span>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-10">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="sr-only">Label</label>
-										<input type="text" class="form-control input-sm" placeholder="Label">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="sr-only">URL</label>
-										<input type="url" class="form-control input-sm" placeholder="URL">
+								<div class="form-group">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="border">
+											Show border and link to the <a href="https://github.com/earthperson/webtags" target="_blank">GitHub project page</a> at the right bottom corner.
+										</label>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<p>
-						<button type="button" class="btn btn-primary btn-lg btn-block">
-							<span class="glyphicon glyphicon-tag"></span> Add tag
-						</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block">Import JSON</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block">Export JSON</button>
-					</p>
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<h3 class="panel-title">Options</h3>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<span class="help-block">Type of the webtags label:</span>
-								<div class="radio">
-									<label>
-										<input type="radio" name="type" value="rounded" checked>Rounded
-									</label>
-								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="type" value="square">Square
-									</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" value="border">
-										Show border and link to the <a href="https://github.com/earthperson/webtags" target="_blank">GitHub project page</a> at the right bottom corner.
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container">
+				<small>&copy; 2013-2014 </small><a href="http://earthperson.info" target="_blank" class="small">earthperson</a>
 			</div>
 		</div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
