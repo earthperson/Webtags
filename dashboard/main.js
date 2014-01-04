@@ -2,7 +2,7 @@ $(function() {
 	$.fn.setCheckboxesIndex = function () {
 		this.each(function(index) {
 			$(this).parent().contents().filter(function() {
-			    return this.nodeType === 3;
+				return this.nodeType === 3;
 			}).remove();
 			$(this).after('#'+(++index));
 		});
@@ -46,5 +46,11 @@ $(function() {
 			});
 			$(':checkbox', $('.col-md-8')).setCheckboxesIndex();
 		}
+	});
+	$(':checkbox[value="exportType"]').click(function() {
+		$('.glyphicon-export').parent().contents().filter(function() {
+			return this.nodeType === 3;
+		}).remove();
+		$('.glyphicon-export').after($(this).prop('checked') ? ' Export full code' : ' Export JSON');
 	});
 });
