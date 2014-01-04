@@ -12,7 +12,8 @@ $(function() {
 			$(this).parents('.row:eq(1)').remove();
 		}
 	});
-	$('.btn-group .dropdown-menu a').on('click', function() {
+	$('.btn-group .dropdown-menu a').click(function(event) {
+		event.preventDefault();
 		var index = $(this).parent().index();
 		var checkboxes = $(this).closest('.col-md-8').find(':checkbox');
 		if (index == 0) { // Check all
