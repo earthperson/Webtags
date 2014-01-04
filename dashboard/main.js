@@ -8,6 +8,12 @@ $(function() {
 		});
 		return this;
 	};
+	$.fn.updateButtonValue = function(checked) {
+		this.parent().contents().filter(function() {
+			return this.nodeType === 3;
+		}).remove();
+		this.after(checked ? this.data('values')[0] : this.data('values')[1]);
+	};
 	$('.btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
 			index = $('.btn-danger').size(),
@@ -47,10 +53,10 @@ $(function() {
 			$(':checkbox', $('.col-md-8')).setCheckboxesIndex();
 		}
 	});
+	$('.glyphicon-export')
+		.data('values', [' Export as full code', ' Export JSON'])
+		.updateButtonValue($(':checkbox[value="exportType"]').prop('checked')); // F5 (page reload) fix
 	$(':checkbox[value="exportType"]').click(function() {
-		$('.glyphicon-export').parent().contents().filter(function() {
-			return this.nodeType === 3;
-		}).remove();
-		$('.glyphicon-export').after($(this).prop('checked') ? ' Export full code' : ' Export JSON');
+		$('.glyphicon-export').updateButtonValue($(this).prop('checked'));
 	});
 });
