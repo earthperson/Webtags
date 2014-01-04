@@ -35,6 +35,10 @@ body {
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-#footer .container {
+#footer > .container {
   padding-top: 20px;
+}
+
+#footer > .container small {
+	color: #999999;
 }

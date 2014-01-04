@@ -15,12 +15,13 @@
 			<script src="vendor/bootstrap/vendor/respond.min.js"></script>
 		<![endif]-->
 		<link type="text/css" rel="stylesheet" href="style.css">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	</head>
 	<body>
 		<div id="wrap">
 			<div class="container">
 				<div class="page-header">
-					<h1>Webtags</h1>
+					<h1><span class="glyphicon glyphicon-tags"></span> Webtags</h1>
 					<p class="lead">Dashboard for <a href="https://github.com/earthperson/webtags" target="_blank">webtags</a>.</p>
 				</div>
 				<div class="row">
@@ -69,6 +70,11 @@
 							</button>
 							<button type="button" class="btn btn-primary btn-lg btn-block">Import JSON</button>
 							<button type="button" class="btn btn-primary btn-lg btn-block">Export JSON</button>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" value="exportType"> Export as code for paste in a HTML page instead of <a href="http://en.wikipedia.org/wiki/JSON" target="_blank">JSON format</a> for JavaScript object initialization.
+								</label>
+							</div>
 						</p>
 						<div class="panel panel-info">
 							<div class="panel-heading">
@@ -105,6 +111,7 @@
 		<div id="footer">
 			<div class="container">
 				<small>&copy; 2013-2014 </small><a href="http://earthperson.info" target="_blank" class="small">earthperson</a>
+				<span class="pull-right small">Version: 0.0.0</span>
 			</div>
 		</div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
