@@ -27,7 +27,6 @@ $(function() {
 		checkbox.after('#'+index);
 		$('.row:first', row).removeClass('hidden');
 		row.appendTo('.col-md-8');
-		console.log(row.offset().top);
 		$(window).scrollTop(row.offset().top);
 	});
 	$('.btn-danger:not(.dropdown-toggle)').on('click', function() {

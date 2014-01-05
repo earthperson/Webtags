@@ -34,13 +34,13 @@ body {
 /* Custom page CSS
 -------------------------------------------------- */
 @media (min-width: 992px) {
-	.affix {
+	.col-md-4 .affix {
 		width: 293px;
 	}
 }
 
 @media (min-width: 1200px) {
-	.affix {
+	.col-md-4 .affix {
 		width: 360px;
 	}
 }
