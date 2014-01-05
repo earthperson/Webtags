@@ -1,3 +1,21 @@
+if (!window.JSON) {
+	window.JSON = {
+		parse: function (sJSON) { return eval("(" + sJSON + ")"); },
+		stringify: function (vContent) {
+			if (vContent instanceof Object) {
+				var sOutput = "";
+				if (vContent.constructor === Array) {
+					for (var nId = 0; nId < vContent.length; sOutput += this.stringify(vContent[nId]) + ",", nId++);
+					return "[" + sOutput.substr(0, sOutput.length - 1) + "]";
+				}
+				if (vContent.toString !== Object.prototype.toString) { return "\"" + vContent.toString().replace(/"/g, "\\$&") + "\""; }
+				for (var sProp in vContent) { sOutput += "\"" + sProp.replace(/"/g, "\\$&") + "\":" + this.stringify(vContent[sProp]) + ","; }
+				return "{" + sOutput.substr(0, sOutput.length - 1) + "}";
+			}
+			return typeof vContent === "string" ? "\"" + vContent.replace(/"/g, "\\$&") + "\"" : String(vContent);
+		}
+	};
+}
 $(function() {
 	$.fn.setCheckboxesIndex = function () {
 		this.each(function(index) {
@@ -13,6 +31,35 @@ $(function() {
 			return this.nodeType === 3;
 		}).remove();
 		this.after(checked ? this.data('values')[0] : this.data('values')[1]);
+	};
+	$.fn.serializeObject = function() {
+		var o = {},
+			webtags = [],
+			webtag = {},
+			v = '',
+			a = this.serializeArray();
+		$.each(a, function() {
+			if(this.name === 'label') {
+				v = $.trim(this.value);
+				if (v) {
+					webtag['label'] = v;
+				}
+			}
+			else if (webtag['label']) {
+				v = $.trim(this.value);
+				if (v) {
+					webtag['url'] = v;
+					webtags.push(webtag);
+					webtag = {};
+				}
+			}
+		});
+		if (webtags.length > 0) {
+			o['webtags'] = webtags;
+			o['type'] = $('.panel input[name="type"]:checked').val();
+			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
+		}
+		return o;
 	};
 	$('.btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
@@ -46,7 +93,7 @@ $(function() {
 			checkboxes.prop('checked', false);
 		}
 		else if (index == 3) { // Remove checked
-			$($(this).closest('.col-md-8').children('.row:not(:first-child)')).each(function(index, Element) {
+			$($(this).closest('.col-md-8').children('.row:not(:first-child)')).each(function() {
 				if ($(this).has(':checked').length > 0) {
 					$(this).remove();
 				}
@@ -69,12 +116,12 @@ $(function() {
 		$('#modalImport').modal();
 	});
 	$('.btn-primary:eq(2)').click(function() { // Export
-		if ($(':checkbox[value="exportType"]').prop('checked')) {
-			$('#modalExport .modal-title').text('Export as full code');
-		}
-		else {
-			$('#modalExport .modal-title').text('Export JSON');
-		}
+		$('#modalExport .modal-title').text(
+				$(':checkbox[value="exportType"]').prop('checked') ? 'Export as full code' : 'Export JSON'
+		);
+		$('#modalExport textarea').text( 
+				JSON.stringify($('.col-xs-10 input').serializeObject()) 
+		);
 		$('#modalExport').modal();
 	});
 });
