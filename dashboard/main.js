@@ -65,4 +65,16 @@ $(function() {
 			top: 0
 		}
 	});
+	$('.btn-primary:eq(1)').click(function() { // Import
+		$('#modalImport').modal();
+	});
+	$('.btn-primary:eq(2)').click(function() { // Export
+		if ($(':checkbox[value="exportType"]').prop('checked')) {
+			$('#modalExport .modal-title').text('Export as full code');
+		}
+		else {
+			$('#modalExport .modal-title').text('Export JSON');
+		}
+		$('#modalExport').modal();
+	});
 });
