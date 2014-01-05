@@ -27,6 +27,8 @@ $(function() {
 		checkbox.after('#'+index);
 		$('.row:first', row).removeClass('hidden');
 		row.appendTo('.col-md-8');
+		console.log(row.offset().top);
+		$(window).scrollTop(row.offset().top);
 	});
 	$('.btn-danger:not(.dropdown-toggle)').on('click', function() {
 		if($('.btn-danger').size() > 1) {
@@ -58,5 +60,10 @@ $(function() {
 		.updateButtonValue($(':checkbox[value="exportType"]').prop('checked')); // F5 (page reload) fix
 	$(':checkbox[value="exportType"]').click(function() {
 		$('.glyphicon-export').updateButtonValue($(this).prop('checked'));
+	});
+	$('div[role="complementary"]').affix({
+		offset: {
+			top: 0
+		}
 	});
 });
