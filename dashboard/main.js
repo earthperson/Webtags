@@ -137,7 +137,9 @@ $(function() {
 			$(this).val('http://'+$(this).val());
 		}
 	});
+	var modalImportBody = $('#modalImport .modal-body').html();
 	$('.col-md-4 .btn-primary:eq(1)').click(function() { // Import
+		$('#modalImport .modal-body').html(modalImportBody);
 		$('#modalImport').modal();
 	});
 	$('.modal .btn-primary').click(function() {
@@ -157,8 +159,8 @@ $(function() {
 					$('.col-md-4 .btn-primary:first').click();
 					inputs = $('.col-md-8 .row:last input:not(:checkbox)');
 				}
-				$(inputs).first().val(data.webtags[i].label);
-				$(inputs).last().val(data.webtags[i].url);
+				$(inputs).first().val(data.webtags[i].label).validate();
+				$(inputs).last().val(data.webtags[i].url).validate();
 			}
 		}
 		catch (e) {
