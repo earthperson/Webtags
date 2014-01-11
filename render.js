@@ -1,3 +1,9 @@
+/*
+ * Webtags v0.0.0, Dashboard for webtags v1.0.0-alpha (https://github.com/earthperson/webtags)
+ * 
+ * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
+ * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
+ */
 (function() {
 	var canvas = document.getElementById('canvas');
 	if (canvas.getContext) {

@@ -1,3 +1,9 @@
+/*
+ * Webtags v0.0.0, Dashboard for webtags v1.0.0-alpha (https://github.com/earthperson/webtags)
+ * 
+ * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
+ * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
+ */
 if (!window.JSON) {
 	window.JSON = {
 		parse: function (sJSON) { return eval("(" + sJSON + ")"); },
@@ -61,14 +67,22 @@ $(function() {
 		}
 		return o;
 	};
-	$('.btn-primary:first').click(function() {
+	$.fn.validate = function() {
+		var r = $(this).attr('type') == 'text' ? /.{1,}/ : /\./;
+		if (!r.test($(this).val())) {
+			$(this).parent().addClass('has-error');
+		}
+		else {
+			$(this).parent().removeClass('has-error');
+		}
+	};
+	$('.col-md-4 .btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
 			index = $('.btn-danger').size(),
 			checkbox = $(':checkbox', row);
 		$('.btn-group', row).remove();
-		$('input:not(:checkbox)', row).val('');
-		checkbox.prop('checked', false);
-		checkbox.parent().contents().filter(function() {
+		$('input:not(:checkbox)', row).val('').parent().removeClass('has-error');
+		checkbox.prop('checked', false).parent().contents().filter(function() {
 		    return this.nodeType === 3;
 		}).remove();
 		checkbox.after('#'+index);
@@ -112,16 +126,67 @@ $(function() {
 			top: 0
 		}
 	});
-	$('.btn-primary:eq(1)').click(function() { // Import
+	$('.col-xs-10 input').keyup(function() {
+		$(this).validate();
+	});
+	$('.col-xs-10 input').change(function() {
+		$(this).val($.trim($(this).val())).validate();
+	});
+	$('.col-xs-10 input[type="url"]').change(function() {
+		if(!/^.*?:\/\//.test($(this).val())) {
+			$(this).val('http://'+$(this).val());
+		}
+	});
+	$('.col-md-4 .btn-primary:eq(1)').click(function() { // Import
 		$('#modalImport').modal();
 	});
-	$('.btn-primary:eq(2)').click(function() { // Export
+	$('.modal .btn-primary').click(function() {
+		var data = $('#modalImport textarea').val();
+		try {
+			data = JSON.parse(data);
+			$('#modalImport').modal('hide');
+			$('.btn-group .dropdown-menu li:eq(0) a').click();
+			$('.btn-group .dropdown-menu li:eq(3) a').click();
+			$('.panel input[name="type"]').filter('input[value="'+data.type+'"]').prop('checked', true);
+			$('.panel :checkbox[value="border"]').prop('checked', data.border);
+			var inputs = $('.col-md-8 .row:last input:not(:checkbox)'),
+			    i = 0,
+			    n = data.webtags.length;
+			for(; i < n; i++) {
+				if (i > 0) {
+					$('.col-md-4 .btn-primary:first').click();
+					inputs = $('.col-md-8 .row:last input:not(:checkbox)');
+				}
+				$(inputs).first().val(data.webtags[i].label);
+				$(inputs).last().val(data.webtags[i].url);
+			}
+		}
+		catch (e) {
+			$('#modalImport .modal-body').html('<div class="alert alert-danger">Incorrect format.</div>');
+		}
+	});
+	$('.col-md-4 .btn-primary:last').click(function() { // Export
 		$('#modalExport .modal-title').text(
 				$(':checkbox[value="exportType"]').prop('checked') ? 'Export as full code' : 'Export JSON'
 		);
-		$('#modalExport textarea').text( 
-				JSON.stringify($('.col-xs-10 input').serializeObject()) 
-		);
+		var t = JSON.stringify($('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject());
+		if($(':checkbox[value="exportType"]').prop('checked')) {
+			t = "<script type=\"text/javascript\" src=\"render.min.js\"></script>\n"+
+				"<script type=\"text/javascript\">\n"+
+				"webtags.init("+t+");\n"+
+				"</script>\n";
+		}
+		$('#modalExport textarea').text(t).focus(function() {
+			var $this = $(this);
+			$this.select();
+
+			// Work around Chrome's little problem
+			$this.mouseup(function() {
+				// Prevent further mouseup intervention
+				$this.unbind("mouseup");
+				return false;
+			});
+		});
 		$('#modalExport').modal();
 	});
 });
