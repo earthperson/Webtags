@@ -68,14 +68,17 @@ $(function() {
 		return o;
 	};
 	$.fn.validate = function() {
-		var r = $(this).attr('type') == 'text' ? /.{1,}/ : /\./;
-		if (!r.test($(this).val())) {
+		var re = $(this).attr('type') == 'text' ? /.{1,}/ : /\./;
+		if (!re.test($(this).val())) {
 			$(this).parent().addClass('has-error');
 		}
 		else {
 			$(this).parent().removeClass('has-error');
 		}
 	};
+	function stripTags(str){
+		return str.replace(/<\/?[^>]+>/gi, '');
+	}
 	$('.col-md-4 .btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
 			index = $('.btn-danger').size(),
@@ -114,6 +117,12 @@ $(function() {
 			});
 			$(':checkbox', $('.col-md-8')).setCheckboxesIndex();
 		}
+		else if (index == 4) { // Empty checked
+			$('.col-md-8 .row:has(:checked):not(:first) input:not(:checkbox)').val('').parent().removeClass('has-error');
+		}
+		else if (index == 6) { // Empty all
+			$('.col-md-8 .row input:not(:checkbox)').val('').parent().removeClass('has-error');
+		}
 	});
 	$('.glyphicon-export')
 		.data('values', [' Export as full code', ' Export JSON'])
@@ -130,11 +139,13 @@ $(function() {
 		$(this).validate();
 	});
 	$('.col-xs-10 input').change(function() {
-		$(this).val($.trim($(this).val())).validate();
+		var v = $.trim($(this).val());
+		$(this).val(v).validate();
 	});
 	$('.col-xs-10 input[type="url"]').change(function() {
-		if(!/^.*?:\/\//.test($(this).val())) {
-			$(this).val('http://'+$(this).val());
+		var v = $.trim($(this).val());
+		if(v && !/^.*?:\/\//.test(v)) {
+			$(this).val('http://'+v);
 		}
 	});
 	var modalImportBody = $('#modalImport .modal-body').html();
@@ -145,7 +156,7 @@ $(function() {
 	$('.modal .btn-primary').click(function() {
 		var data = $('#modalImport textarea').val();
 		try {
-			data = JSON.parse(data);
+			data = JSON.parse($.trim(stripTags(data).replace(/webtags\.init\(((.*\s*)*)\);/i, '$1')));
 			$('#modalImport').modal('hide');
 			$('.btn-group .dropdown-menu li:eq(0) a').click();
 			$('.btn-group .dropdown-menu li:eq(3) a').click();
@@ -181,12 +192,10 @@ $(function() {
 		$('#modalExport textarea').text(t).focus(function() {
 			var $this = $(this);
 			$this.select();
-
-			// Work around Chrome's little problem
-			$this.mouseup(function() {
+			$this.mouseup(function(event) {
+				event.preventDefault();
 				// Prevent further mouseup intervention
-				$this.unbind("mouseup");
-				return false;
+				$this.unbind('mouseup');
 			});
 		});
 		$('#modalExport').modal();
