@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Webtags dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-theme.min.css">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="vendor/html5shiv.js"></script>
+			<script src="vendor/respond.min.js"></script>
+		<![endif]-->
+		<link type="text/css" rel="stylesheet" href="style.css">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="container">
+				<div class="page-header">
+					<h1><span class="glyphicon glyphicon-tags"></span> Webtags</h1>
+					<p class="lead">Dashboard for <a href="https://github.com/earthperson/webtags" target="_blank">webtags</a>.</p>
+				</div>
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-xs-2">
+								<div class="row hidden">
+									<div class="col-xs-6">
+										<div class="form-group">
+											<label class="checkbox-inline">
+												<input type="checkbox" value="">
+											</label>
+										</div>
+									</div>
+									<div class="col-xs-6">
+										<div class="form-group">
+											<button type="button" class="btn btn-sm btn-danger">
+												<span class="glyphicon glyphicon-remove"></span>
+											</button>
+										</div>
+									</div>
+								</div>
+								<div class="btn-group">
+									<button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown">
+										Bulk actions <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Check all</a></li>
+										<li><a href="#">Uncheck all</a></li>
+										<li class="divider"></li>
+										<li><a href="#">Remove checked</a></li>
+										<li><a href="#">Empty checked</a></li>
+										<li class="divider"></li>
+										<li><a href="#">Empty all</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-xs-10">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="sr-only">Label</label>
+											<input type="text" name="label" class="form-control input-sm" placeholder="Label">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="sr-only">URL</label>
+											<input type="url" name="url" class="form-control input-sm" placeholder="URL">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="affix-top" role="complementary">
+							<button type="button" class="btn btn-primary btn-lg btn-block">
+								<span class="glyphicon glyphicon-tag"></span> Add webtag
+							</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block">
+								<span class="glyphicon glyphicon-import"></span> Import JSON
+							</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block">
+								<span class="glyphicon glyphicon-export"></span> Export JSON
+							</button>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" value="exportType"> Export as code for paste in a HTML page instead of <a href="http://en.wikipedia.org/wiki/JSON" target="_blank">JSON format</a> for JavaScript object initialization.
+								</label>
+							</div>
+							<div class="panel panel-info">
+								<div class="panel-heading">
+									<h3 class="panel-title">Tags options</h3>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<span class="help-block">Type of the webtags label:</span>
+										<div class="radio">
+											<label>
+												<input type="radio" name="type" value="rounded" checked>Rounded
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="type" value="square">Square
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" value="border">
+												Show border and link to the <a href="https://github.com/earthperson/webtags" target="_blank">GitHub project page</a> at the right bottom corner.
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="btn btn-success btn-lg btn-block" disabled="disabled">
+								<span class="glyphicon glyphicon-play"></span>  Launch
+							</button>
+						</div>
+					</div>
+					<!-- Modal import -->
+					<div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modalImportLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="modalImportLabel">Import JSON</h4>
+								</div>
+								<div class="modal-body">
+									<p class="help-block">Copy and paste the JSON from your web page to populate the fields &quot;Label&quot; and &quot;URL&quot; in this webtags dashboard.</p>
+									<textarea class="form-control" rows="20"></textarea>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Import</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+					<!-- Modal export -->
+					<div class="modal fade" id="modalExport" tabindex="-1" role="dialog" aria-labelledby="modalExportLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="modalExportLabel">Export JSON</h4>
+								</div>
+								<div class="modal-body">
+									<p class="help-block">Copy and paste the code below into the right place on your web page.</p>
+									<textarea class="form-control" rows="20"></textarea>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container">
+				<small>&copy; 2013-2014 </small><a href="http://earthperson.info" target="_blank" class="small">earthperson</a>
+				<span class="pull-right small">Version: 1.0.0-alpha</span>
+			</div>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="vendor/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>

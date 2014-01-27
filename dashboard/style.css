@@ -1,0 +1,61 @@
+/*
+ * Webtags v0.0.0, Dashboard for webtags v1.0.0-alpha (https://github.com/earthperson/webtags)
+ *
+ * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
+ * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
+ */
+ 
+/*[class*="col-"] {
+	background-color: rgba(86, 61, 124, 0.15);
+	border: 1px solid rgba(86, 61, 124, 0.2);
+	padding-bottom: 15px;
+	padding-top: 15px;
+}*/
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto;
+	/* Negative indent footer by its height */
+	margin: 0 auto -60px;
+	/* Pad bottom by footer height */
+	padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+	height: 60px;
+	background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+@media (min-width: 992px) {
+	.col-md-4 .affix {
+		width: 293px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.col-md-4 .affix {
+		width: 360px;
+	}
+}
+
+#footer > .container {
+	padding-top: 20px;
+}
+
+#footer > .container small {
+	color: #999999;
+}
