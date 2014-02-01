@@ -6,5 +6,5 @@ You'll find the demo of the webtags dashboard on [this page][4].
 
 [1]: https://developer.mozilla.org/en-US/docs/HTML/Canvas
 [2]: http://earthperson.info
-[3]: http://earthperson.github.io/webtags/images/webtags.png
-[4]: http://earthperson.github.io/webtags/dashboard/
+[3]: http://earthperson.github.io/Webtags/images/webtags.png
+[4]: http://earthperson.github.io/Webtags/dashboard/
