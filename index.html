@@ -3,17 +3,24 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Webtags</title>
-		<style type="text/css">
-			#canvas {
-				border: 1px solid black;
-			}
-		</style>
 	</head>
 	<body>
 		<canvas id="canvas">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
-		<script type="text/javascript" src="render.min.js"></script>
+		<script type="text/javascript" src="render.js"></script>
 		<script type="text/javascript">
-		
+		/* 
+		 *	You can use the Web Tags Dashboard for getting initialization object 
+		 */
+		new Webtags({
+			"webtags": [
+				{
+					"label": "Example",
+					"url": "http://example.com"
+				}
+			],
+			"type": "rounded",
+			"border": true
+		});
 		</script>
 	</body>
 </html>
