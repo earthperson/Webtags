@@ -156,7 +156,7 @@ $(function() {
 	$('.modal .btn-primary').click(function() {
 		var data = $('#modalImport textarea').val();
 		try {
-			data = JSON.parse($.trim(stripTags(data).replace(/webtags\.init\(((.*\s*)*)\);/i, '$1')));
+			data = JSON.parse($.trim(stripTags(data).replace(/new Webtags\(((.*\s*)*)\);/i, '$1')));
 			$('#modalImport').modal('hide');
 			$('.btn-group .dropdown-menu li:eq(0) a').click();
 			$('.btn-group .dropdown-menu li:eq(3) a').click();
