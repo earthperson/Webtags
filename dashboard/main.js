@@ -68,7 +68,7 @@ $(function() {
 		return o;
 	};
 	$.fn.validate = function() {
-		var re = $(this).attr('type') == 'text' ? /.{1,}/ : /\./;
+		var re = $(this).attr('type') == 'text' ? /.{1,}/ : /\..{1,}$/;
 		if (!re.test($(this).val())) {
 			$(this).parent().addClass('has-error');
 		}
