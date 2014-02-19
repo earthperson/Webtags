@@ -62,4 +62,9 @@ body {
 
 #modalLaunch .modal-body {
 	text-align: center;
+	margin-top: 15px;
+}
+
+.col-md-4 .help-block:last-child {
+	padding-top: 14px;
 }
