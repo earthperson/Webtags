@@ -5,7 +5,7 @@
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  */
 function Webtags (properties) {
-	if (properties != null) {
+	if (properties instanceof Object && properties['webtags']) {
 		for (var a in properties) {
 			Webtags.prototype.properties[a] = properties[a];
 		}
@@ -49,18 +49,22 @@ Webtags.prototype.canvas = null;
 		this.context.strokeStyle = '#5e8cc2';
 		this.context.lineWidth = 4;
 		this.context.lineJoin = 'round';
-		this.context.moveTo(4,20);
-		this.context.lineTo(12,4);
+		this.context.moveTo(16,20);
+		this.context.lineTo(23,4);
 		this.context.lineTo(96,4);
 		this.context.lineTo(96,36);
-		this.context.lineTo(12,36);
+		this.context.lineTo(23,36);
 		this.context.closePath();
 		this.context.stroke();
 		this.context.beginPath();
-		this.context.strokeStyle = '#5e8cc2';
 		this.context.lineWidth = 2;
-		this.context.arc(14,20,4,0,Math.PI*2);
-		this.context.closePath();
+		this.context.arc(26,20,4,0,Math.PI*2);
+		this.context.moveTo(4,17);
+		this.context.bezierCurveTo(2,10,8,10,10,14);
+		this.context.bezierCurveTo(13,23,16,17,27,20);
+		this.context.moveTo(1,26);
+		this.context.quadraticCurveTo(2,18,12,22);
+		this.context.quadraticCurveTo(18,28,27,20);
 		this.context.stroke();
 	}
 	

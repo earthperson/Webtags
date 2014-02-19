@@ -59,3 +59,7 @@ body {
 #footer > .container small {
 	color: #999999;
 }
+
+#modalLaunch .modal-body {
+	text-align: center;
+}
