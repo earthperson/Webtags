@@ -1,5 +1,5 @@
 /*
- * Webtags v0.0.0, Dashboard for webtags v1.0.0-alpha (https://github.com/earthperson/webtags)
+ * Webtags v0.0.1-alpha1, Dashboard for webtags v1.0.0-alpha1 (https://github.com/earthperson/webtags)
  * 
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
@@ -186,7 +186,7 @@ $(function() {
 		if($(':checkbox[value="exportType"]').prop('checked')) {
 			t = "<script type=\"text/javascript\" src=\"render.min.js\"></script>\n"+
 				"<script type=\"text/javascript\">\n"+
-				"webtags.init("+t+");\n"+
+				"new Webtags("+t+");\n"+
 				"</script>\n";
 		}
 		$('#modalExport textarea').text(t).focus(function() {
@@ -199,5 +199,12 @@ $(function() {
 			});
 		});
 		$('#modalExport').modal();
+	});
+	$('.col-md-4 .btn-success:last').click(function() { // Launch
+		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
+		if (o instanceof Object && o['webtags']) {
+			$('#modalLaunch').modal();
+			new Webtags(o);
+		}
 	});
 });
