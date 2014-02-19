@@ -40,28 +40,28 @@ $(function() {
 	};
 	$.fn.serializeObject = function() {
 		var o = {},
-			webtags = [],
-			webtag = {},
+			items = [],
+			item = {},
 			v = '',
 			a = this.serializeArray();
 		$.each(a, function() {
 			if(this.name === 'label') {
 				v = $.trim(this.value);
 				if (v) {
-					webtag['label'] = v;
+					item['label'] = v;
 				}
 			}
-			else if (webtag['label']) {
+			else if (item['label']) {
 				v = $.trim(this.value);
 				if (v) {
-					webtag['url'] = v;
-					webtags.push(webtag);
-					webtag = {};
+					item['url'] = v;
+					items.push(item);
+					item = {};
 				}
 			}
 		});
-		if (webtags.length > 0) {
-			o['webtags'] = webtags;
+		if (items.length > 0) {
+			o['items'] = items;
 			o['type'] = $('.panel input[name="type"]:checked').val();
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 		}
@@ -75,9 +75,19 @@ $(function() {
 		else {
 			$(this).parent().removeClass('has-error');
 		}
+		return this;
 	};
 	function stripTags(str){
 		return str.replace(/<\/?[^>]+>/gi, '');
+	}
+	$.fn.setLaunchAble = function() {
+		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
+		if (o instanceof Object && o['items']) {
+			$('.col-md-4 .btn-success:last').removeAttr('disabled');
+		}
+		else {
+			$('.col-md-4 .btn-success:last').attr('disabled','disabled');
+		}
 	}
 	$('.col-md-4 .btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
@@ -136,11 +146,11 @@ $(function() {
 		}
 	});
 	$('.col-xs-10 input').keyup(function() {
-		$(this).validate();
+		$(this).validate().setLaunchAble();
 	});
 	$('.col-xs-10 input').change(function() {
 		var v = $.trim($(this).val());
-		$(this).val(v).validate();
+		$(this).val(v).validate().setLaunchAble();
 	});
 	$('.col-xs-10 input[type="url"]').change(function() {
 		var v = $.trim($(this).val());
@@ -164,14 +174,14 @@ $(function() {
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
 			var inputs = $('.col-md-8 .row:last input:not(:checkbox)'),
 			    i = 0,
-			    n = data.webtags.length;
+			    n = data.items.length;
 			for(; i < n; i++) {
 				if (i > 0) {
 					$('.col-md-4 .btn-primary:first').click();
 					inputs = $('.col-md-8 .row:last input:not(:checkbox)');
 				}
-				$(inputs).first().val(data.webtags[i].label).validate();
-				$(inputs).last().val(data.webtags[i].url).validate();
+				$(inputs).first().val(data.items[i].label).validate().setLaunchAble();
+				$(inputs).last().val(data.items[i].url).validate().setLaunchAble();
 			}
 		}
 		catch (e) {
@@ -202,7 +212,7 @@ $(function() {
 	});
 	$('.col-md-4 .btn-success:last').click(function() { // Launch
 		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
-		if (o instanceof Object && o['webtags']) {
+		if (o instanceof Object && o['items']) {
 			$('#modalLaunch').modal();
 			new Webtags(o);
 		}
