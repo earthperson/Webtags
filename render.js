@@ -5,7 +5,7 @@
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
  */
 function Webtags (properties) {
-	if (properties instanceof Object && properties['webtags']) {
+	if (properties instanceof Object && properties['items']) {
 		for (var a in properties) {
 			Webtags.prototype.properties[a] = properties[a];
 		}
@@ -27,7 +27,7 @@ Webtags.prototype.canvas = null;
 		canvas.height = this.properties.height;
 		this.properties.border ? canvas.style.border = '1px solid #5e8cc2' : canvas.style.border = 'none';
 		if (canvas.getContext) {
-			var context = canvas.getContext('2d'), i = 0, l = this.properties.webtags.length;
+			var context = canvas.getContext('2d'), i = 0, l = this.properties.items.length;
 			for(; i < l; i++) {
 				new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context, this).render();
 			}
