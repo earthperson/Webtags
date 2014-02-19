@@ -44,11 +44,19 @@ Webtags.prototype.canvas = null;
 		
 	}
 	Tag.prototype.context = null;
+	Tag.prototype.getRandomFactor = function() {
+		return (Math.random()*10)+1;
+	}
 	Tag.prototype.render = function() {
+		var k = this.getRandomFactor();
 		this.context.beginPath();
 		this.context.strokeStyle = '#5e8cc2';
 		this.context.lineWidth = 4;
-		this.context.lineJoin = 'round';
+		this.context.lineJoin = this.context.lineCap = 'round';
+		this.context.shadowOffsetX = 2;
+		this.context.shadowOffsetY = 2;
+		this.context.shadowBlur = 2;
+		this.context.shadowColor = 'rgba(54, 111, 179, 0.4)';
 		this.context.moveTo(16,20);
 		this.context.lineTo(23,4);
 		this.context.lineTo(96,4);
@@ -59,11 +67,12 @@ Webtags.prototype.canvas = null;
 		this.context.beginPath();
 		this.context.lineWidth = 2;
 		this.context.arc(26,20,4,0,Math.PI*2);
-		this.context.moveTo(4,17);
-		this.context.bezierCurveTo(2,10,8,10,10,14);
+		this.context.moveTo(4,18);
+		this.context.bezierCurveTo(2+k,10+k,8,10,10,14);
 		this.context.bezierCurveTo(13,23,16,17,27,20);
-		this.context.moveTo(1,26);
-		this.context.quadraticCurveTo(2,18,12,22);
+		this.context.moveTo(2,26);
+		k = this.getRandomFactor();
+		this.context.quadraticCurveTo(2+k,18+k,12,22);
 		this.context.quadraticCurveTo(18,28,27,20);
 		this.context.stroke();
 	}
