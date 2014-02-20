@@ -90,6 +90,7 @@ $(function() {
 			$('.col-md-4 .btn-primary:last').attr('disabled','disabled'); // Export
 			$('.col-md-4 .btn-success:last').attr('disabled','disabled'); // Launch
 		}
+		return this;
 	}
 	$('.col-md-4 .btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
@@ -127,13 +128,13 @@ $(function() {
 					$(this).remove();
 				}
 			});
-			$(':checkbox', $('.col-md-8')).setCheckboxesIndex();
+			$(':checkbox', $('.col-md-8')).setCheckboxesIndex().setLaunchAble();
 		}
 		else if (index == 4) { // Empty checked
-			$('.col-md-8 .row:has(:checked):not(:first) input:not(:checkbox)').val('').parent().removeClass('has-error');
+			$('.col-md-8 .row:has(:checked):not(:first) input:not(:checkbox)').val('').parent().removeClass('has-error').setLaunchAble();
 		}
 		else if (index == 6) { // Empty all
-			$('.col-md-8 .row input:not(:checkbox)').val('').parent().removeClass('has-error');
+			$('.col-md-8 .row input:not(:checkbox)').val('').parent().removeClass('has-error').setLaunchAble();
 		}
 	});
 	$('.glyphicon-export')
