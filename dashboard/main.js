@@ -106,10 +106,10 @@ $(function() {
 		row.appendTo('.col-md-8');
 		$(window).scrollTop(row.offset().top);
 	});
-	$('.btn-danger:not(.dropdown-toggle)').on('click', function() {
+	$('.btn-danger:not(.dropdown-toggle)').on('click', function() { // Remove
 		if($('.btn-danger').size() > 1) {
 			$(this).parents('.row:eq(1)').remove();
-			$(':checkbox', $('.col-md-8')).setCheckboxesIndex();
+			$(':checkbox', $('.col-md-8')).setCheckboxesIndex().setLaunchAble();
 		}
 	});
 	$('.btn-group .dropdown-menu a').click(function(event) {
