@@ -1,5 +1,5 @@
 /*
- * Webtags v0.0.1-alpha1, Dashboard for webtags v1.0.0-alpha1 (https://github.com/earthperson/webtags)
+ * Webtags v0.0.2-alpha1, Dashboard for webtags v1.0.1-alpha1 (https://github.com/earthperson/webtags)
  * 
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
@@ -83,10 +83,12 @@ $(function() {
 	$.fn.setLaunchAble = function() {
 		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
 		if (o instanceof Object && o['items']) {
-			$('.col-md-4 .btn-success:last').removeAttr('disabled');
+			$('.col-md-4 .btn-primary:last').removeAttr('disabled'); // Export
+			$('.col-md-4 .btn-success:last').removeAttr('disabled'); // Launch
 		}
 		else {
-			$('.col-md-4 .btn-success:last').attr('disabled','disabled');
+			$('.col-md-4 .btn-primary:last').attr('disabled','disabled'); // Export
+			$('.col-md-4 .btn-success:last').attr('disabled','disabled'); // Launch
 		}
 	}
 	$('.col-md-4 .btn-primary:first').click(function() {
