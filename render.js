@@ -47,6 +47,7 @@ Webtags.prototype.canvas = null;
 		}
 		x -= canvas.offsetLeft;
 		y -= canvas.offsetTop;
+		document.body.style.cursor = Canvas.prototype.hover = null;
 		for (a in Canvas.prototype.items) {
 			o = Canvas.prototype.items[a].text;
 			// Is the mouse over the webtag label?
@@ -55,17 +56,11 @@ Webtags.prototype.canvas = null;
 				Canvas.prototype.hover = Canvas.prototype.items[a].item.url;
 				break;
 			}
-			else {
-				document.body.style.cursor = Canvas.prototype.hover = null;
-			}
 		}
 		o = Canvas.prototype.text;
 		if (x >= parseInt(o.x) && x <= (parseInt(o.x) + parseInt(o.width)) && y >= parseInt(o.y) && y <= (parseInt(o.y) + parseInt(o.height))){
 			document.body.style.cursor = 'pointer';
 			Canvas.prototype.hover = Canvas.prototype.text.url;
-		}
-		else {
-			document.body.style.cursor = Canvas.prototype.hover = null;
 		}
 	}
 	Canvas.prototype.onClick = function(e) {
