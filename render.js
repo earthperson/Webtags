@@ -1,5 +1,5 @@
 /*
- * Webtags v0.1.1-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
+ * Webtags v0.1.2-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
  * 
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
@@ -27,11 +27,11 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
 	Canvas.prototype.text = {
-		label: "Powered by Webtags",
+		label: "Powered by Webtags v0.1.2-alpha1",
 		url: "https://github.com/earthperson/Webtags",
 		width: null,
 		height: null,
-		x: 398,
+		x: 332,
 		y: 338,
 		context: {
 			font: "10px Helvetica"
