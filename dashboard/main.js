@@ -164,6 +164,10 @@ $(function() {
 	$('.col-md-4 .btn-primary:eq(1)').click(function() { // Import
 		$('#modalImport .modal-body').html(modalImportBody);
 		$('#modalImport').modal();
+		$(this).addClass('active');
+		$('#modalImport').on('hidden.bs.modal', function (e) {
+			$('.col-md-4 .btn-primary:eq(1)').removeClass('active');
+		});
 	});
 	$('.modal .btn-primary').click(function() {
 		var data = $('#modalImport textarea').val();
@@ -211,11 +215,19 @@ $(function() {
 			});
 		});
 		$('#modalExport').modal();
+		$(this).addClass('active');
+		$('#modalExport').on('hidden.bs.modal', function (e) {
+			$('.col-md-4 .btn-primary:last').removeClass('active');
+		});
 	});
 	$('.col-md-4 .btn-success:last').click(function() { // Launch
 		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
 		if (o instanceof Object && o['items']) {
 			$('#modalLaunch').modal();
+			$(this).addClass('active');
+			$('#modalLaunch').on('hidden.bs.modal', function (e) {
+				$('.col-md-4 .btn-success:last').removeClass('active');
+			});
 			new Webtags(o);
 		}
 	});
