@@ -30,7 +30,7 @@ Webtags.prototype.canvas = null;
 			var context = canvas.getContext('2d'), i = 0, l = this.properties.items.length;
 			Tag.prototype.count = 0;
 			for(; i < l; i++) {
-				new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context, this).render();
+				new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context);
 			}
 		}
 		else {
@@ -46,7 +46,17 @@ Webtags.prototype.canvas = null;
 	}
 	Tag.prototype.properties = {
 		width: 100,
-		height: 40
+		height: 40,
+		context: {
+			strokeStyle: "#5e8cc2",
+			lineWidth: 4, 
+			lineJoin: "round",
+			lineCap: "round",
+			shadowOffsetX: 2,
+			shadowOffsetY: 2,
+			shadowBlur: 2,
+			shadowColor: "rgba(54, 111, 179, 0.4)"
+		}
 	}
 	Tag.prototype.context = null;
 	Tag.prototype.getRandomFactor = function() {
@@ -61,23 +71,11 @@ Webtags.prototype.canvas = null;
 	}
 	Tag.prototype.render = function() {
 		var k = this.getRandomFactor(), mx = this.getMx(), my = this.getMy();
-		this.context.beginPath();
-		this.context.strokeStyle = '#5e8cc2';
-		this.context.lineWidth = 4;
-		this.context.lineJoin = this.context.lineCap = 'round';
-		this.context.shadowOffsetX = 2;
-		this.context.shadowOffsetY = 2;
-		this.context.shadowBlur = 2;
-		this.context.shadowColor = 'rgba(54, 111, 179, 0.4)';
-		this.context.moveTo(16+mx,20+my);
-		this.context.lineTo(23+mx,4+my);
-		this.context.lineTo(96+mx,4+my);
-		this.context.lineTo(96+mx,36+my);
-		this.context.lineTo(23+mx,36+my);
-		this.context.closePath();
-		this.context.stroke();
-		this.context.beginPath();
+		for(var a in this.properties.context) {
+			this.context[a] = this.properties.context[a];
+		}
 		this.context.lineWidth = 2;
+		this.context.beginPath();
 		this.context.arc(26+mx,20+my,4,0,Math.PI*2);
 		this.context.moveTo(4+mx,18+my);
 		this.context.bezierCurveTo(2+k+mx,10+k+my,8+mx,10+my,10+mx,14+my);
@@ -87,18 +85,45 @@ Webtags.prototype.canvas = null;
 		this.context.quadraticCurveTo(2+k+mx,18+k+my,12+mx,22+my);
 		this.context.quadraticCurveTo(18+mx,28+my,27+mx,20+my);
 		this.context.stroke();
-		Tag.prototype.count++;
 	}
 	
 	function RoundedTag(context) {
 		this.context = context;
+		Tag.prototype.render.call(this);
+		this.render();
+		Tag.prototype.count++;
 	}
 	RoundedTag.prototype = new Tag();
+	RoundedTag.prototype.render = function() {
+		var mx = this.getMx(), my = this.getMy();
+		this.context.lineWidth = this.properties.context.lineWidth;
+		this.context.beginPath();
+		this.context.arc(32+mx,20+my,16,0.5*Math.PI,1.5*Math.PI);
+		this.context.lineTo(80+mx,4+my);
+		this.context.arc(80+mx,20+my,16,1.5*Math.PI,0.5*Math.PI);
+		this.context.closePath();
+		this.context.stroke();
+	}
 	
 	function SquareTag(context) {
 		this.context = context;
+		Tag.prototype.render.call(this);
+		this.render();
+		Tag.prototype.count++;
 	}
 	SquareTag.prototype = new Tag();
+	SquareTag.prototype.render = function() {
+		var mx = this.getMx(), my = this.getMy();
+		this.context.lineWidth = this.properties.context.lineWidth;
+		this.context.beginPath();
+		this.context.moveTo(16+mx,20+my);
+		this.context.lineTo(23+mx,4+my);
+		this.context.lineTo(96+mx,4+my);
+		this.context.lineTo(96+mx,36+my);
+		this.context.lineTo(23+mx,36+my);
+		this.context.closePath();
+		this.context.stroke();
+	}
 	
 	Webtags.prototype.canvas = new Canvas();
 	
