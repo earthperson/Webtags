@@ -28,6 +28,7 @@ Webtags.prototype.canvas = null;
 		this.properties.border ? canvas.style.border = '1px solid #5e8cc2' : canvas.style.border = 'none';
 		if (canvas.getContext) {
 			var context = canvas.getContext('2d'), i = 0, l = this.properties.items.length;
+			Tag.prototype.count = 0;
 			for(; i < l; i++) {
 				new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context, this).render();
 			}
@@ -49,7 +50,7 @@ Webtags.prototype.canvas = null;
 	}
 	Tag.prototype.context = null;
 	Tag.prototype.getRandomFactor = function() {
-		return (Math.random()*10)+1;
+		return (Math.random() * 10) + 1;
 	}
 	Tag.prototype.count = 0;
 	Tag.prototype.getMx = function() {
