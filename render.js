@@ -39,12 +39,12 @@ Webtags.prototype.canvas = null;
 	}
 	Canvas.prototype.element = null;
 	Canvas.prototype.getMousePosition = function(canvas, e) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        };
-      }
+		var rect = canvas.getBoundingClientRect();
+		return {
+			x: e.clientX - rect.left,
+			y: e.clientY - rect.top
+		}
+	}
 	// Check if the mouse is over the webtag label and change cursor style
 	Canvas.prototype.onMousemove = function(e) {
 		var mousePosition = Canvas.prototype.getMousePosition(Canvas.prototype.element, e), x = mousePosition.x, y = mousePosition.y, a, o;
