@@ -26,6 +26,17 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype = new Webtags();
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
+	Canvas.prototype.text = {
+		label: "Powered by Webtags",
+		url: "https://github.com/earthperson/Webtags",
+		width: null,
+		height: null,
+		x: 398,
+		y: 338,
+		context: {
+			font: "10px Helvetica"
+		}
+	}
 	// Check if the mouse is over the webtag label and change cursor style
 	Canvas.prototype.onMousemove = function(e) {
 		var x, y, a, o;
@@ -47,6 +58,14 @@ Webtags.prototype.canvas = null;
 			else {
 				document.body.style.cursor = Canvas.prototype.hover = null;
 			}
+		}
+		o = Canvas.prototype.text;
+		if (x >= parseInt(o.x) && x <= (parseInt(o.x) + parseInt(o.width)) && y >= parseInt(o.y) && y <= (parseInt(o.y) + parseInt(o.height))){
+			document.body.style.cursor = 'pointer';
+			Canvas.prototype.hover = Canvas.prototype.text.url;
+		}
+		else {
+			document.body.style.cursor = Canvas.prototype.hover = null;
 		}
 	}
 	Canvas.prototype.onClick = function(e) {
@@ -70,6 +89,14 @@ Webtags.prototype.canvas = null;
 				Canvas.prototype.items.push(
 					new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context, this.properties.items[i])
 				);
+			}
+			if (this.properties.border) {
+				for(var a in this.text.context) {
+					context[a] = this.text.context[a];
+				}
+				context.fillText(this.text.label, this.text.x, this.text.y);
+				this.text.width = context.measureText(this.text.label).width;
+				this.text.height = parseInt(this.text.context.font);
 			}
 		}
 		else {
