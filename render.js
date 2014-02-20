@@ -1,5 +1,5 @@
 /*
- * Webtags v0.1.2-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
+ * Webtags v0.1.3-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
  * 
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
@@ -27,7 +27,7 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
 	Canvas.prototype.text = {
-		label: "Powered by Webtags v0.1.2-alpha1",
+		label: "Powered by Webtags v0.1.3-alpha1",
 		url: "https://github.com/earthperson/Webtags",
 		width: null,
 		height: null,
@@ -37,16 +37,17 @@ Webtags.prototype.canvas = null;
 			font: "10px Helvetica"
 		}
 	}
+	Canvas.prototype.element = null;
+	Canvas.prototype.getMousePosition = function(canvas, e) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        };
+      }
 	// Check if the mouse is over the webtag label and change cursor style
 	Canvas.prototype.onMousemove = function(e) {
-		var x, y, a, o;
-		// Get the mouse position relative to the canvas element
-		if (e.layerX || e.layerX == 0) { // For Firefox
-			x = e.layerX;
-			y = e.layerY;
-		}
-		x -= canvas.offsetLeft;
-		y -= canvas.offsetTop;
+		var mousePosition = Canvas.prototype.getMousePosition(Canvas.prototype.element, e), x = mousePosition.x, y = mousePosition.y, a, o;
 		document.body.style.cursor = Canvas.prototype.hover = null;
 		for (a in Canvas.prototype.items) {
 			o = Canvas.prototype.items[a].text;
@@ -69,7 +70,7 @@ Webtags.prototype.canvas = null;
 		}
 	}
 	Canvas.prototype.render = function() {
-		var canvas = document.getElementById('canvas');
+		var canvas = Canvas.prototype.element = document.getElementById('canvas');
 		canvas.width = this.properties.width;
 		canvas.height = this.properties.height;
 		canvas.style.border = this.properties.border ? this.properties.style.border : 'none';
