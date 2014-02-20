@@ -1,5 +1,5 @@
 /*
- * Webtags v0.0.2-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
+ * Webtags v0.1.0-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
  * 
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
@@ -19,22 +19,61 @@ Webtags.prototype.canvas = null;
 	function Canvas() {
 		this.properties.width = 500;
 		this.properties.height = 350;
+		this.properties.style = {
+			border: "1px solid #5e8cc2"
+		}
 	}
 	Canvas.prototype = new Webtags();
+	Canvas.prototype.items = [];
+	Canvas.prototype.hover = null;
+	// Check if the mouse is over the webtag label and change cursor style
+	Canvas.prototype.onMousemove = function(e) {
+		var x, y, a, o;
+		// Get the mouse position relative to the canvas element
+		if (e.layerX || e.layerX == 0) { // For Firefox
+			x = e.layerX;
+			y = e.layerY;
+		}
+		x-=canvas.offsetLeft;
+		y-=canvas.offsetTop;
+		for (a in Canvas.prototype.items) {
+			o = Canvas.prototype.items[a].text;
+			// Is the mouse over the webtag label?
+			if (x >= parseInt(o.x) && x <= (parseInt(o.x) + parseInt(o.width)) && y >= parseInt(o.y) && y <= (parseInt(o.y) + parseInt(o.height))){
+				document.body.style.cursor = 'pointer';
+				Canvas.prototype.hover = Canvas.prototype.items[a].item.url;
+				break;
+			}
+			else {
+				document.body.style.cursor = Canvas.prototype.hover = null;
+			}
+		}
+	}
+	Canvas.prototype.onClick = function(e) {
+		if (Canvas.prototype.hover)  {
+			window.open(Canvas.prototype.hover);
+		}
+	}
 	Canvas.prototype.render = function() {
 		var canvas = document.getElementById('canvas');
 		canvas.width = this.properties.width;
 		canvas.height = this.properties.height;
-		this.properties.border ? canvas.style.border = '1px solid #5e8cc2' : canvas.style.border = 'none';
+		canvas.style.border = this.properties.border ? this.properties.style.border : 'none';
 		if (canvas.getContext) {
 			var context = canvas.getContext('2d'), i = 0, l = this.properties.items.length;
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			// Add mouse listeners
+			canvas.addEventListener('mousemove', Canvas.prototype.onMousemove, false);
+			canvas.addEventListener('click', Canvas.prototype.onClick, false);
 			Tag.prototype.count = 0;
 			for(; i < l; i++) {
-				new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context);
+				Canvas.prototype.items.push(
+					new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context, this.properties.items[i])
+				);
 			}
 		}
 		else {
-			// canvas-unsupported code here
+			// Canvas-unsupported code here
 		}
 	}
 	Canvas.prototype.toString = function() {
@@ -48,6 +87,9 @@ Webtags.prototype.canvas = null;
 		width: 100,
 		height: 40,
 		context: {
+			fillStyle: "#5e8cc2",
+			textBaseline: "top",
+			font: "12px Arial",
 			strokeStyle: "#5e8cc2",
 			lineWidth: 4, 
 			lineJoin: "round",
@@ -59,6 +101,8 @@ Webtags.prototype.canvas = null;
 		}
 	}
 	Tag.prototype.context = null;
+	Tag.prototype.item = null;
+	Tag.prototype.text = null;
 	Tag.prototype.getRandomFactor = function() {
 		return (Math.random() * 10) + 1;
 	}
@@ -85,10 +129,18 @@ Webtags.prototype.canvas = null;
 		this.context.quadraticCurveTo(2+k+mx,18+k+my,12+mx,22+my);
 		this.context.quadraticCurveTo(18+mx,28+my,27+mx,20+my);
 		this.context.stroke();
+		this.text = {
+			x: 34+mx,
+			y: 15+my
+		};
+		this.context.fillText(this.item.label,this.text.x,this.text.y);
+		this.text.width = this.context.measureText(this.item.label).width;
+		this.text.height = parseInt(this.context.font);
 	}
 	
-	function RoundedTag(context) {
+	function RoundedTag(context, item) {
 		this.context = context;
+		this.item = item;
 		Tag.prototype.render.call(this);
 		this.render();
 		Tag.prototype.count++;
@@ -105,8 +157,9 @@ Webtags.prototype.canvas = null;
 		this.context.stroke();
 	}
 	
-	function SquareTag(context) {
+	function SquareTag(context, item) {
 		this.context = context;
+		this.item = item;
 		Tag.prototype.render.call(this);
 		this.render();
 		Tag.prototype.count++;
