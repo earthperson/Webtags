@@ -34,8 +34,8 @@ Webtags.prototype.canvas = null;
 			x = e.layerX;
 			y = e.layerY;
 		}
-		x-=canvas.offsetLeft;
-		y-=canvas.offsetTop;
+		x -= canvas.offsetLeft;
+		y -= canvas.offsetTop;
 		for (a in Canvas.prototype.items) {
 			o = Canvas.prototype.items[a].text;
 			// Is the mouse over the webtag label?
@@ -114,8 +114,8 @@ Webtags.prototype.canvas = null;
 		return Math.floor(this.count / (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.height;
 	}
 	Tag.prototype.render = function() {
-		var k = this.getRandomFactor(), mx = this.getMx(), my = this.getMy();
-		for(var a in this.properties.context) {
+		var k = this.getRandomFactor(), mx = this.getMx(), my = this.getMy(), a;
+		for(a in this.properties.context) {
 			this.context[a] = this.properties.context[a];
 		}
 		this.context.lineWidth = 2;
