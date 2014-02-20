@@ -1,5 +1,5 @@
 /*
- * Webtags v0.1.0-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
+ * Webtags v0.1.1-alpha1, Dashboard for webtags v1.0.2-alpha1 (https://github.com/earthperson/webtags)
  * 
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
@@ -91,7 +91,7 @@ Webtags.prototype.canvas = null;
 			textBaseline: "top",
 			font: "12px Arial",
 			strokeStyle: "#5e8cc2",
-			lineWidth: 4, 
+			lineWidth: 2, 
 			lineJoin: "round",
 			lineCap: "round",
 			shadowOffsetX: 2,
@@ -118,7 +118,6 @@ Webtags.prototype.canvas = null;
 		for(a in this.properties.context) {
 			this.context[a] = this.properties.context[a];
 		}
-		this.context.lineWidth = 2;
 		this.context.beginPath();
 		this.context.arc(26+mx,20+my,4,0,Math.PI*2);
 		this.context.moveTo(4+mx,18+my);
@@ -148,7 +147,6 @@ Webtags.prototype.canvas = null;
 	RoundedTag.prototype = new Tag();
 	RoundedTag.prototype.render = function() {
 		var mx = this.getMx(), my = this.getMy();
-		this.context.lineWidth = this.properties.context.lineWidth;
 		this.context.beginPath();
 		this.context.arc(32+mx,20+my,16,0.5*Math.PI,1.5*Math.PI);
 		this.context.lineTo(80+mx,4+my);
@@ -167,7 +165,6 @@ Webtags.prototype.canvas = null;
 	SquareTag.prototype = new Tag();
 	SquareTag.prototype.render = function() {
 		var mx = this.getMx(), my = this.getMy();
-		this.context.lineWidth = this.properties.context.lineWidth;
 		this.context.beginPath();
 		this.context.moveTo(16+mx,20+my);
 		this.context.lineTo(23+mx,4+my);
