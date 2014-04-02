@@ -73,7 +73,7 @@ Webtags.prototype.canvas = null;
 		}
 	}
 	Canvas.prototype.render = function() {
-		var canvas = Canvas.prototype.element = document.getElementById('canvas');
+		var canvas = Canvas.prototype.element = document.getElementById('webtags');
 		canvas.width = this.properties.width;
 		canvas.height = this.properties.height;
 		canvas.style.border = this.properties.border ? this.properties.style.border : 'none';
