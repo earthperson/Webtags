@@ -55,7 +55,7 @@ Webtags.prototype.canvas = null;
 		for (a in Canvas.prototype.items) {
 			o = Canvas.prototype.items[a].text;
 			// Is the mouse over the webtag label?
-			if (x >= parseInt(o.x) && x <= (parseInt(o.x) + parseInt(o.width)) && y >= parseInt(o.y) && y <= (parseInt(o.y) + parseInt(o.height))){
+			if (x >= parseInt(o.x+o.translating.x) && x <= (parseInt(o.x+o.translating.x) + parseInt(o.width)) && y >= parseInt(o.y+o.translating.y) && y <= (parseInt(o.y+o.translating.y) + parseInt(o.height))){
 				document.body.style.cursor = 'pointer';
 				Canvas.prototype.hover = Canvas.prototype.items[a].item.url;
 				break;
@@ -133,22 +133,54 @@ Webtags.prototype.canvas = null;
 		return (Math.random() * 10) + 1;
 	};
 	Tag.prototype.count = 0;
-	Tag.prototype.getMx = function(width) {
-		width = width || Tag.prototype.properties.width;
-		return parseFloat((this.count % (Canvas.prototype.properties.width / width)) * width);
+	Tag.prototype.line = {
+		width: 0,
+		count: 0
 	};
-	Tag.prototype.getMy = function(width) {
-		width = width || Tag.prototype.properties.width;
-		return Math.floor(this.count / (Canvas.prototype.properties.width / width)) * Tag.prototype.properties.height;
+	Tag.prototype.getMx = function() {
+		return parseFloat((this.count % (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.width);
+	};
+	Tag.prototype.getMy = function() {
+		return Math.floor(this.count / (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.height;
+	};
+	Tag.prototype.translateX = function() {
+		if(this.line.width + this.text.width > (Canvas.prototype.properties.width - (Canvas.prototype.properties.type == 'rounded' ? 32+16+2 : 16+23+2))) {
+			this.line.width = 0;
+			this.line.count++;
+			return 0;
+		}
+		else {
+			return this.line.width;
+		}
+	};
+	Tag.prototype.translateY = function() {
+		return Tag.prototype.properties.height * Tag.prototype.line.count;
 	};
 	Tag.prototype.render = function() {
 		var k = this.getRandomFactor(), a;
 		for(a in this.properties.context) {
 			this.context[a] = this.properties.context[a];
 		}
-		this.context.beginPath();
+		this.text = {
+			x: 34,
+			y: 15,
+			translating: {
+				x: 0,
+				y: 0
+			}
+		};
+		this.text.width = this.context.measureText(this.item.label).width;
+		this.text.height = parseInt(this.context.font);
 		this.context.save();
-		this.context.translate(this.getMx(), this.getMy());
+		if(Canvas.prototype.properties.grid) {
+			this.context.translate(this.getMx(), this.getMy());
+		}
+		else {
+			this.text.translating.x = this.translateX();
+			this.text.translating.y = this.translateY();
+			this.context.translate(this.text.translating.x, this.text.translating.y);
+		}
+		this.context.beginPath();
 		this.context.arc(26,20,4,0,Math.PI*2);
 		this.context.moveTo(4,18);
 		this.context.bezierCurveTo(2+k,10+k,8,10,10,14);
@@ -158,13 +190,7 @@ Webtags.prototype.canvas = null;
 		this.context.quadraticCurveTo(2+k,18+k,12,22);
 		this.context.quadraticCurveTo(18,28,27,20);
 		this.context.stroke();
-		this.text = {
-			x: 34,
-			y: 15
-		};
 		this.context.fillText(this.item.label,this.text.x,this.text.y);
-		this.text.width = this.context.measureText(this.item.label).width;
-		this.text.height = parseInt(this.context.font);
 		this.context.restore();
 	};
 	
@@ -173,16 +199,28 @@ Webtags.prototype.canvas = null;
 		this.item = item;
 		Tag.prototype.render.call(this);
 		this.render();
+		Tag.prototype.line.width += Math.floor(32+16+2+this.text.width);
 		Tag.prototype.count++;
 	}
 	RoundedTag.prototype = new Tag();
 	RoundedTag.prototype.render = function() {
 		this.context.save();
-		this.context.translate(this.getMx(), this.getMy());
+		if(Canvas.prototype.properties.grid) {
+			this.context.translate(this.getMx(), this.getMy());
+		}
+		else {
+			this.context.translate(this.translateX(), this.translateY());
+		}
 		this.context.beginPath();
 		this.context.arc(32,20,16,0.5*Math.PI,1.5*Math.PI);
-		this.context.lineTo(80,4);
-		this.context.arc(80,20,16,1.5*Math.PI,0.5*Math.PI);
+		if(Canvas.prototype.properties.grid) {
+			this.context.lineTo(80,4);
+			this.context.arc(80,20,16,1.5*Math.PI,0.5*Math.PI);
+		}
+		else {
+			this.context.lineTo(32+this.text.width,4);
+			this.context.arc(32+this.text.width,20,16,1.5*Math.PI,0.5*Math.PI);
+		}
 		this.context.closePath();
 		this.context.stroke();
 		this.context.restore();
@@ -193,17 +231,29 @@ Webtags.prototype.canvas = null;
 		this.item = item;
 		Tag.prototype.render.call(this);
 		this.render();
+		Tag.prototype.line.width += Math.floor(16+23+2+this.text.width);
 		Tag.prototype.count++;
 	}
 	SquareTag.prototype = new Tag();
 	SquareTag.prototype.render = function() {
 		this.context.save();
-		this.context.translate(this.getMx(), this.getMy());
+		if(Canvas.prototype.properties.grid) {
+			this.context.translate(this.getMx(), this.getMy());
+		}
+		else {
+			this.context.translate(this.translateX(), this.translateY());
+		}
 		this.context.beginPath();
 		this.context.moveTo(16,20);
 		this.context.lineTo(23,4);
-		this.context.lineTo(96,4);
-		this.context.lineTo(96,36);
+		if(Canvas.prototype.properties.grid) {
+			this.context.lineTo(96,4);
+			this.context.lineTo(96,36);
+		}
+		else {
+			this.context.lineTo(16+23+this.text.width,4);
+			this.context.lineTo(16+23+this.text.width,36);
+		}
 		this.context.lineTo(23,36);
 		this.context.closePath();
 		this.context.stroke();
