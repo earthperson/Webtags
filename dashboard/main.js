@@ -1,5 +1,5 @@
 /*
- * Webtags v0.2.0-alpha1, Dashboard for webtags v1.0.3-alpha1 
+ * Webtags v0.2.0-alpha1, Dashboard for webtags v1.0.4-alpha1 
  * Webtags GitHub page: https://github.com/earthperson/Webtags
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
  * Author website: http://earthperson.info
@@ -177,7 +177,7 @@ $(function() {
 	$('.modal .btn-primary').click(function() {
 		var data = $('#modalImport textarea').val();
 		try {
-			data = JSON.parse($.trim(stripTags(data).replace(/new Webtags\(((.*\s*)*)\);/i, '$1')));
+			data = JSON.parse($.trim(stripTags(data).replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, '$1').replace(/new Webtags\(((.*\s*)*)\);/i, '$1')));
 			$('#modalImport').modal('hide');
 			$('.btn-group .dropdown-menu li:eq(0) a').click();
 			$('.btn-group .dropdown-menu li:eq(3) a').click();
