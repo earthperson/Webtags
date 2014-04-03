@@ -1,5 +1,5 @@
 /*
- * Webtags v0.1.3-alpha1, Dashboard for webtags v1.0.2-alpha1 
+ * Webtags v0.2.0-alpha1, Dashboard for webtags v1.0.3-alpha1 
  * Webtags GitHub page: https://github.com/earthperson/Webtags
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
  * Author website: http://earthperson.info
@@ -66,6 +66,7 @@ $(function() {
 		if (items.length > 0) {
 			o['items'] = items;
 			o['type'] = $('.panel input[name="type"]:checked').val();
+			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 		}
 		return o;
