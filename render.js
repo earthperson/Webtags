@@ -24,7 +24,7 @@ Webtags.prototype.canvas = null;
 		this.properties.height = 350;
 		this.properties.style = {
 			border: "1px solid #5e8cc2"
-		}
+		};
 	}
 	Canvas.prototype = new Webtags();
 	Canvas.prototype.items = [];
@@ -39,15 +39,15 @@ Webtags.prototype.canvas = null;
 		context: {
 			font: "10px Helvetica"
 		}
-	}
+	};
 	Canvas.prototype.element = null;
 	Canvas.prototype.getMousePosition = function(canvas, e) {
 		var rect = canvas.getBoundingClientRect();
 		return {
 			x: e.clientX - rect.left,
 			y: e.clientY - rect.top
-		}
-	}
+		};
+	};
 	// Check if the mouse is over the webtag label and change cursor style
 	Canvas.prototype.onMousemove = function(e) {
 		var mousePosition = Canvas.prototype.getMousePosition(Canvas.prototype.element, e), x = mousePosition.x, y = mousePosition.y, a, o;
@@ -66,12 +66,12 @@ Webtags.prototype.canvas = null;
 			document.body.style.cursor = 'pointer';
 			Canvas.prototype.hover = Canvas.prototype.text.url;
 		}
-	}
+	};
 	Canvas.prototype.onClick = function(e) {
 		if (Canvas.prototype.hover)  {
 			window.open(Canvas.prototype.hover);
 		}
-	}
+	};
 	Canvas.prototype.render = function() {
 		var canvas = Canvas.prototype.element = document.getElementById('webtags');
 		canvas.width = this.properties.width;
@@ -101,10 +101,10 @@ Webtags.prototype.canvas = null;
 		else {
 			// Canvas-unsupported code here
 		}
-	}
+	};
 	Canvas.prototype.toString = function() {
 		this.render();
-	}
+	};
 	
 	function Tag() {
 		
@@ -125,20 +125,20 @@ Webtags.prototype.canvas = null;
 			shadowBlur: 2,
 			shadowColor: "rgba(54, 111, 179, 0.4)"
 		}
-	}
+	};
 	Tag.prototype.context = null;
 	Tag.prototype.item = null;
 	Tag.prototype.text = null;
 	Tag.prototype.getRandomFactor = function() {
 		return (Math.random() * 10) + 1;
-	}
+	};
 	Tag.prototype.count = 0;
 	Tag.prototype.getMx = function() {
 		return parseFloat((this.count % (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.width);
-	}
+	};
 	Tag.prototype.getMy = function() {
 		return Math.floor(this.count / (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.height;
-	}
+	};
 	Tag.prototype.render = function() {
 		var k = this.getRandomFactor(), mx = this.getMx(), my = this.getMy(), a;
 		for(a in this.properties.context) {
@@ -161,7 +161,7 @@ Webtags.prototype.canvas = null;
 		this.context.fillText(this.item.label,this.text.x,this.text.y);
 		this.text.width = this.context.measureText(this.item.label).width;
 		this.text.height = parseInt(this.context.font);
-	}
+	};
 	
 	function RoundedTag(context, item) {
 		this.context = context;
@@ -179,7 +179,7 @@ Webtags.prototype.canvas = null;
 		this.context.arc(80+mx,20+my,16,1.5*Math.PI,0.5*Math.PI);
 		this.context.closePath();
 		this.context.stroke();
-	}
+	};
 	
 	function SquareTag(context, item) {
 		this.context = context;
@@ -199,7 +199,7 @@ Webtags.prototype.canvas = null;
 		this.context.lineTo(23+mx,36+my);
 		this.context.closePath();
 		this.context.stroke();
-	}
+	};
 	
 	Webtags.prototype.canvas = new Canvas();
 	
