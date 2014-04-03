@@ -82,8 +82,12 @@ $(function() {
 		}
 		return this;
 	};
-	function stripTags(str){
-		return str.replace(/<\/?[^>]+>/gi, '');
+	function stripTags(str, re){
+		if(re != null) {
+			str = str.replace(re, '');
+		}
+		str = str.replace(/<\/?[^>]+>/gi, '');
+		return str;
 	}
 	$.fn.setLaunchAble = function() {
 		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
@@ -178,7 +182,7 @@ $(function() {
 	$('.modal .btn-primary').click(function() {
 		var data = $('#modalImport textarea').val();
 		try {
-			data = JSON.parse($.trim(stripTags(data).replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, '$1').replace(/new Webtags\(((.*\s*)*)\);/i, '$1')));
+			data = JSON.parse($.trim(stripTags(data, /<canvas[^>]+>.*?<\/[^>]+>/gi).replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, '$1').replace(/new Webtags\(((.*\s*)*)\);/i, '$1')));
 			$('#modalImport').modal('hide');
 			$('.btn-group .dropdown-menu li:eq(0) a').click();
 			$('.btn-group .dropdown-menu li:eq(3) a').click();
@@ -206,7 +210,8 @@ $(function() {
 		);
 		var t = JSON.stringify($('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject());
 		if($(':checkbox[value="exportType"]').prop('checked')) {
-			t = "<script type=\"text/javascript\" src=\"render.min.js\"></script>\n"+
+			t = "<canvas id=\"webtags\">This text is displayed if your browser does not support HTML5 Canvas.</canvas>\n"+
+				"<script type=\"text/javascript\" src=\"render.min.js\"></script>\n"+
 				"<script type=\"text/javascript\">\n"+
 				"new Webtags("+t+");\n"+
 				"</script>\n";
