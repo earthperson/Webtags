@@ -1,5 +1,5 @@
 /*
- * Webtags v0.1.3-alpha1, Dashboard for webtags v1.0.2-alpha1 
+ * Webtags v0.2.0-alpha1, Dashboard for webtags v1.0.3-alpha1 
  * Webtags GitHub page: https://github.com/earthperson/Webtags
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
  * Author website: http://earthperson.info
@@ -30,7 +30,7 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
 	Canvas.prototype.text = {
-		label: "Powered by Webtags v0.1.3-alpha1",
+		label: "Powered by Webtags v0.2.0-alpha1",
 		url: "https://github.com/earthperson/Webtags",
 		width: null,
 		height: null,
@@ -80,6 +80,11 @@ Webtags.prototype.canvas = null;
 		if (canvas.getContext) {
 			var context = canvas.getContext('2d'), i = 0, l = this.properties.items.length;
 			context.clearRect(0, 0, canvas.width, canvas.height);
+			Tag.prototype.count = 0;
+			Tag.prototype.line = {
+				width: 0,
+				count: 0
+			};
 			// Add mouse listeners
 			canvas.addEventListener('mousemove', Canvas.prototype.onMousemove, false);
 			canvas.addEventListener('click', Canvas.prototype.onClick, false);
@@ -131,11 +136,6 @@ Webtags.prototype.canvas = null;
 	Tag.prototype.text = null;
 	Tag.prototype.getRandomFactor = function() {
 		return (Math.random() * 10) + 1;
-	};
-	Tag.prototype.count = 0;
-	Tag.prototype.line = {
-		width: 0,
-		count: 0
 	};
 	Tag.prototype.getMx = function() {
 		return parseFloat((this.count % (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.width);
