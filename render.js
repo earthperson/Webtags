@@ -133,34 +133,39 @@ Webtags.prototype.canvas = null;
 		return (Math.random() * 10) + 1;
 	};
 	Tag.prototype.count = 0;
-	Tag.prototype.getMx = function() {
-		return parseFloat((this.count % (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.width);
+	Tag.prototype.getMx = function(width) {
+		width = width || Tag.prototype.properties.width;
+		return parseFloat((this.count % (Canvas.prototype.properties.width / width)) * width);
 	};
-	Tag.prototype.getMy = function() {
-		return Math.floor(this.count / (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.height;
+	Tag.prototype.getMy = function(width) {
+		width = width || Tag.prototype.properties.width;
+		return Math.floor(this.count / (Canvas.prototype.properties.width / width)) * Tag.prototype.properties.height;
 	};
 	Tag.prototype.render = function() {
-		var k = this.getRandomFactor(), mx = this.getMx(), my = this.getMy(), a;
+		var k = this.getRandomFactor(), a;
 		for(a in this.properties.context) {
 			this.context[a] = this.properties.context[a];
 		}
 		this.context.beginPath();
-		this.context.arc(26+mx,20+my,4,0,Math.PI*2);
-		this.context.moveTo(4+mx,18+my);
-		this.context.bezierCurveTo(2+k+mx,10+k+my,8+mx,10+my,10+mx,14+my);
-		this.context.bezierCurveTo(13+mx,23+my,16+mx,17+my,27+mx,20+my);
-		this.context.moveTo(2+mx,26+my);
+		this.context.save();
+		this.context.translate(this.getMx(), this.getMy());
+		this.context.arc(26,20,4,0,Math.PI*2);
+		this.context.moveTo(4,18);
+		this.context.bezierCurveTo(2+k,10+k,8,10,10,14);
+		this.context.bezierCurveTo(13,23,16,17,27,20);
+		this.context.moveTo(2,26);
 		k = this.getRandomFactor();
-		this.context.quadraticCurveTo(2+k+mx,18+k+my,12+mx,22+my);
-		this.context.quadraticCurveTo(18+mx,28+my,27+mx,20+my);
+		this.context.quadraticCurveTo(2+k,18+k,12,22);
+		this.context.quadraticCurveTo(18,28,27,20);
 		this.context.stroke();
 		this.text = {
-			x: 34+mx,
-			y: 15+my
+			x: 34,
+			y: 15
 		};
 		this.context.fillText(this.item.label,this.text.x,this.text.y);
 		this.text.width = this.context.measureText(this.item.label).width;
 		this.text.height = parseInt(this.context.font);
+		this.context.restore();
 	};
 	
 	function RoundedTag(context, item) {
@@ -172,13 +177,15 @@ Webtags.prototype.canvas = null;
 	}
 	RoundedTag.prototype = new Tag();
 	RoundedTag.prototype.render = function() {
-		var mx = this.getMx(), my = this.getMy();
+		this.context.save();
+		this.context.translate(this.getMx(), this.getMy());
 		this.context.beginPath();
-		this.context.arc(32+mx,20+my,16,0.5*Math.PI,1.5*Math.PI);
-		this.context.lineTo(80+mx,4+my);
-		this.context.arc(80+mx,20+my,16,1.5*Math.PI,0.5*Math.PI);
+		this.context.arc(32,20,16,0.5*Math.PI,1.5*Math.PI);
+		this.context.lineTo(80,4);
+		this.context.arc(80,20,16,1.5*Math.PI,0.5*Math.PI);
 		this.context.closePath();
 		this.context.stroke();
+		this.context.restore();
 	};
 	
 	function SquareTag(context, item) {
@@ -190,15 +197,17 @@ Webtags.prototype.canvas = null;
 	}
 	SquareTag.prototype = new Tag();
 	SquareTag.prototype.render = function() {
-		var mx = this.getMx(), my = this.getMy();
+		this.context.save();
+		this.context.translate(this.getMx(), this.getMy());
 		this.context.beginPath();
-		this.context.moveTo(16+mx,20+my);
-		this.context.lineTo(23+mx,4+my);
-		this.context.lineTo(96+mx,4+my);
-		this.context.lineTo(96+mx,36+my);
-		this.context.lineTo(23+mx,36+my);
+		this.context.moveTo(16,20);
+		this.context.lineTo(23,4);
+		this.context.lineTo(96,4);
+		this.context.lineTo(96,36);
+		this.context.lineTo(23,36);
 		this.context.closePath();
 		this.context.stroke();
+		this.context.restore();
 	};
 	
 	Webtags.prototype.canvas = new Canvas();
