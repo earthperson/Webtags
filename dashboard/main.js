@@ -94,7 +94,7 @@ $(function() {
 			$('.col-md-4 .btn-success:last').attr('disabled','disabled'); // Launch
 		}
 		return this;
-	}
+	};
 	$('.col-md-4 .btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
 			index = $('.btn-danger').size(),
