@@ -173,13 +173,14 @@ Webtags.prototype.canvas = null;
 		this.text.height = parseInt(this.context.font);
 		this.context.save();
 		if(Canvas.prototype.properties.grid) {
-			this.context.translate(this.getMx(), this.getMy());
+			this.text.translating.x = this.getMx();
+			this.text.translating.y = this.getMy();
 		}
 		else {
 			this.text.translating.x = this.translateX();
 			this.text.translating.y = this.translateY();
-			this.context.translate(this.text.translating.x, this.text.translating.y);
 		}
+		this.context.translate(this.text.translating.x, this.text.translating.y);
 		this.context.beginPath();
 		this.context.arc(26,20,4,0,Math.PI*2);
 		this.context.moveTo(4,18);
