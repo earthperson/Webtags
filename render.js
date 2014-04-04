@@ -30,16 +30,14 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype = new Webtags();
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
-	Canvas.prototype.text = {
-		label: "Powered by Webtags v0.2.0-alpha1",
-		url: "https://github.com/earthperson/Webtags",
-		width: null,
-		height: null,
-		x: 332,
-		y: 338,
-		context: {
-			font: "10px Helvetica"
-		}
+	Canvas.POWERED_BY = {
+		LABEL: "Powered by Webtags v0.2.0-alpha1",
+		URL: "https://github.com/earthperson/Webtags",
+		FONT: "10px Helvetica"
+	};
+	Canvas.prototype.poweredBy = {
+		x: null,
+		y: null
 	};
 	Canvas.prototype.element = null;
 	Canvas.prototype.getMousePosition = function(canvas, e) {
@@ -49,7 +47,7 @@ Webtags.prototype.canvas = null;
 			y: e.clientY - rect.top
 		};
 	};
-	// Check if the mouse is over the webtag label and change cursor style
+	// Check if the mouse is over the webtag label or powered by and change cursor style
 	Canvas.prototype.onMousemove = function(e) {
 		var mousePosition = Canvas.prototype.getMousePosition(Canvas.prototype.element, e), x = mousePosition.x, y = mousePosition.y, a, o;
 		document.body.style.cursor = Canvas.prototype.hover = null;
@@ -62,10 +60,11 @@ Webtags.prototype.canvas = null;
 				break;
 			}
 		}
-		o = Canvas.prototype.text;
-		if (x >= parseInt(o.x) && x <= (parseInt(o.x) + parseInt(o.width)) && y >= parseInt(o.y) && y <= (parseInt(o.y) + parseInt(o.height))){
+		o = Canvas.prototype.poweredBy;
+		// Is the mouse over the powered by?
+		if (x >= o.x && x <= Canvas.prototype.properties.width && y >= o.y && y <= Canvas.prototype.properties.height){
 			document.body.style.cursor = 'pointer';
-			Canvas.prototype.hover = Canvas.prototype.text.url;
+			Canvas.prototype.hover = Canvas.POWERED_BY.URL;
 		}
 	};
 	Canvas.prototype.onClick = function(e) {
@@ -89,19 +88,18 @@ Webtags.prototype.canvas = null;
 			// Add mouse listeners
 			canvas.addEventListener('mousemove', Canvas.prototype.onMousemove, false);
 			canvas.addEventListener('click', Canvas.prototype.onClick, false);
-			Tag.prototype.count = 0;
+			// Render tags
 			for(; i < l; i++) {
 				Canvas.prototype.items.push(
 					new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context, this.properties.items[i])
 				);
 			}
+			// Render powered by
 			if (this.properties.border) {
-				for(var a in this.text.context) {
-					context[a] = this.text.context[a];
-				}
-				context.fillText(this.text.label, this.text.x, this.text.y);
-				this.text.width = context.measureText(this.text.label).width;
-				this.text.height = parseInt(this.text.context.font);
+				context.font = Canvas.POWERED_BY.FONT;
+				this.poweredBy.x = parseInt(Canvas.prototype.properties.width - context.measureText(Canvas.POWERED_BY.LABEL).width);
+				this.poweredBy.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.POWERED_BY.FONT));
+				context.fillText(Canvas.POWERED_BY.LABEL, this.poweredBy.x, this.poweredBy.y);
 			}
 		}
 		else {
