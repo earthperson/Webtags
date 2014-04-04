@@ -154,7 +154,12 @@ $(function() {
 	});
 	$('div[role="complementary"]').affix({
 		offset: {
-			top: 0
+			top: function() {
+				return (this.top = $('.page-header').outerHeight(true));
+			},
+			bottom: function () {
+				return (this.bottom = $('#footer').outerHeight(true));
+			}
 		}
 	});
 	$('.col-xs-10 input').keyup(function() {
