@@ -136,10 +136,10 @@ Webtags.prototype.canvas = null;
 	Tag.prototype.getRandomFactor = function() {
 		return (Math.random() * 10) + 1;
 	};
-	Tag.prototype.getMx = function() {
+	Tag.prototype.offsetX = function() {
 		return parseFloat((this.count % (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.width);
 	};
-	Tag.prototype.getMy = function() {
+	Tag.prototype.offsetY = function() {
 		return Math.floor(this.count / (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.height;
 	};
 	Tag.prototype.translateX = function() {
@@ -172,8 +172,8 @@ Webtags.prototype.canvas = null;
 		this.text.height = parseInt(this.context.font);
 		this.context.save();
 		if(Canvas.prototype.properties.grid) {
-			this.text.translating.x = this.getMx();
-			this.text.translating.y = this.getMy();
+			this.text.translating.x = this.offsetX();
+			this.text.translating.y = this.offsetY();
 		}
 		else {
 			this.text.translating.x = this.translateX();
@@ -206,7 +206,7 @@ Webtags.prototype.canvas = null;
 	RoundedTag.prototype.render = function() {
 		this.context.save();
 		if(Canvas.prototype.properties.grid) {
-			this.context.translate(this.getMx(), this.getMy());
+			this.context.translate(this.offsetX(), this.offsetY());
 		}
 		else {
 			this.context.translate(this.translateX(), this.translateY());
@@ -238,7 +238,7 @@ Webtags.prototype.canvas = null;
 	SquareTag.prototype.render = function() {
 		this.context.save();
 		if(Canvas.prototype.properties.grid) {
-			this.context.translate(this.getMx(), this.getMy());
+			this.context.translate(this.offsetX(), this.offsetY());
 		}
 		else {
 			this.context.translate(this.translateX(), this.translateY());
