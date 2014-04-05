@@ -248,4 +248,7 @@ $(function() {
 			new Webtags(o);
 		}
 	});
+	$('.col-md-4 .panel:first .btn-default').click(function() { // More options...
+		$('#modalMoreOptions').modal();
+	});
 });
