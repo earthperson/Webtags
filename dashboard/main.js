@@ -192,6 +192,7 @@ $(function() {
 			$('.btn-group .dropdown-menu li:eq(0) a').click();
 			$('.btn-group .dropdown-menu li:eq(3) a').click();
 			$('.panel input[name="type"]').filter('input[value="'+data.type+'"]').prop('checked', true);
+			$('.panel input[name="grid"]').filter('input[value="'+(data.grid+0)+'"]').prop('checked', true);
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
 			var inputs = $('.col-md-8 .row:last input:not(:checkbox)'),
 			    i = 0,
