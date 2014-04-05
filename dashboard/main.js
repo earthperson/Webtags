@@ -259,7 +259,10 @@ $(function() {
 		}
 	});
 	$('.col-md-4 .panel:first .btn-default').click(function() { // Tag more options...
-		var m = $('#modalTagMoreOptions').modal();
+		var m = $('#modalTagMoreOptions').modal(), $this = $(this).addClass('active');
+		m.on('hidden.bs.modal', function (e) {
+			$this.removeClass('active');
+		});
 		$('input[name="modal-type"]', m).filter('input[value="'+$('.panel input[name="type"]:checked').val()+'"]').prop('checked', true);
 		$('input[name="modal-type"]', m).change(function() {
 			$('.panel input[name="type"]').prop('checked', false);
@@ -272,7 +275,10 @@ $(function() {
 		});
 	});
 	$('.col-md-4 .panel:eq(1) .btn-default').click(function() { // Canvas more options...
-		var m = $('#modalCanvasMoreOptions').modal();
+		var m = $('#modalCanvasMoreOptions').modal(), $this = $(this).addClass('active');
+		m.on('hidden.bs.modal', function (e) {
+			$this.removeClass('active');
+		});
 		$(':checkbox[value="modal-border"]', m).prop('checked', $('.panel :checkbox[value="border"]').prop('checked'));
 		$(':checkbox[value="modal-border"]', m).change(function() {
 			$('.panel :checkbox[value="border"]').prop('checked', $(this).prop('checked'));
