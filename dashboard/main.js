@@ -1,5 +1,5 @@
 /*
- * Webtags v0.2.0-alpha1, Dashboard for webtags v1.0.4-alpha1 
+ * Webtags v0.2.0-alpha1, Dashboard for webtags v1.0.5-alpha1 
  * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
  * Webtags site: http://earthperson.github.io/Webtags/
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
@@ -47,7 +47,7 @@ $(function() {
 			items = [],
 			item = {},
 			v = '',
-			a = this.serializeArray();
+			a = this.serializeArray(), w, h;
 		$.each(a, function() {
 			if(this.name === 'label') {
 				v = $.trim(this.value);
@@ -69,6 +69,15 @@ $(function() {
 			o['type'] = $('.panel input[name="type"]:checked').val();
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
+			o['donate'] = $('.panel :checkbox[value="donate"]').prop('checked');
+			w = parseInt($('#canvasWidth').val());
+			h = parseInt($('#canvasHeight').val());
+			if(!isNaN(w) && w > 0) {
+				o['width'] = w;
+			}
+			if(!isNaN(h) && h > 0) {
+				o['height'] = h;
+			}
 		}
 		return o;
 	};
@@ -194,6 +203,7 @@ $(function() {
 			$('.panel input[name="type"]').filter('input[value="'+data.type+'"]').prop('checked', true);
 			$('.panel input[name="grid"]').filter('input[value="'+(data.grid+0)+'"]').prop('checked', true);
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
+			$('.panel :checkbox[value="donate"]').prop('checked', data.donate);
 			var inputs = $('.col-md-8 .row:last input:not(:checkbox)'),
 			    i = 0,
 			    n = data.items.length;
@@ -248,7 +258,28 @@ $(function() {
 			new Webtags(o);
 		}
 	});
-	$('.col-md-4 .panel:first .btn-default').click(function() { // More options...
-		$('#modalMoreOptions').modal();
+	$('.col-md-4 .panel:first .btn-default').click(function() { // Tag more options...
+		var m = $('#modalTagMoreOptions').modal();
+		$('input[name="modal-type"]', m).filter('input[value="'+$('.panel input[name="type"]:checked').val()+'"]').prop('checked', true);
+		$('input[name="modal-type"]', m).change(function() {
+			$('.panel input[name="type"]').prop('checked', false);
+			$('.panel input[name="type"]').filter('input[value="'+$(this).val()+'"]').prop('checked', true);
+		});
+		$('input[name="modal-grid"]', m).filter('input[value="'+$('.panel input[name="grid"]:checked').val()+'"]').prop('checked', true);
+		$('input[name="modal-grid"]', m).change(function() {
+			$('.panel input[name="grid"]').prop('checked', false);
+			$('.panel input[name="grid"]').filter('input[value="'+$(this).val()+'"]').prop('checked', true);
+		});
+	});
+	$('.col-md-4 .panel:eq(1) .btn-default').click(function() { // Canvas more options...
+		var m = $('#modalCanvasMoreOptions').modal();
+		$(':checkbox[value="modal-border"]', m).prop('checked', $('.panel :checkbox[value="border"]').prop('checked'));
+		$(':checkbox[value="modal-border"]', m).change(function() {
+			$('.panel :checkbox[value="border"]').prop('checked', $(this).prop('checked'));
+		});
+		$(':checkbox[value="modal-donate"]', m).prop('checked', $('.panel :checkbox[value="donate"]').prop('checked'));
+		$(':checkbox[value="modal-donate"]', m).change(function() {
+			$('.panel :checkbox[value="donate"]').prop('checked', $(this).prop('checked'));
+		});
 	});
 });
