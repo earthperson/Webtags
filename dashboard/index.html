@@ -122,12 +122,12 @@
 												<span class="help-block">Rendering mode:</span>
 												<div class="radio">
 													<label>
-														<input type="radio" name="grid" value="0" checked> Autosize tags
+														<input type="radio" name="grid" value="0" checked> Autosize width
 													</label>
 												</div>
 												<div class="radio">
 													<label>
-														<input type="radio" name="grid" value="1"> By grid with fixed width
+														<input type="radio" name="grid" value="1"> By grid with fixed minimum size
 													</label>
 												</div>
 											</div>
@@ -151,9 +151,10 @@
 										<div class="checkbox">
 											<label>
 												<input type="checkbox" value="donate">
-												Show <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTRX3BMMVP3L8">donate link</a> at the left bottom corner.
+												Show border and <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTRX3BMMVP3L8">donate link</a> at the left bottom corner.
 											</label>
 										</div>
+										<a class="btn btn-default" href="#" role="button">More options...</a>
 									</div>
 								</div>
 							</div>
@@ -216,16 +217,92 @@
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
 					</div><!-- /.modal -->
-					<!-- Modal more options... -->
-					<div class="modal fade" id="modalMoreOptions" tabindex="-1" role="dialog" aria-labelledby="modalMoreOptionsLabel" aria-hidden="true">
+					<!-- Modal tag more options... -->
+					<div class="modal fade" id="modalTagMoreOptions" tabindex="-1" role="dialog" aria-labelledby="modalTagMoreOptionsLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="modalTagMoreOptionsLabel">Tag options</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-4">
+											<span class="help-block">Type:</span>
+											<div class="radio">
+												<label>
+													<input type="radio" name="modal-type" value="square" checked>Square
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" name="modal-type" value="rounded">Rounded
+												</label>
+											</div>
+											<span class="help-block">Rendering mode:</span>
+											<div class="radio">
+												<label>
+													<input type="radio" name="modal-grid" value="0" checked>Autosize width
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" name="modal-grid" value="1">By grid with fixed minimum size
+												</label>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<span class="help-block">Minimum size:</span>
+											<div class="form-group">
+												<div class="col-sm-5">
+													<input type="number" class="form-control input-sm col-sm-4" id="tagWidth" placeholder="width">
+												</div>
+												<div class="col-sm-5">
+													<input type="number" class="form-control input-sm col-sm-4" id="tagHeight" placeholder="height">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4">
+											
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+					<!-- Modal canvas more options -->
+					<div class="modal fade" id="modalCanvasMoreOptions" tabindex="-1" role="dialog" aria-labelledby="modalCanvasMoreOptions" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="modalMoreOptionsLabel">Tag options</h4>
+									<h4 class="modal-title" id="modalCanvasMoreOptions">Canvas options</h4>
 								</div>
 								<div class="modal-body">
-									<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="modal-border" checked>
+											Show border and link to the <a href="https://github.com/earthperson/Webtags" target="_blank">GitHub project page</a> at the right bottom corner.
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="modal-donate">
+											Show border and <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTRX3BMMVP3L8">donate link</a> at the left bottom corner.
+										</label>
+									</div>
+									<span class="help-block">Canvas size:</span>
+									<div class="form-group">
+										<div class="col-sm-2">
+											<input type="number" class="form-control input-sm" id="canvasWidth" placeholder="width" value="500">
+										</div>
+										<div class="col-sm-2">
+											<input type="number" class="form-control input-sm col-sm-4" id="canvasHeight" placeholder="height" value="350">
+										</div>
+									</div>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -239,7 +316,7 @@
 		<div id="footer">
 			<div class="container">
 				<small>&copy; 2013-2014 </small><a href="http://earthperson.info" target="_blank" class="small">earthperson</a>
-				<span class="pull-right small">Version: 1.0.4-alpha1</span>
+				<span class="pull-right small">Version: 1.0.5-alpha1</span>
 			</div>
 		</div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
