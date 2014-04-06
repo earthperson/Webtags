@@ -198,7 +198,7 @@ $(function() {
 		});
 	});
 	$('#modalImport .btn-default:first').click(function() {
-		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Author website","url":"http://earthperson.info/en/"},{"label":"Author website 2","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false}');
+		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Author website","url":"http://earthperson.info/en/"},{"label":"Author website 2","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false,"style":{"border":"1px solid #5e8cc2"}}');
 	});
 	$('.modal .btn-primary').click(function() {
 		var data = $('#modalImport textarea').val();
