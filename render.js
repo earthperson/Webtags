@@ -11,7 +11,7 @@
 function Webtags (properties) {
 	if (properties instanceof Object && properties['items']) {
 		for (var a in properties) {
-			Webtags.prototype.properties[a] = properties[a];
+			this.properties[a] = properties[a];
 		}
 		this.canvas.render();
 	}	
@@ -21,11 +21,18 @@ Webtags.prototype.canvas = null;
 (function(Webtags) {
 	
 	function Canvas() {
-		this.properties.width = 500;
-		this.properties.height = 350;
-		this.properties.style = {
-			border: "1px solid #5e8cc2"
-		};
+		var properties = {
+			width: 500,
+			height: 350,
+			border: true,
+			donate: false,
+			style: {
+				border: "1px solid #5e8cc2"
+			}
+		}, a;
+		for (a in properties) {
+			this.properties[a] = properties[a];
+		}
 	}
 	Canvas.prototype = new Webtags();
 	Canvas.prototype.items = [];
@@ -37,6 +44,15 @@ Webtags.prototype.canvas = null;
 	};
 	Canvas.prototype.poweredBy = {
 		x: null,
+		y: null
+	};
+	Canvas.DONATE_LINK = {
+		LABEL: "Donate...",
+		URL: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTRX3BMMVP3L8",
+		FONT: "10px Helvetica"
+	};
+	Canvas.prototype.donateLink = {
+		width: null,
 		y: null
 	};
 	Canvas.prototype.element = null;
@@ -54,7 +70,7 @@ Webtags.prototype.canvas = null;
 		for (a in Canvas.prototype.items) {
 			o = Canvas.prototype.items[a].text;
 			// Is the mouse over the webtag label?
-			if (x >= parseInt(o.x+o.translating.x) && x <= (parseInt(o.x+o.translating.x) + parseInt(o.width)) && y >= parseInt(o.y+o.translating.y) && y <= (parseInt(o.y+o.translating.y) + parseInt(o.height))){
+			if (x >= parseInt(o.x+o.translating.x) && x <= (parseInt(o.x+o.translating.x) + parseInt(o.width)) && y >= parseInt(o.y+o.translating.y) && y <= (parseInt(o.y+o.translating.y) + parseInt(o.height))) {
 				document.body.style.cursor = 'pointer';
 				Canvas.prototype.hover = Canvas.prototype.items[a].item.url;
 				break;
@@ -62,9 +78,15 @@ Webtags.prototype.canvas = null;
 		}
 		o = Canvas.prototype.poweredBy;
 		// Is the mouse over the powered by?
-		if (x >= o.x && x <= Canvas.prototype.properties.width && y >= o.y && y <= Canvas.prototype.properties.height){
+		if (x >= o.x && x <= Canvas.prototype.properties.width && y >= o.y && y <= Canvas.prototype.properties.height) {
 			document.body.style.cursor = 'pointer';
 			Canvas.prototype.hover = Canvas.POWERED_BY.URL;
+		}
+		// Is the mouse over the donate link?
+		o = Canvas.prototype.donateLink;
+		if (x >= 0 && x <= o.width && y >= o.y && y <= Canvas.prototype.properties.height) {
+			document.body.style.cursor = 'pointer';
+			Canvas.prototype.hover = Canvas.DONATE_LINK.URL;
 		}
 	};
 	Canvas.prototype.onClick = function(e) {
@@ -76,7 +98,7 @@ Webtags.prototype.canvas = null;
 		var canvas = Canvas.prototype.element = document.getElementById('webtags');
 		canvas.width = this.properties.width;
 		canvas.height = this.properties.height;
-		canvas.style.border = this.properties.border ? this.properties.style.border : 'none';
+		canvas.style.border = this.properties.border || this.properties.donate ? this.properties.style.border : 'none';
 		if (canvas.getContext) {
 			var context = canvas.getContext('2d'), i = 0, l = this.properties.items.length;
 			context.clearRect(0, 0, canvas.width, canvas.height);
@@ -91,7 +113,7 @@ Webtags.prototype.canvas = null;
 			// Render tags
 			for(; i < l; i++) {
 				Canvas.prototype.items.push(
-					new (this.properties.type == 'rounded' ? RoundedTag : SquareTag)(context, this.properties.items[i])
+					new (this.properties.type == 'square' ? SquareTag : RoundedTag)(context, this.properties.items[i])
 				);
 			}
 			// Render powered by
@@ -100,6 +122,13 @@ Webtags.prototype.canvas = null;
 				this.poweredBy.x = parseInt(Canvas.prototype.properties.width - context.measureText(Canvas.POWERED_BY.LABEL).width);
 				this.poweredBy.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.POWERED_BY.FONT));
 				context.fillText(Canvas.POWERED_BY.LABEL, this.poweredBy.x, this.poweredBy.y);
+			}
+			// Render donate link
+			if (this.properties.donate) {
+				context.font = Canvas.DONATE_LINK.FONT;
+				this.donateLink.width = parseInt(context.measureText(Canvas.DONATE_LINK.LABEL).width);
+				this.donateLink.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.DONATE_LINK.FONT));
+				context.fillText(Canvas.DONATE_LINK.LABEL, 0, this.donateLink.y);
 			}
 		}
 		else {
