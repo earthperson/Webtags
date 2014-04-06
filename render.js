@@ -1,5 +1,5 @@
 /*
- * Webtags v0.3.0-pl, Dashboard for webtags v1.0.6-pl 
+ * Webtags v0.3.1-pl, Dashboard for webtags v1.0.6-pl 
  * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
  * Webtags site: http://earthperson.github.io/Webtags/
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
@@ -40,7 +40,7 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
 	Canvas.POWERED_BY = {
-		LABEL: "Powered by Webtags v0.3.0-pl",
+		LABEL: "Powered by Webtags v0.3.1-pl",
 		URL: "https://github.com/earthperson/Webtags",
 		FONT: "10px Helvetica"
 	};
@@ -78,17 +78,21 @@ Webtags.prototype.canvas = null;
 				break;
 			}
 		}
-		o = Canvas.prototype.poweredBy;
-		// Is the mouse over the powered by?
-		if (x >= o.x && x <= Canvas.prototype.properties.width && y >= o.y && y <= Canvas.prototype.properties.height) {
-			document.body.style.cursor = 'pointer';
-			Canvas.prototype.hover = Canvas.POWERED_BY.URL;
+		if(Canvas.prototype.properties.border) {
+			o = Canvas.prototype.poweredBy;
+			// Is the mouse over the powered by?
+			if (x >= o.x && x <= Canvas.prototype.properties.width && y >= o.y && y <= Canvas.prototype.properties.height) {
+				document.body.style.cursor = 'pointer';
+				Canvas.prototype.hover = Canvas.POWERED_BY.URL;
+			}
 		}
-		// Is the mouse over the donate link?
-		o = Canvas.prototype.donateLink;
-		if (x >= 0 && x <= o.width && y >= o.y && y <= Canvas.prototype.properties.height) {
-			document.body.style.cursor = 'pointer';
-			Canvas.prototype.hover = Canvas.DONATE_LINK.URL;
+		if(Canvas.prototype.properties.donate) {
+			// Is the mouse over the donate link?
+			o = Canvas.prototype.donateLink;
+			if (x >= 0 && x <= o.width && y >= o.y && y <= Canvas.prototype.properties.height) {
+				document.body.style.cursor = 'pointer';
+				Canvas.prototype.hover = Canvas.DONATE_LINK.URL;
+			}
 		}
 	};
 	Canvas.prototype.onClick = function(e) {
