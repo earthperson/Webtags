@@ -78,7 +78,7 @@ $(function() {
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 			o['donate'] = $('.panel :checkbox[value="donate"]').prop('checked');
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
-			c = $('#modalCanvasMoreOptions .colorpicker').val() || "#5e8cc2";
+			c = $('#modalCanvasMoreOptions .colorpicker input').val() || "#5e8cc2";
 			o['style'] = {
 				"border": "1px solid " + c
 			};
@@ -212,6 +212,7 @@ $(function() {
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
 			$('.panel :checkbox[value="donate"]').prop('checked', data.donate);
 			if(data['style'] && data.style['border']) {
+				$('#modalCanvasMoreOptions .colorpicker').colorpicker('destroy');
 				$('#modalCanvasMoreOptions .colorpicker').colorpicker({
 					"color": data.style.border
 				});
