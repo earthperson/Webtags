@@ -16,13 +16,13 @@
 		 * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 		 */
 		 -->
-		<script type="text/javascript" src="render.min.js"></script>
+		<script type="text/javascript" src="render.js"></script>
 	</head>
 	<body>
-		<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 		<p>
 			<a href="dashboard/" title="Webtags dashboard">Dashboard for webtags</a>
 		</p>
+		<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 		<script type="text/javascript">
 		/* 
 		 * You can use the webtags dashboard (in the dashboard/ directory, or online:
@@ -52,13 +52,14 @@
 					"url": "http://dev.earthperson.info/en/"
 				}
 			],
-			// Optional options as is by default:
+			
+			// Optional options as is by default (remember you can use the webtags dashboard for setup):
 			"type": "rounded", // "square"
+			"width": 500,
+			"height": 350,
 			"border": true,
 			"donate": false,
 			"grid": false,
-			"width": 500,
-			"height": 350,
 			"style": {
 				"border": "1px solid #5e8cc2"
 			}

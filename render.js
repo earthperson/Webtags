@@ -22,10 +22,12 @@ Webtags.prototype.canvas = null;
 	
 	function Canvas() {
 		var properties = {
+			type: "rounded", // "square"
 			width: 500,
 			height: 350,
 			border: true,
 			donate: false,
+			grid: false,
 			style: {
 				border: "1px solid #5e8cc2"
 			}

@@ -67,9 +67,6 @@ $(function() {
 		if (items.length > 0) {
 			o['items'] = items;
 			o['type'] = $('.panel input[name="type"]:checked').val();
-			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
-			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
-			o['donate'] = $('.panel :checkbox[value="donate"]').prop('checked');
 			w = parseInt($('#canvasWidth').val());
 			h = parseInt($('#canvasHeight').val());
 			if(!isNaN(w) && w > 0) {
@@ -78,6 +75,9 @@ $(function() {
 			if(!isNaN(h) && h > 0) {
 				o['height'] = h;
 			}
+			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
+			o['donate'] = $('.panel :checkbox[value="donate"]').prop('checked');
+			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
 		}
 		return o;
 	};
