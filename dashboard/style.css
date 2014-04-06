@@ -1,5 +1,5 @@
 /*
- * Webtags v0.2.0-alpha1, Dashboard for webtags v1.0.5-alpha1 
+ * Webtags v0.3.0-pl, Dashboard for webtags v1.0.6-pl 
  * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
  * Webtags site: http://earthperson.github.io/Webtags/
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
