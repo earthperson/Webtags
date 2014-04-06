@@ -130,7 +130,7 @@ Webtags.prototype.canvas = null;
 				context.font = Canvas.DONATE_LINK.FONT;
 				this.donateLink.width = parseInt(context.measureText(Canvas.DONATE_LINK.LABEL).width);
 				this.donateLink.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.DONATE_LINK.FONT));
-				context.fillText(Canvas.DONATE_LINK.LABEL, 0, this.donateLink.y);
+				context.fillText(Canvas.DONATE_LINK.LABEL, 1, this.donateLink.y);
 			}
 		}
 		else {
