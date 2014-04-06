@@ -1,3 +1,0 @@
-[submodule "dashboard/bootstrap-colorpicker"]
-	path = dashboard/bootstrap-colorpicker
-	url = https://github.com/mjolnic/bootstrap-colorpicker.git
