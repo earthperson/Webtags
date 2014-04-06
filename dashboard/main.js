@@ -47,7 +47,7 @@ $(function() {
 			items = [],
 			item = {},
 			v = '',
-			a = this.serializeArray(), w, h;
+			a = this.serializeArray(), w, h, c;
 		$.each(a, function() {
 			if(this.name === 'label') {
 				v = $.trim(this.value);
@@ -78,6 +78,10 @@ $(function() {
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 			o['donate'] = $('.panel :checkbox[value="donate"]').prop('checked');
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
+			c = $('#modalCanvasMoreOptions .colorpicker').val() || "#5e8cc2";
+			o['style'] = {
+				"border": "1px solid " + c
+			};
 		}
 		return o;
 	};
@@ -197,7 +201,7 @@ $(function() {
 		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Author website","url":"http://earthperson.info/en/"},{"label":"Author website 2","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false}');
 	});
 	$('.modal .btn-primary').click(function() {
-		var data = $('#modalImport textarea').val();
+		var data = $('#modalImport textarea').val(), c;
 		try {
 			data = JSON.parse($.trim(stripTags(data, /<canvas[^>]+>.*?<\/[^>]+>/gi).replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, '$1').replace(/new Webtags\(((.*\s*)*)\);/i, '$1')));
 			$('#modalImport').modal('hide');
@@ -207,6 +211,11 @@ $(function() {
 			$('.panel input[name="grid"]').filter('input[value="'+(data.grid+0)+'"]').prop('checked', true);
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
 			$('.panel :checkbox[value="donate"]').prop('checked', data.donate);
+			if(data['style'] && data.style['border']) {
+				$('#modalCanvasMoreOptions .colorpicker').colorpicker({
+					"color": data.style.border
+				});
+			}
 			var inputs = $('.col-md-8 .row:last input:not(:checkbox)'),
 			    i = 0,
 			    n = data.items.length;
@@ -290,5 +299,6 @@ $(function() {
 		$(':checkbox[value="modal-donate"]', m).change(function() {
 			$('.panel :checkbox[value="donate"]').prop('checked', $(this).prop('checked'));
 		});
+		$('#modalCanvasMoreOptions .colorpicker').colorpicker();
 	});
 });
