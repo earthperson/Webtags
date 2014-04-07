@@ -81,6 +81,17 @@ $(function() {
 			o['style'] = {
 				"border": "1px solid " + ($('#modalCanvasMoreOptions .colorpicker-group input').val() || '#5e8cc2')
 			};
+			o['tag'] = {};
+			w = parseInt($('#tagWidth').val());
+			h = parseInt($('#tagHeight').val());
+			if(!isNaN(w) && w > 0) {
+				o.tag['width'] = w;
+			}
+			if(!isNaN(h) && h > 0) {
+				o.tag['height'] = h;
+			}
+			o.tag['context'] = {};
+			o.tag.context['fillStyle'] = o.tag.context['strokeStyle'] = ($('#modalTagMoreOptions .colorpicker-group input').val() || '#5e8cc2');
 		}
 		return o;
 	};
