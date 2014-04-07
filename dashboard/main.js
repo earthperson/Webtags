@@ -105,11 +105,11 @@ $(function() {
 		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
 		if (o instanceof Object && o['items']) {
 			$('.col-md-4 .btn-primary:last').removeAttr('disabled'); // Export
-			$('.col-md-4 .btn-success:last').removeAttr('disabled'); // Launch
+			$('.btn-launch').removeAttr('disabled'); // Launch
 		}
 		else {
 			$('.col-md-4 .btn-primary:last').attr('disabled','disabled'); // Export
-			$('.col-md-4 .btn-success:last').attr('disabled','disabled'); // Launch
+			$('.btn-launch').attr('disabled','disabled'); // Launch
 		}
 		return this;
 	};
@@ -256,13 +256,15 @@ $(function() {
 			$('.col-md-4 .btn-primary:last').removeClass('active');
 		});
 	});
-	$('.col-md-4 .btn-success:last').click(function() { // Launch
+	$('.btn-launch').click(function() { // Launch
 		var o = $('.col-xs-10 .form-group:not(.has-error)').children('input').serializeObject();
 		if (o instanceof Object && o['items']) {
+			$('#modalTagMoreOptions').modal('hide');
+			$('#modalCanvasMoreOptions').modal('hide');
 			$('#modalLaunch').modal();
 			$(this).addClass('active');
 			$('#modalLaunch').on('hidden.bs.modal', function (e) {
-				$('.col-md-4 .btn-success:last').removeClass('active');
+				$('.btn-launch').removeClass('active');
 			});
 			new Webtags(o);
 		}
