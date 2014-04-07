@@ -122,6 +122,7 @@ Webtags.prototype.canvas = null;
 					new (this.properties.type == 'square' ? SquareTag : RoundedTag)(context, this.properties.items[i])
 				);
 			}
+			context.fillStyle = this.properties.style.border.match(/#\w{3,}$/) || '#5e8cc2';
 			// Render powered by
 			if (this.properties.border) {
 				context.font = Canvas.POWERED_BY.FONT;
