@@ -91,7 +91,9 @@ $(function() {
 				o.tag['height'] = h;
 			}
 			o.tag['context'] = {};
-			o.tag.context['fillStyle'] = o.tag.context['strokeStyle'] = ($('#modalTagMoreOptions .colorpicker-group input').val() || '#5e8cc2');
+			o.tag.context['fillStyle'] = $('#modalTagMoreOptions .colorpicker-group-fill-style input').val() || '#5e8cc2';
+			o.tag.context['strokeStyle'] = $('#modalTagMoreOptions .colorpicker-group-stroke-style input').val() || '#5e8cc2';
+			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color input').val() || '#5e8cc2';
 		}
 		return o;
 	};
@@ -295,7 +297,9 @@ $(function() {
 			$('.panel input[name="grid"]').prop('checked', false);
 			$('.panel input[name="grid"]').filter('input[value="'+$(this).val()+'"]').prop('checked', true);
 		});
-		$('#modalTagMoreOptions .colorpicker-group').colorpicker();
+		$('.colorpicker-group-fill-style', m).colorpicker();
+		$('.colorpicker-group-stroke-style', m).colorpicker();
+		$('.colorpicker-group-shadow-color', m).colorpicker();
 	});
 	$('.col-md-4 .panel:eq(1) .btn-default').click(function() { // Canvas more options...
 		var m = $('#modalCanvasMoreOptions').modal(), $this = $(this).addClass('active');
