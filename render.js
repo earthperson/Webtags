@@ -192,7 +192,18 @@ Webtags.prototype.canvas = null;
 		return Tag.prototype.properties.height * Tag.prototype.line.count;
 	};
 	Tag.prototype.render = function() {
-		var k = this.getRandomFactor(), a;
+		var k = this.getRandomFactor(), properties = Canvas.prototype.properties, a;
+		if (properties['tag'] instanceof Object) {
+			for (a in properties.tag) {
+				if(a === 'context' && properties.tag.context instanceof Object) {
+					for (a in properties.tag.context) {
+						this.properties.context[a] = properties.tag.context[a];
+					}
+					continue;
+				}
+				this.properties[a] = properties.tag[a];
+			}
+		}
 		for(a in this.properties.context) {
 			this.context[a] = this.properties.context[a];
 		}
