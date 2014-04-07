@@ -1,5 +1,5 @@
 /*
- * Webtags v0.3.1-pl, Dashboard for webtags v1.0.6-pl 
+ * Webtags v0.4.0-pl, Dashboard for webtags v1.0.7-pl 
  * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
  * Webtags site: http://earthperson.github.io/Webtags/
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
@@ -40,7 +40,7 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
 	Canvas.POWERED_BY = {
-		LABEL: "Powered by Webtags v0.3.1-pl",
+		LABEL: "Powered by Webtags v0.4.0-pl",
 		URL: "https://github.com/earthperson/Webtags",
 		FONT: "10px Helvetica"
 	};
@@ -173,13 +173,15 @@ Webtags.prototype.canvas = null;
 		return (Math.random() * 10) + 1;
 	};
 	Tag.prototype.offsetX = function() {
-		return parseFloat((this.count % (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.width);
+		var w = Tag.prototype.properties.width + this.edgeWidth();
+		return parseFloat((this.count % Math.floor(Canvas.prototype.properties.width / w)) * w);
 	};
 	Tag.prototype.offsetY = function() {
-		return Math.floor(this.count / (Canvas.prototype.properties.width / Tag.prototype.properties.width)) * Tag.prototype.properties.height;
+		var w = Tag.prototype.properties.width + this.edgeWidth();
+		return Math.floor(this.count / Math.floor(Canvas.prototype.properties.width / w)) * Tag.prototype.properties.height;
 	};
 	Tag.prototype.translateX = function() {
-		if(this.line.width + this.text.width > (Canvas.prototype.properties.width - (Canvas.prototype.properties.type == 'rounded' ? 32+16+2 : 16+23+2))) {
+		if(this.line.width + this.text.width > (Canvas.prototype.properties.width - this.edgeWidth())) {
 			this.line.width = 0;
 			this.line.count++;
 			return 0;
@@ -187,6 +189,9 @@ Webtags.prototype.canvas = null;
 		else {
 			return this.line.width;
 		}
+	};
+	Tag.prototype.edgeWidth = function() {
+		return Canvas.prototype.properties.type == 'rounded' ? 32+16+2 : 16+23+2;
 	};
 	Tag.prototype.translateY = function() {
 		return Tag.prototype.properties.height * Tag.prototype.line.count;
@@ -246,7 +251,7 @@ Webtags.prototype.canvas = null;
 		this.item = item;
 		Tag.prototype.render.call(this);
 		this.render();
-		Tag.prototype.line.width += Math.floor(32+16+2+this.text.width);
+		Tag.prototype.line.width += Math.floor(this.edgeWidth()+this.text.width);
 		Tag.prototype.count++;
 	}
 	RoundedTag.prototype = new Tag();
@@ -261,8 +266,8 @@ Webtags.prototype.canvas = null;
 		this.context.beginPath();
 		this.context.arc(32,20,16,0.5*Math.PI,1.5*Math.PI);
 		if(Canvas.prototype.properties.grid) {
-			this.context.lineTo(80,4);
-			this.context.arc(80,20,16,1.5*Math.PI,0.5*Math.PI);
+			this.context.lineTo(32+Tag.prototype.properties.width,4);
+			this.context.arc(32+Tag.prototype.properties.width,20,16,1.5*Math.PI,0.5*Math.PI);
 		}
 		else {
 			this.context.lineTo(32+this.text.width,4);
@@ -294,8 +299,8 @@ Webtags.prototype.canvas = null;
 		this.context.moveTo(16,20);
 		this.context.lineTo(23,4);
 		if(Canvas.prototype.properties.grid) {
-			this.context.lineTo(96,4);
-			this.context.lineTo(96,36);
+			this.context.lineTo(23+Tag.prototype.properties.width,4);
+			this.context.lineTo(23+Tag.prototype.properties.width,36);
 		}
 		else {
 			this.context.lineTo(16+23+this.text.width,4);
