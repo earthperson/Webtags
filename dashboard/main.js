@@ -93,7 +93,7 @@ $(function() {
 			o.tag['context'] = {};
 			o.tag.context['fillStyle'] = $('#modalTagMoreOptions .colorpicker-group-fill-style input').val() || '#5e8cc2';
 			o.tag.context['strokeStyle'] = $('#modalTagMoreOptions .colorpicker-group-stroke-style input').val() || '#5e8cc2';
-			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color input').val() || '#5e8cc2';
+			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color input').val() || 'rgba(54, 111, 179, 0.4)';
 		}
 		return o;
 	};
