@@ -47,7 +47,7 @@ $(function() {
 			items = [],
 			item = {},
 			v = '',
-			a = this.serializeArray(), w, h, c;
+			a = this.serializeArray(), w, h;
 		$.each(a, function() {
 			if(this.name === 'label') {
 				v = $.trim(this.value);
@@ -78,9 +78,8 @@ $(function() {
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 			o['donate'] = $('.panel :checkbox[value="donate"]').prop('checked');
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
-			c = $('#modalCanvasMoreOptions .colorpicker input').val() || "#5e8cc2";
 			o['style'] = {
-				"border": "1px solid " + c
+				"border": "1px solid " + ($('#modalCanvasMoreOptions .colorpicker-group input').val() || '#5e8cc2')
 			};
 		}
 		return o;
@@ -212,10 +211,7 @@ $(function() {
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
 			$('.panel :checkbox[value="donate"]').prop('checked', data.donate);
 			if(data['style'] && data.style['border']) {
-				$('#modalCanvasMoreOptions .colorpicker').colorpicker('destroy');
-				$('#modalCanvasMoreOptions .colorpicker').colorpicker({
-					"color": data.style.border
-				});
+				$('#modalCanvasMoreOptions .colorpicker-group').colorpicker().colorpicker('setValue', data.style.border);
 			}
 			var inputs = $('.col-md-8 .row:last input:not(:checkbox)'),
 			    i = 0,
@@ -286,6 +282,7 @@ $(function() {
 			$('.panel input[name="grid"]').prop('checked', false);
 			$('.panel input[name="grid"]').filter('input[value="'+$(this).val()+'"]').prop('checked', true);
 		});
+		$('#modalTagMoreOptions .colorpicker-group').colorpicker();
 	});
 	$('.col-md-4 .panel:eq(1) .btn-default').click(function() { // Canvas more options...
 		var m = $('#modalCanvasMoreOptions').modal(), $this = $(this).addClass('active');
@@ -300,6 +297,6 @@ $(function() {
 		$(':checkbox[value="modal-donate"]', m).change(function() {
 			$('.panel :checkbox[value="donate"]').prop('checked', $(this).prop('checked'));
 		});
-		$('#modalCanvasMoreOptions .colorpicker').colorpicker();
+		$('#modalCanvasMoreOptions .colorpicker-group').colorpicker();
 	});
 });

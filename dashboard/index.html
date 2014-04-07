@@ -134,7 +134,7 @@
 											</div>
 										</div>
 									</div>
-									<a class="btn btn-default" href="#" role="button">More options...</a>
+									<button type="button" class="btn btn-default">More options...</button>
 								</div>
 							</div>
 							<div class="panel panel-info">
@@ -155,7 +155,7 @@
 												Show border and <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTRX3BMMVP3L8">donate link</a> at the left bottom corner.
 											</label>
 										</div>
-										<a class="btn btn-default" href="#" role="button">More options...</a>
+										<button type="button" class="btn btn-default">More options...</button>
 									</div>
 								</div>
 							</div>
@@ -255,13 +255,24 @@
 										</div>
 										<div class="col-md-4">
 											<span class="help-block">Minimum size:</span>
-											<div class="form-group">
-												<div class="col-sm-5">
-													<input type="number" class="form-control input-sm col-sm-4" id="tagWidth" placeholder="width">
+											<div class="row">
+												<div class="col-xs-2">
+													<span class="help-block">Width:</span>
 												</div>
-												<div class="col-sm-5">
-													<input type="number" class="form-control input-sm col-sm-4" id="tagHeight" placeholder="height">
+												<div class="col-xs-4">
+													<input type="number" class="form-control input-sm" id="tagWidth" placeholder="width" value="100">
 												</div>
+												<div class="col-xs-2">
+													<span class="help-block">Height:</span>
+												</div>
+												<div class="col-xs-4">
+													<input type="number" class="form-control input-sm" id="tagHeight" placeholder="height" value="40">
+												</div>
+											</div>
+											<span class="help-block">Color:</span>
+											<div class="input-group colorpicker-group col-xs-6">
+												<input type="text" class="form-control input-sm" value="#5e8cc2">
+												<span class="input-group-addon"><i></i></span>
 											</div>
 										</div>
 										<div class="col-md-4">
@@ -298,15 +309,23 @@
 									</div>
 									<span class="help-block">Canvas size:</span>
 									<div class="form-group clearfix">
-										<div class="col-sm-3">
-											<input type="number" class="form-control input-sm" id="canvasWidth" placeholder="width" value="500">
-										</div>
-										<div class="col-sm-3">
-											<input type="number" class="form-control input-sm" id="canvasHeight" placeholder="height" value="350">
+										<div class="row">
+											<div class="col-xs-1">
+												<span class="help-block">Width:</span>
+											</div>
+											<div class="col-xs-2">
+												<input type="number" class="form-control input-sm" id="canvasWidth" placeholder="width" value="500">
+											</div>
+											<div class="col-xs-1">
+												<span class="help-block">Height:</span>
+											</div>
+											<div class="col-xs-2">
+												<input type="number" class="form-control input-sm" id="canvasHeight" placeholder="height" value="350">
+											</div>
 										</div>
 									</div>
-									<span class="help-block">Border color:</span>
-									<div class="input-group colorpicker col-sm-3">
+									<span class="help-block">Color:</span>
+									<div class="input-group colorpicker-group col-sm-3">
 										<input type="text" class="form-control input-sm" value="#5e8cc2">
 										<span class="input-group-addon"><i></i></span>
 									</div>
