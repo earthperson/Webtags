@@ -81,7 +81,7 @@ Webtags.prototype.canvas = null;
 		if(Canvas.prototype.properties.border) {
 			o = Canvas.prototype.poweredBy;
 			// Is the mouse over the powered by?
-			if (x >= o.x && x <= Canvas.prototype.properties.width && y >= o.y && y <= Canvas.prototype.properties.height) {
+			if (x >= o.x && x <= Canvas.prototype.properties.width && y >= o.y-1 && y <= Canvas.prototype.properties.height) {
 				document.body.style.cursor = 'pointer';
 				Canvas.prototype.hover = Canvas.POWERED_BY.URL;
 			}
@@ -89,7 +89,7 @@ Webtags.prototype.canvas = null;
 		if(Canvas.prototype.properties.donate) {
 			// Is the mouse over the donate link?
 			o = Canvas.prototype.donateLink;
-			if (x >= 0 && x <= o.width && y >= o.y && y <= Canvas.prototype.properties.height) {
+			if (x >= 0 && x <= o.width && y >= o.y-1 && y <= Canvas.prototype.properties.height) {
 				document.body.style.cursor = 'pointer';
 				Canvas.prototype.hover = Canvas.DONATE_LINK.URL;
 			}
@@ -128,14 +128,14 @@ Webtags.prototype.canvas = null;
 				context.font = Canvas.POWERED_BY.FONT;
 				this.poweredBy.x = parseInt(Canvas.prototype.properties.width - context.measureText(Canvas.POWERED_BY.LABEL).width);
 				this.poweredBy.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.POWERED_BY.FONT));
-				context.fillText(Canvas.POWERED_BY.LABEL, this.poweredBy.x, this.poweredBy.y);
+				context.fillText(Canvas.POWERED_BY.LABEL, this.poweredBy.x, this.poweredBy.y-1);
 			}
 			// Render donate link
 			if (this.properties.donate) {
 				context.font = Canvas.DONATE_LINK.FONT;
 				this.donateLink.width = parseInt(context.measureText(Canvas.DONATE_LINK.LABEL).width);
 				this.donateLink.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.DONATE_LINK.FONT));
-				context.fillText(Canvas.DONATE_LINK.LABEL, 1, this.donateLink.y);
+				context.fillText(Canvas.DONATE_LINK.LABEL, 1, this.donateLink.y-1);
 			}
 		}
 		else {

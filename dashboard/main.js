@@ -94,6 +94,7 @@ $(function() {
 			o.tag.context['fillStyle'] = $('#modalTagMoreOptions .colorpicker-group-fill-style input').val() || '#5e8cc2';
 			o.tag.context['strokeStyle'] = $('#modalTagMoreOptions .colorpicker-group-stroke-style input').val() || '#5e8cc2';
 			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color input').val() || 'rgba(54, 111, 179, 0.4)';
+			o.tag.context['lineWidth'] = $('#lineWidth').val() || 2;
 		}
 		return o;
 	};
@@ -126,6 +127,12 @@ $(function() {
 		}
 		return this;
 	};
+	$('#howto').click(function(event) {
+		event.preventDefault();
+	}).popover({
+		"placement": "bottom",
+		"html": true
+	});
 	$('.col-md-4 .btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
 			index = $('.btn-danger').size(),
