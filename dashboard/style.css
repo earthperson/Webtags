@@ -56,6 +56,12 @@ body {
 	}
 }
 
+#howto {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed; 
+	white-space: nowrap;
+}
+
 #footer > .container {
 	padding-top: 20px;
 }
