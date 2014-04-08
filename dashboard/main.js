@@ -220,18 +220,31 @@ $(function() {
 		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Author website","url":"http://earthperson.info/en/"},{"label":"Author website 2","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false,"style":{"border":"1px solid #5e8cc2"}}');
 	});
 	$('.modal .btn-primary').click(function() {
-		var data = $('#modalImport textarea').val();
+		var data = $.trim($('#modalImport textarea').val());
+		if(!data) return;
 		try {
 			data = JSON.parse($.trim(stripTags(data, /<canvas[^>]+>.*?<\/[^>]+>/gi).replace(/(?:\/\*(?:[\s\S]*?)\*\/)|(?:([\s;])+\/\/(?:.*)$)/gm, '$1').replace(/new Webtags\(((.*\s*)*)\);/i, '$1')));
 			$('#modalImport').modal('hide');
 			$('.btn-group .dropdown-menu li:eq(0) a').click();
 			$('.btn-group .dropdown-menu li:eq(3) a').click();
 			$('.panel input[name="type"]').filter('input[value="'+data.type+'"]').prop('checked', true);
-			$('.panel input[name="grid"]').filter('input[value="'+(data.grid+0)+'"]').prop('checked', true);
+			$('#canvasWidth').val(data.width || 500);
+			$('#canvasHeight').val(data.height || 350);
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
 			$('.panel :checkbox[value="donate"]').prop('checked', data.donate);
+			$('.panel input[name="grid"]').filter('input[value="'+(data.grid+0)+'"]').prop('checked', true);
 			if(data['style'] && data.style['border']) {
 				$('#modalCanvasMoreOptions .colorpicker-group').colorpicker().colorpicker('setValue', data.style.border);
+			}
+			if(data['tag']) {
+				$('#tagWidth').val(data.tag['width'] || 100);
+				$('#tagHeight').val(data.tag['height'] || 40);
+				if(data.tag['context']) {
+					$('#modalTagMoreOptions .colorpicker-group-fill-style').colorpicker().colorpicker('setValue', data.tag.context['fillStyle'] || '#5e8cc2');
+					$('#modalTagMoreOptions .colorpicker-group-stroke-style').colorpicker().colorpicker('setValue', data.tag.context['strokeStyle'] || '#5e8cc2');
+					$('#modalTagMoreOptions .colorpicker-group-shadow-color').colorpicker().colorpicker('setValue', data.tag.context['shadowColor'] || 'rgba(54, 111, 179, 0.4)');
+					$('#lineWidth').val(data.tag.context['lineWidth'] || 2);
+				}
 			}
 			var inputs = $('.col-md-8 .row:last input:not(:checkbox)'),
 			    i = 0,
