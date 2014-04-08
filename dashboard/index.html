@@ -36,7 +36,7 @@
 							at the left bottom corner of the modal dialog. Then press <code>Import</code> at the right bottom corner 
 							of the modal dialog. And finally press green <code>Launch</code> button.
 							Or <a href="#" onclick="return $(this).webtagsDemo();">click here</a> for to do all these things in one time automatically.'>HOWTO</a>, 
-							<a href="https://raw.githubusercontent.com/earthperson/Webtags/master/dashboard/webtags.mp4">Screencast</a>
+							<a href="#" id="screencast">Screencast</a>
 						</div>
 					</div>
 				</div>
@@ -368,6 +368,28 @@
 									<button type="button" class="btn btn-success btn-launch pull-left" disabled="disabled">
 										<span class="glyphicon glyphicon-play"></span> Launch
 									</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+					<!-- Modal screencast -->
+					<div class="modal fade" id="modalScreencast" tabindex="-1" role="dialog" aria-labelledby="modalScreencastLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="modalScreencastLabel">HOWTO screencast</h4>
+								</div>
+								<div class="modal-body">
+									<video controls width="800" height="640" poster="screencast/webtags.jpg">
+										<source src="screencast/webtags.webm" type="video/webm">
+										<source src="screencast/webtags.mp4" type="video/mp4">
+										<source src="screencast/webtags.ogg" type="video/ogg">
+										I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+									</video>
+								</div>
+								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								</div>
 							</div><!-- /.modal-content -->

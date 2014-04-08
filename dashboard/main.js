@@ -133,6 +133,10 @@ $(function() {
 		"placement": "bottom",
 		"html": true
 	});
+	$('#screencast').click(function(event) {
+		event.preventDefault();
+		$('#modalScreencast').modal();
+	});
 	$.fn.webtagsDemo = function() {
 		$('.col-md-4 .btn-primary:eq(1)').click();
 		$('#modalImport').one('shown.bs.modal', function (e) {

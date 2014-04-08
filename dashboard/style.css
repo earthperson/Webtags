@@ -56,10 +56,11 @@ body {
 	}
 }
 
-#howto {
+#howto, #screencast {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed; 
 	white-space: nowrap;
+	text-decoration: none;
 }
 
 #footer > .container {
