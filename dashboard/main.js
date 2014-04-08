@@ -133,6 +133,15 @@ $(function() {
 		"placement": "bottom",
 		"html": true
 	});
+	$.fn.webtagsDemo = function() {
+		$('.col-md-4 .btn-primary:eq(1)').click();
+		$('#modalImport').on('shown.bs.modal', function (e) {
+			$('#modalImport .btn-default:first').click();
+			$('.modal .btn-primary').click();
+			$('.btn-launch:first').click();
+		});
+		return false;
+	};
 	$('.col-md-4 .btn-primary:first').click(function() {
 		var row = $('.col-md-8 .row:first').clone(true),
 			index = $('.btn-danger').size(),
@@ -216,10 +225,10 @@ $(function() {
 			$('.col-md-4 .btn-primary:eq(1)').removeClass('active');
 		});
 	});
-	$('#modalImport .btn-default:first').click(function() {
+	$('#modalImport .btn-default:first').click(function() { // Paste example
 		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Author website","url":"http://earthperson.info/en/"},{"label":"Author website 2","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false,"style":{"border":"1px solid #5e8cc2"}}');
 	});
-	$('.modal .btn-primary').click(function() {
+	$('.modal .btn-primary').click(function() { // Import
 		var data = $.trim($('#modalImport textarea').val());
 		if(!data) return;
 		try {
