@@ -22,6 +22,7 @@ Webtags.prototype.canvas = null;
 	
 	function Canvas() {
 		var properties = {
+			id: "webtags",
 			type: "rounded", // "square"
 			width: 500,
 			height: 350,
@@ -101,7 +102,7 @@ Webtags.prototype.canvas = null;
 		}
 	};
 	Canvas.prototype.render = function() {
-		var canvas = Canvas.prototype.element = document.getElementById('webtags');
+		var canvas = Canvas.prototype.element = document.getElementById(this.properties.id);
 		canvas.width = this.properties.width;
 		canvas.height = this.properties.height;
 		canvas.style.border = this.properties.border || this.properties.donate ? this.properties.style.border : 'none';

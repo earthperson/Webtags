@@ -135,7 +135,7 @@ $(function() {
 	});
 	$.fn.webtagsDemo = function() {
 		$('.col-md-4 .btn-primary:eq(1)').click();
-		$('#modalImport').on('shown.bs.modal', function (e) {
+		$('#modalImport').one('shown.bs.modal', function (e) {
 			$('#modalImport .btn-default:first').click();
 			$('.modal .btn-primary').click();
 			$('.btn-launch:first').click();
