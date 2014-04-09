@@ -1,5 +1,5 @@
 /*
- * Webtags v0.4.1-pl, Dashboard for webtags v1.0.11-pl 
+ * Webtags v0.4.2-pl, Dashboard for webtags v1.0.11-pl 
  * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
  * Webtags site: http://earthperson.github.io/Webtags/
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
@@ -251,7 +251,7 @@ $(function() {
 			}
 			if(data['tag']) {
 				$('#tagWidth').val(data.tag['width'] || 100);
-				$('#tagHeight').val(data.tag['height'] || 40);
+				$('#tagHeight').val(data.tag['height'] || 32);
 				if(data.tag['context']) {
 					$('#modalTagMoreOptions .colorpicker-group-fill-style').colorpicker().colorpicker('setValue', data.tag.context['fillStyle'] || '#5e8cc2');
 					$('#modalTagMoreOptions .colorpicker-group-stroke-style').colorpicker().colorpicker('setValue', data.tag.context['strokeStyle'] || '#5e8cc2');
