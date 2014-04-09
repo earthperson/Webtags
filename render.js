@@ -244,7 +244,7 @@ Webtags.prototype.canvas = null;
 		this.context.quadraticCurveTo(2+k,18+k,12,22);
 		this.context.quadraticCurveTo(18,28,27,4+r);
 		this.context.stroke();
-		this.context.fillText(this.item.label,this.text.x,this.text.y);
+		this.context.fillText(this.item.label,this.text.x,this.text.y-2);
 		this.context.restore();
 	};
 	
