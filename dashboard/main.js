@@ -251,7 +251,7 @@ $(function() {
 			}
 			if(data['tag']) {
 				$('#tagWidth').val(data.tag['width'] || 100);
-				$('#tagHeight').val(data.tag['height'] || 40);
+				$('#tagHeight').val(data.tag['height'] || 32);
 				if(data.tag['context']) {
 					$('#modalTagMoreOptions .colorpicker-group-fill-style').colorpicker().colorpicker('setValue', data.tag.context['fillStyle'] || '#5e8cc2');
 					$('#modalTagMoreOptions .colorpicker-group-stroke-style').colorpicker().colorpicker('setValue', data.tag.context['strokeStyle'] || '#5e8cc2');

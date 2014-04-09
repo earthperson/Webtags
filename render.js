@@ -152,7 +152,7 @@ Webtags.prototype.canvas = null;
 	}
 	Tag.prototype.properties = {
 		width: 100,
-		height: 40,
+		height: 32,
 		context: {
 			fillStyle: "#5e8cc2",
 			textBaseline: "top",
@@ -179,7 +179,7 @@ Webtags.prototype.canvas = null;
 	};
 	Tag.prototype.offsetY = function() {
 		var w = Tag.prototype.properties.width + this.edgeWidth();
-		return Math.floor(this.count / Math.floor(Canvas.prototype.properties.width / w)) * Tag.prototype.properties.height;
+		return Math.floor(this.count / Math.floor(Canvas.prototype.properties.width / w)) * (Tag.prototype.properties.height+8);
 	};
 	Tag.prototype.translateX = function() {
 		if(this.line.width + this.text.width > (Canvas.prototype.properties.width - this.edgeWidth())) {
@@ -192,13 +192,13 @@ Webtags.prototype.canvas = null;
 		}
 	};
 	Tag.prototype.edgeWidth = function() {
-		return Canvas.prototype.properties.type == 'rounded' ? 32+16+2 : 16+23+2;
+		return Canvas.prototype.properties.type == 'rounded' ? 16+Tag.prototype.properties.height+2 : 16+23+2;
 	};
 	Tag.prototype.translateY = function() {
-		return Tag.prototype.properties.height * Tag.prototype.line.count;
+		return (Tag.prototype.properties.height+8) * Tag.prototype.line.count;
 	};
 	Tag.prototype.render = function() {
-		var k = this.getRandomFactor(), properties = Canvas.prototype.properties, a;
+		var k = this.getRandomFactor(), properties = Canvas.prototype.properties, r, a;
 		if (properties['tag'] instanceof Object) {
 			for (a in properties.tag) {
 				if(a === 'context' && properties.tag.context instanceof Object) {
@@ -213,9 +213,10 @@ Webtags.prototype.canvas = null;
 		for(a in this.properties.context) {
 			this.context[a] = this.properties.context[a];
 		}
+		r = Math.floor(Tag.prototype.properties.height/2);
 		this.text = {
 			x: 34,
-			y: 15,
+			y: r,
 			translating: {
 				x: 0,
 				y: 0
@@ -234,14 +235,14 @@ Webtags.prototype.canvas = null;
 		}
 		this.context.translate(this.text.translating.x, this.text.translating.y);
 		this.context.beginPath();
-		this.context.arc(26,20,4,0,Math.PI*2);
+		this.context.arc(26,4+r,4,0,Math.PI*2);
 		this.context.moveTo(4,18);
 		this.context.bezierCurveTo(2+k,10+k,8,10,10,14);
-		this.context.bezierCurveTo(13,23,16,17,27,20);
+		this.context.bezierCurveTo(13,23,16,17,27,4+r);
 		this.context.moveTo(2,26);
 		k = this.getRandomFactor();
 		this.context.quadraticCurveTo(2+k,18+k,12,22);
-		this.context.quadraticCurveTo(18,28,27,20);
+		this.context.quadraticCurveTo(18,28,27,4+r);
 		this.context.stroke();
 		this.context.fillText(this.item.label,this.text.x,this.text.y);
 		this.context.restore();
@@ -257,6 +258,7 @@ Webtags.prototype.canvas = null;
 	}
 	RoundedTag.prototype = new Tag();
 	RoundedTag.prototype.render = function() {
+		var r = Math.floor(Tag.prototype.properties.height/2);
 		this.context.save();
 		if(Canvas.prototype.properties.grid) {
 			this.context.translate(this.offsetX(), this.offsetY());
@@ -265,14 +267,14 @@ Webtags.prototype.canvas = null;
 			this.context.translate(this.translateX(), this.translateY());
 		}
 		this.context.beginPath();
-		this.context.arc(32,20,16,0.5*Math.PI,1.5*Math.PI);
+		this.context.arc(16+r,4+r,r,0.5*Math.PI,1.5*Math.PI);
 		if(Canvas.prototype.properties.grid) {
-			this.context.lineTo(32+Tag.prototype.properties.width,4);
-			this.context.arc(32+Tag.prototype.properties.width,20,16,1.5*Math.PI,0.5*Math.PI);
+			this.context.lineTo(16+r+Tag.prototype.properties.width,4);
+			this.context.arc(16+r+Tag.prototype.properties.width,4+r,r,1.5*Math.PI,0.5*Math.PI);
 		}
 		else {
-			this.context.lineTo(32+this.text.width,4);
-			this.context.arc(32+this.text.width,20,16,1.5*Math.PI,0.5*Math.PI);
+			this.context.lineTo(16+r+this.text.width,4);
+			this.context.arc(16+r+this.text.width,4+r,r,1.5*Math.PI,0.5*Math.PI);
 		}
 		this.context.closePath();
 		this.context.stroke();
@@ -297,17 +299,17 @@ Webtags.prototype.canvas = null;
 			this.context.translate(this.translateX(), this.translateY());
 		}
 		this.context.beginPath();
-		this.context.moveTo(16,20);
+		this.context.moveTo(16,4+Math.floor(Tag.prototype.properties.height/2));
 		this.context.lineTo(23,4);
 		if(Canvas.prototype.properties.grid) {
 			this.context.lineTo(23+Tag.prototype.properties.width,4);
-			this.context.lineTo(23+Tag.prototype.properties.width,36);
+			this.context.lineTo(23+Tag.prototype.properties.width,Tag.prototype.properties.height+4);
 		}
 		else {
 			this.context.lineTo(16+23+this.text.width,4);
-			this.context.lineTo(16+23+this.text.width,36);
+			this.context.lineTo(16+23+this.text.width,Tag.prototype.properties.height+4);
 		}
-		this.context.lineTo(23,36);
+		this.context.lineTo(23,Tag.prototype.properties.height+4);
 		this.context.closePath();
 		this.context.stroke();
 		this.context.restore();
