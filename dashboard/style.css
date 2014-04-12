@@ -56,7 +56,7 @@ body {
 	}
 }
 
-#howto, #screencast {
+#howto, #screencast, #donate {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed; 
 	white-space: nowrap;
