@@ -137,6 +137,12 @@ $(function() {
 		event.preventDefault();
 		$('#modalScreencast').modal();
 	});
+	$('#donate').click(function(event) {
+		event.preventDefault();
+	}).popover({
+		"placement": "bottom",
+		"html": true
+	});
 	$.fn.webtagsDemo = function() {
 		$('.col-md-4 .btn-primary:eq(1)').click();
 		$('#modalImport').one('shown.bs.modal', function (e) {
