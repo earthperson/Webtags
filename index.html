@@ -42,70 +42,81 @@
 						<span class="octicon octicon-link"></span>
 					</a>Welcome!
 				</h3>
+				<h2>Screencast</h2>
 				<p>
-					<a href="dashboard/" title="Webtags dashboard">Dashboard for webtags</a>
+					<video class="center-block" controls width="800" height="640" poster="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.png">
+						<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.webm" type="video/webm">
+						<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.mp4" type="video/mp4">
+						<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.ogg" type="video/ogg">
+						I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+					</video>
 				</p>
-				<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
-				<script type="text/javascript">
-				/* 
-				 * You can use the webtags dashboard (in the dashboard/ directory, or online:
-				 * http://earthperson.github.io/Webtags/dashboard/) for getting initialization object,
-				 * or even full code for paste.
-				 */
-				new Webtags({
-					"items": [
-						{
-							"label": "GitHub",
-							"url": "https://github.com/earthperson/Webtags"
+				<h2>Example of the result</h2>
+				<p>
+					<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+					<script type="text/javascript">
+					/* 
+					 * You can use the webtags dashboard (in the dashboard/ directory, or online:
+					 * http://earthperson.github.io/Webtags/dashboard/) for getting initialization object,
+					 * or even full code for paste.
+					 */
+					new Webtags({
+						"items": [
+							{
+								"label": "GitHub",
+								"url": "https://github.com/earthperson/Webtags"
+							},
+							{
+								"label": "Webtags",
+								"url": "http://earthperson.github.io/Webtags/"
+							},
+							{
+								"label": "Dashboard",
+								"url": "http://earthperson.github.io/Webtags/dashboard/"
+							},
+							{
+								"label": "Author website",
+								"url": "http://earthperson.info/en/"
+							},
+							{
+								"label": "Author website 2",
+								"url": "http://dev.earthperson.info/en/"
+							}
+						],
+						
+						// Optional options as is by default (remember you can use the webtags dashboard for setup):
+						"id": "webtags",
+						"type": "rounded", // "square"
+						"width": 500,
+						"height": 350,
+						"border": true,
+						"donate": false,
+						"grid": false,
+						"style": {
+							"border": "1px solid #5e8cc2"
 						},
-						{
-							"label": "Webtags",
-							"url": "http://earthperson.github.io/Webtags/"
-						},
-						{
-							"label": "Dashboard",
-							"url": "http://earthperson.github.io/Webtags/dashboard/"
-						},
-						{
-							"label": "Author website",
-							"url": "http://earthperson.info/en/"
-						},
-						{
-							"label": "Author website 2",
-							"url": "http://dev.earthperson.info/en/"
+						"tag": {
+							"width": 100,
+							"height": 32,
+							"context": {
+								"fillStyle": "#5e8cc2",
+								"textBaseline": "top",
+								"font": "12px Arial",
+								"strokeStyle": "#5e8cc2",
+								"lineWidth": 2, 
+								"lineJoin": "round",
+								"lineCap": "round",
+								"shadowOffsetX": 2,
+								"shadowOffsetY": 2,
+								"shadowBlur": 2,
+								"shadowColor": "rgba(54, 111, 179, 0.4)"
+							}
 						}
-					],
-					
-					// Optional options as is by default (remember you can use the webtags dashboard for setup):
-					"id": "webtags",
-					"type": "rounded", // "square"
-					"width": 500,
-					"height": 350,
-					"border": true,
-					"donate": false,
-					"grid": false,
-					"style": {
-						"border": "1px solid #5e8cc2"
-					},
-					"tag": {
-						"width": 100,
-						"height": 32,
-						"context": {
-							"fillStyle": "#5e8cc2",
-							"textBaseline": "top",
-							"font": "12px Arial",
-							"strokeStyle": "#5e8cc2",
-							"lineWidth": 2, 
-							"lineJoin": "round",
-							"lineCap": "round",
-							"shadowOffsetX": 2,
-							"shadowOffsetY": 2,
-							"shadowBlur": 2,
-							"shadowColor": "rgba(54, 111, 179, 0.4)"
-						}
-					}
-				});
-				</script>
+					});
+					</script>
+				</p>
+				<h2>Dashboard for webtags</h2>
+				Go to the <a href="dashboard/" title="Webtags dashboard">dashboard for webtags</a> page.
 			</section>
 		</div>
 		<!-- FOOTER  -->
