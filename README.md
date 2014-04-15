@@ -49,3 +49,39 @@ new Webtags({
 ```
 Here you can download [render.min.js][9] (7.9K, gzipped ~2.3K).
 [9]: https://raw.github.com/earthperson/Webtags/master/render.min.js
+
+## Advanced options
+```js
+new Webtags({
+	"items": [{
+		"label": "Webtags",
+		"url": "https://github.com/earthperson/Webtags"
+	}],
+	"id": "webtags",
+	"type": "rounded", // "square"
+	"width": 500,
+	"height": 350,
+	"border": true,
+	"donate": false,
+	"grid": false,
+	"style": {
+		"border": "1px solid #5e8cc2"
+	},
+	"tag": {
+		"width": 100,
+		"height": 32,
+		"context": {
+			"fillStyle": "#5e8cc2",
+			"textBaseline": "top",
+			"font": "12px Arial",
+			"strokeStyle": "#5e8cc2",
+			"lineWidth": 2, 
+			"lineJoin": "round",
+			"lineCap": "round",
+			"shadowOffsetX": 2,
+			"shadowOffsetY": 2,
+			"shadowBlur": 2,
+			"shadowColor": "rgba(54, 111, 179, 0.4)"
+		}
+	}
+});
