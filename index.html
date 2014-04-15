@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 		<meta name="description" content="Webtags : Rendering web tags using HTML5 Canvas." />
 		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/pygment_trac.css">
 		<title>Webtags</title>
 		<link rel="shortcut icon" href="dashboard/favicon.ico" type="image/x-icon" />
 		<!-- 
@@ -39,7 +40,7 @@
 			<section id="main_content" class="inner">
 				<h3><a name="screencast" class="anchor" href="#screencast"><span class="octicon octicon-link"></span></a>Screencast</h3>
 				<p>
-					<video class="center-block" controls width="800" height="640" poster="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.png">
+					<video class="center-block" controls width="640" height="512" poster="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.png">
 						<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.webm" type="video/webm">
 						<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.mp4" type="video/mp4">
 						<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.ogg" type="video/ogg">
@@ -110,9 +111,42 @@
 					});
 					</script>
 				</p>
+				<h3>Getting started</h3>
+				<p>Copy and paste the code below into the right place on your web page.</p>
+				<pre class="highlight"><code class="hll"><span class="nt">&lt;canvas </span><span class="na">id=</span><span class="s">&quot;webtags&quot;</span><span class="nt">&gt;</span>
+	This text is displayed if your browser does not support HTML5 Canvas.
+<span class="nt">&lt;/canvas&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;render.min.js&quot;</span><span class="nt">&gt;</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="kr">new</span> Webtags({
+	<span class="s">&quot;items&quot;</span>: [
+		{
+			<span class="s">&quot;label&quot;</span>: <span class="s">&quot;GitHub&quot;</span>,
+			<span class="s">&quot;url&quot;</span>: <span class="s">&quot;https://github.com/earthperson/Webtags&quot;</span>
+		},
+		{
+			<span class="s">&quot;label&quot;</span>: <span class="s">&quot;Webtags&quot;</span>,
+			<span class="s">&quot;url&quot;</span>: <span class="s">&quot;http://earthperson.github.io/Webtags/&quot;</span>
+		},
+		{
+			<span class="s">&quot;label&quot;</span>: <span class="s">&quot;Dashboard&quot;</span>,
+			<span class="s">&quot;url&quot;</span>: <span class="s">&quot;http://earthperson.github.io/Webtags/dashboard/&quot;</span>
+		},
+		{
+			<span class="s">&quot;label&quot;</span>: <span class="s">&quot;Author website&quot;</span>,
+			<span class="s">&quot;url&quot;</span>: <span class="s">&quot;http://earthperson.info/en/&quot;</span>
+		},
+		{
+			<span class="s">&quot;label&quot;</span>: <span class="s">&quot;Author website 2&quot;</span>,
+			<span class="s">&quot;url&quot;</span>: <span class="s">&quot;http://dev.earthperson.info/en/&quot;</span>
+		}
+	]
+});
+<span class="nt">&lt;/script&gt;</span></code></pre>
+				<p>Here you can download <a href="https://raw.github.com/earthperson/Webtags/master/render.min.js">render.min.js</a> (7.9K, gzipped ~2.3K).</p>
 				<h3><a name="dashboard" class="anchor" href="#dashboard"><span class="octicon octicon-link"></span></a>Dashboard for webtags</h3>
 				<p>
-					Go to the <a href="dashboard/" title="Webtags dashboard">dashboard for webtags</a> page.
+					Go to the online version of the <a href="dashboard/" title="Dashboard for webtags">Webtags dashboard</a>.
 				</p>
 			</section>
 		</div>
