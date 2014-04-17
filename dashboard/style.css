@@ -37,23 +37,31 @@ body {
 
 /* Custom page CSS
 -------------------------------------------------- */
-@media (min-width: 992px) {
-	.col-md-4 .affix {
-		width: 293px;
-	}
-}
-
-@media (min-width: 1200px) {
-	.col-md-4 .affix {
-		width: 360px;
-	}
-}
-
 #howto, #screencast, #donate {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed; 
 	white-space: nowrap;
 	text-decoration: none;
+}
+
+#right { 
+	min-height: 760px;
+}
+
+#right .affix-bottom {
+	position: absolute;	
+}
+
+@media (min-width: 992px) {
+	#right .affix, #right .affix-bottom {
+		width: 293px;
+	}
+}
+
+@media (min-width: 1200px) {
+	#right .affix, #right .affix-bottom {
+		width: 360px;
+	}
 }
 
 #footer > .container {
