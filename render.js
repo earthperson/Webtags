@@ -1,5 +1,5 @@
 /*
- * Webtags v0.4.2-pl, Dashboard for webtags v1.0.12-pl 
+ * Webtags v0.4.3-pl, Dashboard for webtags v1.0.13-pl 
  * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
  * Webtags site: http://earthperson.github.io/Webtags/
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
@@ -41,7 +41,7 @@ Webtags.prototype.canvas = null;
 	Canvas.prototype.items = [];
 	Canvas.prototype.hover = null;
 	Canvas.POWERED_BY = {
-		LABEL: "Powered by Webtags v0.4.2-pl",
+		LABEL: "Powered by Webtags v0.4.3-pl",
 		URL: "https://github.com/earthperson/Webtags",
 		FONT: "10px Helvetica"
 	};
