@@ -1,18 +1,20 @@
-![webtags][3] Webtags
+![webtags][5] Webtags
 =======
-Rendering web tags using [HTML5 Canvas][1]. It is useful for my [personal web page][2] for example&hellip;
+Rendering web tags using [HTML5 Canvas][1]. It is useful for my [personal web page][2], [sole proprietorship web page][3], [earthperson.github.io github page][4] for examples&hellip;
 
-On the [Webtags site][4] you'll find the [Screencast][6], [Rendering demo][7] and [Getting started][8].
-You can use online version of the [Webtags dashboard][5].
+On the [Webtags site][6] you'll find the [Screencast][8], [Rendering demo][9] and [Getting started][10].
+You can use online version of the [Webtags dashboard][7].
 
 [1]: https://developer.mozilla.org/en-US/docs/HTML/Canvas
-[2]: http://earthperson.info
-[3]: http://earthperson.github.io/Webtags/images/webtags.png
-[4]: http://earthperson.github.io/Webtags/
-[5]: http://earthperson.github.io/Webtags/dashboard/
-[6]: http://earthperson.github.io/Webtags/#screencast
-[7]: http://earthperson.github.io/Webtags/#demo
-[8]: http://earthperson.github.io/Webtags/#getting-started
+[2]: http://earthperson.info/en/
+[3]: http://dev.earthperson.info/en/
+[4]: http://earthperson.github.io
+[5]: http://earthperson.github.io/Webtags/images/webtags.png
+[6]: http://earthperson.github.io/Webtags/
+[7]: http://earthperson.github.io/Webtags/dashboard/
+[8]: http://earthperson.github.io/Webtags/#screencast
+[9]: http://earthperson.github.io/Webtags/#demo
+[10]: http://earthperson.github.io/Webtags/#getting-started
 
 ## Getting started
 ```html
