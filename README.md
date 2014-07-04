@@ -49,8 +49,8 @@ new Webtags({
 });
 </script>
 ```
-Here you can download [render.min.js][9] (7.9K, gzipped ~2.3K).
-[9]: https://raw.github.com/earthperson/Webtags/master/render.min.js
+Here you can download [render.min.js][11] (7.9K, gzipped ~2.3K).
+[11]: https://raw.github.com/earthperson/Webtags/master/render.min.js
 
 ## Advanced options
 ```js
