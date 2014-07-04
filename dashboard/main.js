@@ -1,5 +1,5 @@
 /*
- * Webtags v0.4.3-pl, Dashboard for webtags v1.0.13-pl 
+ * Webtags v0.4.3-pl, Dashboard for webtags v1.0.14-pl 
  * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
  * Webtags site: http://earthperson.github.io/Webtags/
  * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
@@ -236,7 +236,8 @@ $(function() {
 		});
 	});
 	$('#modalImport .btn-default:first').click(function() { // Paste example
-		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Author website","url":"http://earthperson.info/en/"},{"label":"Author website 2","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false,"style":{"border":"1px solid #5e8cc2"}}');
+		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Personal web page","url":"http://earthperson.info/en/"},{"label":"Sole proprietorship web page","url":"http://dev.earthperson.info/en/"},{"label":"earthperson.github.io GitHub page","url":"http://earthperson.github.io"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false,"style":{"border":"1px solid #5e8cc2"},"tag":{"width":100,"height":32,"context":{"fillStyle":"#5e8cc2","strokeStyle":"#5e8cc2","shadowColor":"rgba(54, 111, 179, 0.4)","lineWidth":"2"}}}');
+		$('#howto').popover('hide');
 	});
 	$('.modal .btn-primary').click(function() { // Import
 		var data = $.trim($('#modalImport textarea').val());
