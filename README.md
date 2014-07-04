@@ -38,12 +38,16 @@ new Webtags({
 			"url": "http://earthperson.github.io/Webtags/dashboard/"
 		},
 		{
-			"label": "Author website",
+			"label": "Personal web page",
 			"url": "http://earthperson.info/en/"
 		},
 		{
-			"label": "Author website 2",
+			"label": "Sole proprietorship web page",
 			"url": "http://dev.earthperson.info/en/"
+		},
+		{
+			"label": "earthperson.github.io GitHub page",
+			"url": "http://earthperson.github.io"
 		}
 	]
 });
