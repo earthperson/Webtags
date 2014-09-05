@@ -1,13 +1,15 @@
-/*
- * Webtags v0.4.3-pl, Dashboard for webtags v1.0.14-pl 
- * Webtags GitHub page (source code and links): https://github.com/earthperson/Webtags
- * Webtags site: http://earthperson.github.io/Webtags/
- * Dashboard for webtags: http://earthperson.github.io/Webtags/dashboard/
- * Author website: http://earthperson.info
- * 
- * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com) 
- * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
+/*!
+ * Webtags v0.4.3-pl, Dashboard for Webtags v1.0.14-pl
+ * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
+ * Webtags website: (http://earthperson.github.io/Webtags/)
+ * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
+ * Author website: (http://earthperson.info)
+ *
+ * Copyright (c) 2013-2014 Dmitry Ponomarev (email: ponomarev.dev@gmail.com)
+ * Licensed under the MIT License: (http://www.opensource.org/licenses/mit-license.php)
  */
+
+/*jshint -W069 */
 if (!window.JSON) {
 	window.JSON = {
 		parse: function (sJSON) { return eval("(" + sJSON + ")"); },
@@ -109,7 +111,7 @@ $(function() {
 		return this;
 	};
 	function stripTags(str, re){
-		if(re != null) {
+		if(re !== null) {
 			str = str.replace(re, '');
 		}
 		str = str.replace(/<\/?[^>]+>/gi, '');
@@ -176,7 +178,7 @@ $(function() {
 		event.preventDefault();
 		var index = $(this).parent().index(),
 			checkboxes = $(this).closest('.col-md-8').find(':checkbox');
-		if (index == 0) { // Check all
+		if (index === 0) { // Check all
 			checkboxes.prop('checked', true);
 		}
 		else if (index == 1) { // Uncheck all
