@@ -16,6 +16,10 @@
 		"type": "MIT License",
 		"url": "http://www.opensource.org/licenses/mit-license.php"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/earthperson/Webtags.git"
+	},
 	"devDependencies": {
 		"grunt": "~0.4.5",
 		"grunt-contrib-watch": "~0.6.1",
