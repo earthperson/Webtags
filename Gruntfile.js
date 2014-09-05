@@ -5,15 +5,15 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				banner: '/*!\n' + 
-						' * <%= pkg.name %> v<%= pkg.version %>-pl, Dashboard for <%= pkg.name %> v<%= pkg.dashboard.version %>-pl\n' +
-						' * <%= pkg.name %> GitHub page (source code and links): (<%= pkg.homepage %>)\n' +
-						' * <%= pkg.name %> website: (<%= pkg.website %>)\n' +
-						' * Dashboard for <%= pkg.name %>: (<%= pkg.dashboard.homepage %>)\n' +
-						' * Author website: (<%= pkg.author.website %>)\n' +
-						' *\n' +
-						' * Copyright (c) 2013-<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-						' * Licensed under the <%= pkg.license.type %>: (<%= pkg.license.url %>)\n' + 
-						' */\n'
+					' * <%= pkg.name %> v<%= pkg.version %>-pl, Dashboard for <%= pkg.name %> v<%= pkg.dashboard.version %>-pl\n' +
+					' * <%= pkg.name %> GitHub page (source code and links): (<%= pkg.homepage %>)\n' +
+					' * <%= pkg.name %> website: (<%= pkg.website %>)\n' +
+					' * Dashboard for <%= pkg.name %>: (<%= pkg.dashboard.homepage %>)\n' +
+					' * Author website: (<%= pkg.author.website %>)\n' +
+					' *\n' +
+					' * Copyright (c) 2013-<%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
+					' * Licensed under the <%= pkg.license.type %>: (<%= pkg.license.url %>)\n' + 
+					' */\n'
 			},
 			build: {
 				src: 'render.js',
