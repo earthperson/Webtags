@@ -37,7 +37,7 @@ body {
 
 /* Custom page CSS
 -------------------------------------------------- */
-#howto, #screencast, #donate {
+#howto, #screencast {
 	border-bottom-width: 1px;
 	border-bottom-style: dashed; 
 	white-space: nowrap;
