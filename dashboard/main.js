@@ -78,7 +78,6 @@ $(function() {
 				o['height'] = h;
 			}
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
-			o['donate'] = $('.panel :checkbox[value="donate"]').prop('checked');
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
 			o['style'] = {
 				"border": "1px solid " + ($('#modalCanvasMoreOptions .colorpicker-group input').val() || '#5e8cc2')
@@ -138,12 +137,6 @@ $(function() {
 	$('#screencast').click(function(event) {
 		event.preventDefault();
 		$('#modalScreencast').modal();
-	});
-	$('#donate').click(function(event) {
-		event.preventDefault();
-	}).popover({
-		"placement": "bottom",
-		"html": true
 	});
 	$.fn.webtagsDemo = function() {
 		$('.col-md-4 .btn-primary:eq(1)').click();
@@ -238,7 +231,7 @@ $(function() {
 		});
 	});
 	$('#modalImport .btn-default:first').click(function() { // Paste example
-		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Personal web page","url":"http://earthperson.info/en/"},{"label":"Sole proprietorship web page","url":"http://dev.earthperson.info/en/"},{"label":"earthperson.github.io GitHub page","url":"http://earthperson.github.io"}],"type":"rounded","width":500,"height":350,"border":true,"donate":false,"grid":false,"style":{"border":"1px solid #5e8cc2"},"tag":{"width":100,"height":32,"context":{"fillStyle":"#5e8cc2","strokeStyle":"#5e8cc2","shadowColor":"rgba(54, 111, 179, 0.4)","lineWidth":"2"}}}');
+		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Personal web page","url":"http://earthperson.info/en/"},{"label":"Sole proprietorship web page","url":"http://dev.earthperson.info/en/"},{"label":"earthperson.github.io GitHub page","url":"http://earthperson.github.io"}],"type":"rounded","width":500,"height":350,"border":true,"grid":false,"style":{"border":"1px solid #5e8cc2"},"tag":{"width":100,"height":32,"context":{"fillStyle":"#5e8cc2","strokeStyle":"#5e8cc2","shadowColor":"rgba(54, 111, 179, 0.4)","lineWidth":"2"}}}');
 		$('#howto').popover('hide');
 	});
 	$('.modal .btn-primary').click(function() { // Import
@@ -253,7 +246,6 @@ $(function() {
 			$('#canvasWidth').val(data.width || 500);
 			$('#canvasHeight').val(data.height || 350);
 			$('.panel :checkbox[value="border"]').prop('checked', data.border);
-			$('.panel :checkbox[value="donate"]').prop('checked', data.donate);
 			$('.panel input[name="grid"]').filter('input[value="'+(data.grid+0)+'"]').prop('checked', true);
 			if(data['style'] && data.style['border']) {
 				$('#modalCanvasMoreOptions .colorpicker-group').colorpicker().colorpicker('setValue', data.style.border);
@@ -351,10 +343,6 @@ $(function() {
 		$(':checkbox[value="modal-border"]', m).prop('checked', $('.panel :checkbox[value="border"]').prop('checked'));
 		$(':checkbox[value="modal-border"]', m).change(function() {
 			$('.panel :checkbox[value="border"]').prop('checked', $(this).prop('checked'));
-		});
-		$(':checkbox[value="modal-donate"]', m).prop('checked', $('.panel :checkbox[value="donate"]').prop('checked'));
-		$(':checkbox[value="modal-donate"]', m).change(function() {
-			$('.panel :checkbox[value="donate"]').prop('checked', $(this).prop('checked'));
 		});
 		$('#modalCanvasMoreOptions .colorpicker-group').colorpicker();
 	});

@@ -30,7 +30,6 @@ Webtags.prototype.canvas = null;
 			width: 500,
 			height: 350,
 			border: true,
-			donate: false,
 			grid: false,
 			style: {
 				border: "1px solid #5e8cc2"
@@ -50,15 +49,6 @@ Webtags.prototype.canvas = null;
 	};
 	Canvas.prototype.poweredBy = {
 		x: null,
-		y: null
-	};
-	Canvas.DONATE_LINK = {
-		LABEL: "Donate...",
-		URL: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTRX3BMMVP3L8",
-		FONT: "10px Helvetica"
-	};
-	Canvas.prototype.donateLink = {
-		width: null,
 		y: null
 	};
 	Canvas.prototype.element = null;
@@ -90,14 +80,6 @@ Webtags.prototype.canvas = null;
 				Canvas.prototype.hover = Canvas.POWERED_BY.URL;
 			}
 		}
-		if(Canvas.prototype.properties.donate) {
-			// Is the mouse over the donate link?
-			o = Canvas.prototype.donateLink;
-			if (x >= 0 && x <= o.width && y >= o.y-1 && y <= Canvas.prototype.properties.height) {
-				document.body.style.cursor = 'pointer';
-				Canvas.prototype.hover = Canvas.DONATE_LINK.URL;
-			}
-		}
 	};
 	Canvas.prototype.onClick = function(e) {
 		if (Canvas.prototype.hover)  {
@@ -108,7 +90,7 @@ Webtags.prototype.canvas = null;
 		var canvas = Canvas.prototype.element = document.getElementById(this.properties.id);
 		canvas.width = this.properties.width;
 		canvas.height = this.properties.height;
-		canvas.style.border = this.properties.border || this.properties.donate ? this.properties.style.border : 'none';
+		canvas.style.border = this.properties.border ? this.properties.style.border : 'none';
 		if (canvas.getContext) {
 			var context = canvas.getContext('2d'), i = 0, l = this.properties.items.length;
 			context.clearRect(0, 0, canvas.width, canvas.height);
@@ -133,13 +115,6 @@ Webtags.prototype.canvas = null;
 				this.poweredBy.x = parseInt(Canvas.prototype.properties.width - context.measureText(Canvas.POWERED_BY.LABEL).width);
 				this.poweredBy.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.POWERED_BY.FONT));
 				context.fillText(Canvas.POWERED_BY.LABEL, this.poweredBy.x, this.poweredBy.y-1);
-			}
-			// Render donate link
-			if (this.properties.donate) {
-				context.font = Canvas.DONATE_LINK.FONT;
-				this.donateLink.width = parseInt(context.measureText(Canvas.DONATE_LINK.LABEL).width);
-				this.donateLink.y = parseInt(Canvas.prototype.properties.height - parseInt(Canvas.DONATE_LINK.FONT));
-				context.fillText(Canvas.DONATE_LINK.LABEL, 1, this.donateLink.y-1);
 			}
 		}
 		else {
