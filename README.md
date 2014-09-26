@@ -1,6 +1,6 @@
 ![webtags][5] Webtags
 =======
-Rendering web tags using [HTML5 Canvas][1]. It is useful for my [personal web page][2], [freelancer web page][3], [earthperson.github.io GitHub page][4] for examples&hellip;
+Rendering web tags using [HTML5 Canvas][1]. It is useful for my [personal web page][2], [freelancer web page][3], [website of the earthperson&#039;s GitHub account][4] for examples&hellip;
 
 On the [Webtags site][6] you'll find the [Screencast][8], [Rendering demo][9] and [Getting started][10].
 You can use online version of the [Webtags dashboard][7].
@@ -46,7 +46,7 @@ new Webtags({
 			"url": "http://dev.earthperson.info/en/"
 		},
 		{
-			"label": "earthperson.github.io GitHub page",
+			"label": "Website of the earthperson's GitHub account",
 			"url": "http://earthperson.github.io"
 		}
 	]
