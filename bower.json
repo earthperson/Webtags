@@ -1,0 +1,23 @@
+{
+  "name": "Webtags",
+  "version": "0.4.4-pl",
+  "homepage": "https://github.com/earthperson/Webtags",
+  "authors": [
+    "earthperson <ponomarev.dev@gmail.com>"
+  ],
+  "description": "Rendering web tags using HTML5 Canvas",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "bootstrap-colorpicker": "*",
+    "jquery": "~2.1.1"
+  }
+}
