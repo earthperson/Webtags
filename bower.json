@@ -7,7 +7,6 @@
   ],
   "description": "Rendering web tags using HTML5 Canvas",
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
