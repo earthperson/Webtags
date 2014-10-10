@@ -159,7 +159,7 @@ $(function() {
 		checkbox.after('#'+index);
 		$('.row:first', row).removeClass('hidden');
 		row.appendTo('.col-md-8');
-		$(window).scrollTop(row.offset().top);
+		//$(window).scrollTop(row.offset().top);
 	});
 	$('.btn-danger:not(.dropdown-toggle)').on('click', function() { // Remove
 		if($('.btn-danger').size() > 1) {
