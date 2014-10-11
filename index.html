@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Webtags</title>
+		<link rel="shortcut icon" href="dashboard/favicon.ico" type="image/x-icon" />
+		<!-- 
+		/*!
+		 * Webtags v0.4.4-pl, Dashboard for Webtags v1.0.16-pl
+		 * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
+		 * Webtags website: (http://earthperson.github.io/Webtags/)
+		 * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
+		 * Author website: (http://earthperson.info)
+		 *
+		 * Copyright (c) 2013-2014 Dmitry Ponomarev (email: ponomarev.dev@gmail.com)
+		 * Licensed under the MIT License: (http://www.opensource.org/licenses/mit-license.php)
+		 */
+		 -->
+		<script type="text/javascript" src="render.min.js"></script>
+	</head>
+	<body>
+		<p>
+			<a href="dashboard/" title="Webtags dashboard">Dashboard for webtags</a>
+		</p>
+		<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+		<script type="text/javascript">
+		/* 
+		 * You can use the webtags dashboard (in the dashboard/ directory, or online:
+		 * http://earthperson.github.io/Webtags/dashboard/) for getting initialization object,
+		 * or even full code for paste.
+		 */
+		new Webtags({
+			"items": [
+				{
+					"label": "GitHub",
+					"url": "https://github.com/earthperson/Webtags"
+				},
+				{
+					"label": "Webtags",
+					"url": "http://earthperson.github.io/Webtags/"
+				},
+				{
+					"label": "Dashboard",
+					"url": "http://earthperson.github.io/Webtags/dashboard/"
+				},
+				{
+					"label": "Personal web page",
+					"url": "http://earthperson.info/en/"
+				},
+				{
+					"label": "Freelancer web page",
+					"url": "http://dev.earthperson.info/en/"
+				},
+				{
+					"label": "Website of the earthperson's GitHub account",
+					"url": "http://earthperson.github.io"
+				}
+			],
+			
+			// Optional options as is by default (remember you can use the webtags dashboard for setup):
+			"id": "webtags",
+			"type": "rounded", // "square"
+			"width": 500,
+			"height": 350,
+			"border": true,
+			"grid": false,
+			"style": {
+				"border": "1px solid #5e8cc2"
+			},
+			"tag": {
+				"width": 100,
+				"height": 32,
+				"context": {
+					"fillStyle": "#5e8cc2",
+					"textBaseline": "top",
+					"font": "12px Arial",
+					"strokeStyle": "#5e8cc2",
+					"lineWidth": 2, 
+					"lineJoin": "round",
+					"lineCap": "round",
+					"shadowOffsetX": 2,
+					"shadowOffsetY": 2,
+					"shadowBlur": 2,
+					"shadowColor": "rgba(54, 111, 179, 0.4)"
+				}
+			}
+		});
+		</script>
+	</body>
+</html>
