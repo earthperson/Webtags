@@ -1,0 +1,82 @@
+/*!
+ * Webtags v0.4.4-pl, Dashboard for Webtags v1.0.16-pl
+ * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
+ * Webtags website: (http://earthperson.github.io/Webtags/)
+ * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
+ * Author website: (http://earthperson.info)
+ *
+ * Copyright (c) 2013-2014 Dmitry Ponomarev (email: ponomarev.dev@gmail.com)
+ * Licensed under the MIT License: (http://www.opensource.org/licenses/mit-license.php)
+ */
+ 
+/*[class*="col-"] {
+	background-color: rgba(86, 61, 124, 0.15);
+	border: 1px solid rgba(86, 61, 124, 0.2);
+	padding-bottom: 15px;
+	padding-top: 15px;
+}*/
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+#howto, #screencast {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed; 
+	white-space: nowrap;
+	text-decoration: none;
+}
+
+#right { 
+	min-height: 760px;
+}
+
+#right .affix-bottom {
+	position: absolute;	
+}
+
+@media (min-width: 992px) {
+	#right .affix, #right .affix-bottom {
+		width: 293px;
+	}
+}
+
+@media (min-width: 1200px) {
+	#right .affix, #right .affix-bottom {
+		width: 360px;
+	}
+}
+
+#footer > .container {
+	padding-top: 20px;
+}
+
+#footer > .container small {
+	color: #999999;
+}
+
+#modalLaunch .modal-body {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.col-md-4 > div > div[class^="panel"] {
+	margin-top: 20px;
+}

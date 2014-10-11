@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Webtags dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="bootstrap/vendor/js/html5shiv.js"></script>
+			<script src="bootstrap/vendor/js/respond.min.js"></script>
+		<![endif]-->
+		<link type="text/css" rel="stylesheet" href="style.css">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<h1><span class="glyphicon glyphicon-tags"></span> Webtags</h1>
+				<div class="row">
+					<div class="col-sm-8">
+						<p class="lead">
+							Dashboard for <a href="http://earthperson.github.io/Webtags/" target="_blank">webtags</a>.
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="#" id="howto" title="HOWTO" data-content='
+						For understanding how-to, please go to the my <a href="http://earthperson.info/" target="_blank">personal web page</a>, <a href="http://dev.earthperson.info/en/" target="_blank">freelancer web page</a> or <a href="http://earthperson.github.io/" target="_blank">website of the earthperson&#039;s GitHub account</a>
+						to see the examples of the result. And/or press <code>Import JSON</code> button, then press <code>Paste example</code>
+						at the left bottom corner of the modal dialog. Then press <code>Import</code> at the right bottom corner 
+						of the modal dialog. And finally press green <code>Launch</code> button.
+						Or <a href="#" onclick="return $(this).webtagsDemo();">click here</a> for to do all these things in one time automatically.'>HOWTO</a>, 
+						<a href="#" id="screencast">Screencast</a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8" id="left">
+					<div class="row">
+						<div class="col-xs-2">
+							<div class="row hidden">
+								<div class="col-xs-6">
+									<div class="form-group">
+										<label class="checkbox-inline">
+											<input type="checkbox" value="">
+										</label>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="form-group">
+										<button type="button" class="btn btn-sm btn-danger">
+											<span class="glyphicon glyphicon-remove"></span>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="btn-group">
+								<button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-toggle="dropdown">
+									Bulk actions <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Check all</a></li>
+									<li><a href="#">Uncheck all</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Remove checked</a></li>
+									<li><a href="#">Empty checked</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Empty all</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-xs-10">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="sr-only">Label</label>
+										<input type="text" name="label" class="form-control input-sm" placeholder="Label">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="sr-only">URL</label>
+										<input type="url" name="url" class="form-control input-sm" placeholder="URL">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4" id="right">
+					<div role="complementary">
+						<button type="button" class="btn btn-primary btn-block">
+							<span class="glyphicon glyphicon-tag"></span> Add webtag
+						</button>
+						<button type="button" class="btn btn-primary btn-block">
+							<span class="glyphicon glyphicon-import"></span> Import JSON
+						</button>
+						<button type="button" class="btn btn-primary btn-block" disabled="disabled">
+							<span class="glyphicon glyphicon-export"></span> Export JSON
+						</button>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="exportType"> Export as code for paste in a HTML page instead of <a href="http://en.wikipedia.org/wiki/JSON" target="_blank">JSON format</a> for JavaScript object initialization.
+							</label>
+						</div>
+						<button type="button" class="btn btn-success btn-block btn-launch" disabled="disabled">
+							<span class="glyphicon glyphicon-play"></span> Launch
+						</button>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Tag options</h3>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-5">
+										<div class="form-group">
+											<span class="help-block">Type:</span>
+											<div class="radio">
+												<label>
+													<input type="radio" name="type" value="square">Square
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" name="type" value="rounded" checked>Rounded
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-7">
+										<div class="form-group">
+											<span class="help-block">Rendering mode:</span>
+											<div class="radio">
+												<label>
+													<input type="radio" name="grid" value="0" checked> Autosize width
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" name="grid" value="1"> By grid with fixed minimum size
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-default">More options...</button>
+							</div>
+						</div>
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Canvas options</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="border" checked>
+											Show border and link to the <a href="https://github.com/earthperson/Webtags" target="_blank">GitHub project page</a> at the right bottom corner.
+										</label>
+									</div>
+									<button type="button" class="btn btn-default">More options...</button>
+								</div>
+							</div>
+						</div>
+						<p class="help-block">
+							<small>
+								<span class="glyphicon glyphicon-download"></span> Download <a href="https://raw.github.com/earthperson/Webtags/master/render.min.js" target="_blank">render.min.js</a> (7.9K, gzipped ~2.3K)
+							</small>
+						</p>
+						<br>
+					</div>
+				</div>
+				<!-- Modal import -->
+				<div class="modal fade" id="modalImport" tabindex="-1" role="dialog" aria-labelledby="modalImportLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="modalImportLabel">Import JSON</h4>
+							</div>
+							<div class="modal-body">
+								<p class="help-block">Copy and paste the JSON from your web page to populate the fields &quot;Label&quot; and &quot;URL&quot; in this webtags dashboard. <small class="text-info">Or you can press button &quot;Paste example&quot; at the left bottom corner of this window.</small></p>
+								<textarea class="form-control" rows="20"></textarea>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default pull-left">Paste example</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Import</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<!-- Modal export -->
+				<div class="modal fade" id="modalExport" tabindex="-1" role="dialog" aria-labelledby="modalExportLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="modalExportLabel">Export JSON</h4>
+							</div>
+							<div class="modal-body">
+								<p class="help-block">
+									Copy and paste the code below into the right place on your web page.
+								</p>
+								<textarea class="form-control" rows="20"></textarea>
+							</div>
+							<div class="modal-footer">
+								<div class="pull-left">
+									<small class="text-info"><span class="glyphicon glyphicon-download"></span> Here you can download <a href="https://raw.github.com/earthperson/Webtags/master/render.min.js" target="_blank">render.min.js</a> (7.9K, gzipped ~2.3K)</small>
+								</div>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<!-- Modal launch -->
+				<div class="modal fade" id="modalLaunch" tabindex="-1" role="dialog" aria-labelledby="modalLaunchLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="modalLaunchLabel">Demo of the webtags rendering</h4>
+							</div>
+							<div class="modal-body">
+								<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<!-- Modal tag more options... -->
+				<div class="modal fade" id="modalTagMoreOptions" tabindex="-1" role="dialog" aria-labelledby="modalTagMoreOptionsLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="modalTagMoreOptionsLabel">Tag options</h4>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-md-4">
+										<span class="help-block">Type:</span>
+										<div class="radio">
+											<label>
+												<input type="radio" name="modal-type" value="square" checked>Square
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="modal-type" value="rounded">Rounded
+											</label>
+										</div>
+										<span class="help-block">Rendering mode:</span>
+										<div class="radio">
+											<label>
+												<input type="radio" name="modal-grid" value="0" checked>Autosize width
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="modal-grid" value="1">By grid with fixed minimum size
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<span class="help-block">Filling color <small class="text-info">(press square for select)</small>:</span>
+										<div class="input-group colorpicker-group-fill-style col-xs-9">
+											<input type="text" class="form-control input-sm" value="#5e8cc2">
+											<span class="input-group-addon"><i></i></span>
+										</div>
+										<span class="help-block">Outline color <small class="text-info">(press square for select)</small>:</span>
+										<div class="input-group colorpicker-group-stroke-style col-xs-9">
+											<input type="text" class="form-control input-sm" value="#5e8cc2">
+											<span class="input-group-addon"><i></i></span>
+										</div>
+										<span class="help-block">Shadow color <small class="text-info">(press square for select)</small>:</span>
+										<div class="input-group colorpicker-group-shadow-color col-xs-9">
+											<input type="text" class="form-control input-sm" value="rgba(54, 111, 179, 0.4)">
+											<span class="input-group-addon"><i></i></span>
+										</div>	
+									</div>
+									<div class="col-md-4">
+										<span class="help-block">Minimum size:</span>
+										<div class="row">
+											<div class="col-xs-2">
+												<span class="help-block">Width:</span>
+											</div>
+											<div class="col-xs-4">
+												<input type="number" class="form-control input-sm" id="tagWidth" placeholder="width" value="100">
+											</div>
+											<div class="col-xs-2">
+												<span class="help-block">Height:</span>
+											</div>
+											<div class="col-xs-4">
+												<input type="number" class="form-control input-sm" id="tagHeight" placeholder="height" value="32">
+											</div>
+										</div>		
+										<span class="help-block">Line width:</span>	
+										<div class="form-group col-xs-4">
+											<input type="text" class="form-control input-sm" id="lineWidth" value="2">
+										</div>						
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success btn-launch pull-left" disabled="disabled">
+									<span class="glyphicon glyphicon-play"></span> Launch
+								</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<!-- Modal canvas more options -->
+				<div class="modal fade" id="modalCanvasMoreOptions" tabindex="-1" role="dialog" aria-labelledby="modalCanvasMoreOptions" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="modalCanvasMoreOptionsLabel">Canvas options</h4>
+							</div>
+							<div class="modal-body">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" value="modal-border" checked>
+										Show border and link to the <a href="https://github.com/earthperson/Webtags" target="_blank">GitHub project page</a> at the right bottom corner.
+									</label>
+								</div>
+								<span class="help-block">Canvas size:</span>
+								<div class="form-group clearfix">
+									<div class="row">
+										<div class="col-xs-1">
+											<span class="help-block">Width:</span>
+										</div>
+										<div class="col-xs-2">
+											<input type="number" class="form-control input-sm" id="canvasWidth" placeholder="width" value="500">
+										</div>
+										<div class="col-xs-1">
+											<span class="help-block">Height:</span>
+										</div>
+										<div class="col-xs-2">
+											<input type="number" class="form-control input-sm" id="canvasHeight" placeholder="height" value="350">
+										</div>
+									</div>
+								</div>
+								<span class="help-block">Color <small class="text-info">(press square for select)</small>:</span>
+								<div class="input-group colorpicker-group col-sm-3">
+									<input type="text" class="form-control input-sm" value="#5e8cc2">
+									<span class="input-group-addon"><i></i></span>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success btn-launch pull-left" disabled="disabled">
+									<span class="glyphicon glyphicon-play"></span> Launch
+								</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<!-- Modal screencast -->
+				<div class="modal fade" id="modalScreencast" tabindex="-1" role="dialog" aria-labelledby="modalScreencastLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="modalScreencastLabel">Screencast</h4>
+							</div>
+							<div class="modal-body">
+								<video class="center-block" controls width="800" height="640" poster="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.png">
+									<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.webm" type="video/webm">
+									<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.mp4" type="video/mp4">
+									<source src="http://earthperson.github.io/Webtags/dashboard/screencast/webtags.ogg" type="video/ogg">
+									I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+								</video>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container">
+				<small>&copy; 2013-2014 </small><a href="http://earthperson.info" target="_blank" class="small">earthperson</a>
+				<small class="pull-right">v1.0.16-pl</small>
+			</div>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="bootstrap/vendor/js/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="../render.min.js"></script>
+	</body>
+</html>
