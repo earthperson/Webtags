@@ -93,3 +93,7 @@ new Webtags({
 	}
 });
 ```
+##Install with Bower
+```Shell
+bower install webtags
+```
