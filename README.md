@@ -18,6 +18,12 @@ You can use online version of the [Webtags dashboard][7].
 [9]: http://earthperson.github.io/Webtags/#demo
 [10]: http://earthperson.github.io/Webtags/#getting-started
 
+## Contents
+
+* [Getting started](#getting-started)
+* [Advanced options](#advanced-options)
+* [Install with Bower](#install-with-bower)
+
 ## Getting started
 ```html
 <canvas id="webtags">
@@ -93,7 +99,7 @@ new Webtags({
 	}
 });
 ```
-##Install with Bower
+## Install with Bower
 ```Shell
 bower install webtags
 ```
