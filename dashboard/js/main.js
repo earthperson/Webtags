@@ -1,5 +1,5 @@
 /*!
- * Webtags v0.4.5-pl, Dashboard for Webtags v1.0.17-pl
+ * Webtags v0.4.6-pl, Dashboard for Webtags v1.0.17-pl
  * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
  * Webtags website: (http://earthperson.github.io/Webtags/)
  * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
@@ -10,24 +10,6 @@
  */
 
 /*jshint -W069 */
-if (!window.JSON) {
-	window.JSON = {
-		parse: function (sJSON) { return eval("(" + sJSON + ")"); },
-		stringify: function (vContent) {
-			if (vContent instanceof Object) {
-				var sOutput = "";
-				if (vContent.constructor === Array) {
-					for (var nId = 0; nId < vContent.length; sOutput += this.stringify(vContent[nId]) + ",", nId++);
-					return "[" + sOutput.substr(0, sOutput.length - 1) + "]";
-				}
-				if (vContent.toString !== Object.prototype.toString) { return "\"" + vContent.toString().replace(/"/g, "\\$&") + "\""; }
-				for (var sProp in vContent) { sOutput += "\"" + sProp.replace(/"/g, "\\$&") + "\":" + this.stringify(vContent[sProp]) + ","; }
-				return "{" + sOutput.substr(0, sOutput.length - 1) + "}";
-			}
-			return typeof vContent === "string" ? "\"" + vContent.replace(/"/g, "\\$&") + "\"" : String(vContent);
-		}
-	};
-}
 $(function() {
 	$.fn.setCheckboxesIndex = function () {
 		this.each(function(index) {
