@@ -106,6 +106,8 @@
 			// Add mouse listeners
 			this._element.addEventListener('mousemove', Canvas.prototype.onMousemove, false);
 			this._element.items = this.items;
+			this._element.border = this.border;
+			this._element._poweredBy = this._poweredBy;
 			this._element.addEventListener('click', Canvas.prototype.onClick, false);
 			// Render tags
 			for(; i < l; i++) {
