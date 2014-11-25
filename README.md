@@ -62,7 +62,7 @@ new Webtags({
 });
 </script>
 ```
-Here you can download [render.min.js][11] (7.9K, gzipped ~2.3K).
+Here you can download [render.min.js][11] (6.8K, gzipped ~2.1K).
 [11]: https://raw.github.com/earthperson/Webtags/master/render.min.js
 
 ## Advanced options
@@ -100,6 +100,7 @@ new Webtags({
 	}
 });
 ```
+Here you can download [render.min.js][11] (6.8K, gzipped ~2.1K).
 
 ## Several Webtags per page
 ```html
@@ -124,6 +125,7 @@ new Webtags({"id": "webtags-3", "items": [{
 }], "tag": {"context": {"fillStyle": "blue", "strokeStyle": "blue"}}});
 </script>
 ```
+Here you can download [render.min.js][11] (6.8K, gzipped ~2.1K).
 
 ## Install with Bower
 ```Shell
