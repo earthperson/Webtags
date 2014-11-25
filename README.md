@@ -22,6 +22,7 @@ You can use online version of the [Webtags dashboard][7].
 
 * [Getting started](#getting-started)
 * [Advanced options](#advanced-options)
+* [Several Webtags per page](#several-webtags-per-page)
 * [Install with Bower](#install-with-bower)
 
 ## Getting started
@@ -99,6 +100,29 @@ new Webtags({
 	}
 });
 ```
+
+## Several Webtags per page
+```html
+<canvas id="webtags">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+<canvas id="webtags-2">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+<canvas id="webtags-3">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
+<script type="text/javascript" src="render.min.js"></script>
+<script type="text/javascript">
+new Webtags({"id": "webtags", "items": [{
+	"label": "GitHub",
+	"url": "https://github.com/earthperson/Webtags"
+}], "tag": {"context": {"fillStyle": "red", "strokeStyle": "red"}}});
+new Webtags({"id": "webtags-2", "items": [{
+	"label": "GitHub",
+	"url": "https://github.com/earthperson/Webtags"
+}], "tag": {"context": {"fillStyle": "green", "strokeStyle": "green"}}});
+new Webtags({"id": "webtags-3", "items": [{
+	"label": "GitHub",
+	"url": "https://github.com/earthperson/Webtags"
+}], "tag": {"context": {"fillStyle": "blue", "strokeStyle": "blue"}}});
+</script>
+```
+
 ## Install with Bower
 ```Shell
 bower install webtags
