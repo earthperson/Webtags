@@ -22,12 +22,19 @@ module.exports = function(grunt) {
 		},
 		jshint: {
 			all: ['Gruntfile.js', 'render.js', 'dashboard/main.js']
+		},
+		watch: {
+			scripts: {
+				files: ['render.js'],
+				tasks: ['uglify', 'jshint']
+			},
 		}
 	});
 	
 	// Load the plugin that provides the "uglify" task.
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	
 	// Default task(s).
 	grunt.registerTask('default', ['uglify', 'jshint']);
