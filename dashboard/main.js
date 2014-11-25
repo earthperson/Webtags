@@ -11,6 +11,7 @@
 
 /*jshint -W069 */
 $(function() {
+	"use strict";
 	$.fn.setCheckboxesIndex = function () {
 		this.each(function(index) {
 			$(this).parent().contents().filter(function() {
