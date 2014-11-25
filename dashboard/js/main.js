@@ -1,5 +1,5 @@
 /*!
- * Webtags v0.4.6-pl, Dashboard for Webtags v1.0.17-pl
+ * Webtags v0.4.6-pl, Dashboard for Webtags v1.0.18-pl
  * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
  * Webtags website: (http://earthperson.github.io/Webtags/)
  * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
@@ -11,6 +11,7 @@
 
 /*jshint -W069 */
 $(function() {
+	"use strict";
 	$.fn.setCheckboxesIndex = function () {
 		this.each(function(index) {
 			$(this).parent().contents().filter(function() {
