@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				banner: '/*!\n' + 
-					' * <%= pkg.name %> v<%= pkg.version %>-pl, Dashboard for <%= pkg.name %> v<%= pkg.dashboard.version %>-pl\n' +
+					' * <%= pkg.name %> v<%= pkg.version %>, Dashboard for <%= pkg.name %> v<%= pkg.dashboard.version %>\n' +
 					' * <%= pkg.name %> GitHub page (source code and links): (<%= pkg.homepage %>)\n' +
 					' * <%= pkg.name %> website: (<%= pkg.website %>)\n' +
 					' * Dashboard for <%= pkg.name %>: (<%= pkg.dashboard.homepage %>)\n' +
