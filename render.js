@@ -1,5 +1,5 @@
 /*!
- * Webtags v0.4.7-pl, Dashboard for Webtags v1.0.18-pl
+ * Webtags v0.4.8-alpha.1, Dashboard for Webtags v1.0.18-pl
  * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
  * Webtags website: (http://earthperson.github.io/Webtags/)
  * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
@@ -45,14 +45,14 @@
 			},
 			_url: null
 		};
-		var p = mergeRecursive(this.settings, Webtags.prototype.options);
-		for(var a in p) {
-			this[a] = p[a];
+		mergeRecursive(this.settings, Webtags.prototype.options);
+		for(var a in this.settings) {
+			this[a] = this.settings[a];
 		}
 		this._element = document.getElementById(this.id);
 	}
 	Canvas.POWERED_BY = {
-		LABEL: "Powered by Webtags v0.4.7-pl",
+		LABEL: "Powered by Webtags v0.4.8-alpha.1",
 		URL: "https://github.com/earthperson/Webtags",
 		FONT: "10px Helvetica"
 	};
@@ -105,16 +105,16 @@
 					width: 0,
 					count: 0
 				};
-				// Add mouse listeners
-				this._element.addEventListener('mousemove', Canvas.prototype.onMousemove, false);
 				this._element.items = this.items;
 				this._element.border = this.border;
 				this._element._poweredBy = this._poweredBy;
+				// Add mouse listeners
+				this._element.addEventListener('mousemove', Canvas.prototype.onMousemove, false);
 				this._element.addEventListener('click', Canvas.prototype.onClick, false);
 				// Render tags
 				for(; i < l; i++) {
 					this.items.push(
-						new (this.type == 'square' ? SquareTag : RoundedTag)(context, this.items[i], this)
+						new (Tag.prototype.factory(this.type))(context, this.items[i], this)
 					);
 				}
 				context.fillStyle = this.style.border.match(/#\w{3,}$/) || '#5e8cc2';
@@ -130,9 +130,6 @@
 				// Canvas-unsupported code here
 			}
 		}
-	};
-	Canvas.prototype.toString = function() {
-		return '[object Canvas]';
 	};
 	
 	function Tag(context, item, canvas) {
@@ -153,18 +150,28 @@
 				shadowColor: "rgba(54, 111, 179, 0.4)"	
 			}
 		};
+		mergeRecursive(this.settings, canvas.tag);
+		mergeRecursive(context, this.settings.context);
+		delete this.settings.context;
+		for(var a in this.settings) {
+			this[a] = this.settings[a];
+		}
 		this._context = context;
 		this._item = item;
 		this._canvas = canvas;
 		this._text = null;
-		var p = mergeRecursive(this.settings, canvas.tag), a;
-		for(a in p.context) {
-			this._context[a] = p.context[a];
-		}
-		for(a in p) {
-			this[a] = p[a];
-		}
 	}
+	Tag.prototype.factory = function(type) {
+		switch(Tag.prototype.getType(type)) {
+			case 'SquareTag':
+				return SquareTag;
+			default:
+				return RoundedTag;
+		}
+	};
+	Tag.prototype.getType = function(option) {
+		return option.charAt(0).toUpperCase() + option.substr(1, option.length-1) + 'Tag';
+	};
 	Tag.prototype.getRandomFactor = function() {
 		return (Math.random() * 10) + 1;
 	};
@@ -187,7 +194,12 @@
 		}
 	};
 	Tag.prototype.edgeWidth = function() {
-		return this._canvas.type == 'rounded' ? 16+this.height+2 : 16+23+2;
+		switch(Tag.prototype.getType(this._canvas.type)) {
+			case 'SquareTag':
+				return 16+23+2;
+			default:
+				return 16+this.height+2;
+		}
 	};
 	Tag.prototype.translateY = function() {
 		return (this.height+8) * this.line.count;
@@ -301,10 +313,10 @@
 				} else {
 					obj1[p] = obj2[p];
 				}
-		    } catch(e) {
-		    	// Property in destination object not set; create it and set its value.
-		    	obj1[p] = obj2[p];
-		    }
+			} catch(e) {
+				// Property in destination object not set; create it and set its value.
+				obj1[p] = obj2[p];
+			}
 		}
 		return obj1;
 	}
