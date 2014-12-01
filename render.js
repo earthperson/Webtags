@@ -1,5 +1,5 @@
 /*!
- * Webtags v0.4.8-alpha.1, Dashboard for Webtags v1.0.18-pl
+ * Webtags v0.4.8-pl, Dashboard for Webtags v1.0.18-pl
  * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
  * Webtags website: (http://earthperson.github.io/Webtags/)
  * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
@@ -25,7 +25,7 @@
 	}
 	
 	function Canvas() {
-		this.settings = {
+		var settings = {
 			items: [],
 			id: "webtags",
 			type: "rounded", // "square"
@@ -45,14 +45,14 @@
 			},
 			_url: null
 		};
-		mergeRecursive(this.settings, Webtags.prototype.options);
-		for(var a in this.settings) {
-			this[a] = this.settings[a];
+		mergeRecursive(settings, Webtags.prototype.options);
+		for(var a in settings) {
+			this[a] = settings[a];
 		}
 		this._element = document.getElementById(this.id);
 	}
 	Canvas.POWERED_BY = {
-		LABEL: "Powered by Webtags v0.4.8-alpha.1",
+		LABEL: "Powered by Webtags v0.4.8-pl",
 		URL: "https://github.com/earthperson/Webtags",
 		FONT: "10px Helvetica"
 	};
@@ -133,7 +133,7 @@
 	};
 	
 	function Tag(context, item, canvas) {
-		this.settings = {
+		var settings = {
 			width: 100,
 			height: 32,
 			context: {
@@ -150,11 +150,11 @@
 				shadowColor: "rgba(54, 111, 179, 0.4)"	
 			}
 		};
-		mergeRecursive(this.settings, canvas.tag);
-		mergeRecursive(context, this.settings.context);
-		delete this.settings.context;
-		for(var a in this.settings) {
-			this[a] = this.settings[a];
+		mergeRecursive(settings, canvas.tag);
+		mergeRecursive(context, settings.context);
+		delete settings.context;
+		for(var a in settings) {
+			this[a] = settings[a];
 		}
 		this._context = context;
 		this._item = item;
