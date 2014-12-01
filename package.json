@@ -1,7 +1,7 @@
 {
 	"name": "Webtags",
 	"description": "Rendering web tags using HTML5 Canvas",
-	"version": "0.4.8-alpha.1",
+	"version": "0.4.8-pl",
 	"homepage": "https://github.com/earthperson/Webtags",
 	"website": "http://earthperson.github.io/Webtags/",
 	"dashboard": {
