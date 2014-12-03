@@ -9,8 +9,9 @@
 		"homepage": "http://earthperson.github.io/Webtags/dashboard/"
 	},
 	"author": {
-		"name": "Dmitry Ponomarev (email: ponomarev.dev@gmail.com)",
-		"website": "http://earthperson.info"
+		"name": "Dmitry Ponomarev",
+		"email": "ponomarev.dev@gmail.com",
+		"url": "http://earthperson.info/en/"
 	},
 	"license": {
 		"type": "MIT License",
