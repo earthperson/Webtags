@@ -63,7 +63,7 @@ $(function() {
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
 			o['style'] = {
-				"border": "1px solid " + $('#modalCanvasMoreOptions .colorpicker-group').colorpicker('getValue','#5e8cc2')
+				"border": "1px solid " + ($('#modalCanvasMoreOptions .colorpicker-group').val() || '#5e8cc2')
 			};
 			o['tag'] = {};
 			w = parseInt($('#tagWidth').val());
@@ -75,9 +75,9 @@ $(function() {
 				o.tag['height'] = h;
 			}
 			o.tag['context'] = {};
-			o.tag.context['fillStyle'] = $('#modalTagMoreOptions .colorpicker-group-fill-style').colorpicker('getValue','#5e8cc2');
-			o.tag.context['strokeStyle'] = $('#modalTagMoreOptions .colorpicker-group-stroke-style').colorpicker('getValue','#5e8cc2');
-			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color').colorpicker('getValue','rgba(54, 111, 179, 0.4)');
+			o.tag.context['fillStyle'] = $('#modalTagMoreOptions .colorpicker-group-fill-style input').val() || '#5e8cc2';
+			o.tag.context['strokeStyle'] = $('#modalTagMoreOptions .colorpicker-group-stroke-style input').val() || '#5e8cc2';
+			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color input').val() || 'rgba(54, 111, 179, 0.4)';
 			o.tag.context['lineWidth'] = $('#lineWidth').val() || 2;
 		}
 		return o;
