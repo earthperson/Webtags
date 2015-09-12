@@ -5,7 +5,7 @@
 	"homepage": "https://github.com/earthperson/Webtags",
 	"website": "http://earthperson.github.io/Webtags/",
 	"dashboard": {
-		"version": "1.0.18-pl",
+		"version": "1.0.20-pl",
 		"homepage": "http://earthperson.github.io/Webtags/dashboard/"
 	},
 	"author": {
