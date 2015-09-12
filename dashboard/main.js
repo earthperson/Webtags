@@ -1,11 +1,11 @@
 /*!
- * Webtags v0.4.8-pl, Dashboard for Webtags v1.0.19-pl
+ * Webtags v0.4.8-pl, Dashboard for Webtags v1.0.20-pl
  * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
  * Webtags website: (http://earthperson.github.io/Webtags/)
  * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
  * Author website: (http://earthperson.info)
  *
- * Copyright (c) 2013-2014 Dmitry Ponomarev (email: ponomarev.dev@gmail.com)
+ * Copyright (c) 2013-2015 Dmitry Ponomarev (email: ponomarev.dev@gmail.com)
  * Licensed under the MIT License: (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -63,7 +63,7 @@ $(function() {
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
 			o['style'] = {
-				"border": "1px solid " + ($('#modalCanvasMoreOptions .colorpicker-group input').val() || '#5e8cc2')
+				"border": "1px solid " + $('#modalCanvasMoreOptions .colorpicker-group').colorpicker('getValue','#5e8cc2')
 			};
 			o['tag'] = {};
 			w = parseInt($('#tagWidth').val());
@@ -75,9 +75,9 @@ $(function() {
 				o.tag['height'] = h;
 			}
 			o.tag['context'] = {};
-			o.tag.context['fillStyle'] = $('#modalTagMoreOptions .colorpicker-group-fill-style input').val() || '#5e8cc2';
-			o.tag.context['strokeStyle'] = $('#modalTagMoreOptions .colorpicker-group-stroke-style input').val() || '#5e8cc2';
-			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color input').val() || 'rgba(54, 111, 179, 0.4)';
+			o.tag.context['fillStyle'] = $('#modalTagMoreOptions .colorpicker-group-fill-style').colorpicker('getValue','#5e8cc2');
+			o.tag.context['strokeStyle'] = $('#modalTagMoreOptions .colorpicker-group-stroke-style').colorpicker('getValue','#5e8cc2');
+			o.tag.context['shadowColor'] = $('#modalTagMoreOptions .colorpicker-group-shadow-color').colorpicker('getValue','rgba(54, 111, 179, 0.4)');
 			o.tag.context['lineWidth'] = $('#lineWidth').val() || 2;
 		}
 		return o;
