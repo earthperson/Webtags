@@ -1,0 +1,84 @@
+<script type="text/javascript" src="../render.min.js"></script>
+<canvas id="webtags"></canvas>
+<canvas id="webtags-1"></canvas>
+<canvas id="webtags-2"></canvas>
+<canvas id="webtags-3"></canvas>
+<canvas id="webtags-4"></canvas>
+<canvas id="webtags-5"></canvas>
+<script type="text/javascript">
+new Webtags({
+    "items": [
+        {
+            "label": "GitHub",
+            "url": "https://github.com/earthperson/Webtags"
+        },
+        {
+            "label": "Webtags",
+            "url": "http://earthperson.github.io/Webtags/"
+        },
+        {
+            "label": "Dashboard",
+            "url": "http://earthperson.github.io/Webtags/dashboard/"
+        },
+        {
+            "label": "Personal web page",
+            "url": "http://earthperson.info/en/"
+        },
+        {
+            "label": "Freelancer web page",
+            "url": "http://dev.earthperson.info/en/"
+        }
+    ]
+});
+
+new Webtags({
+    "items": [{
+        "label": "Webtags",
+        "url": "https://github.com/earthperson/Webtags"
+    }],
+    "id": "webtags-1",
+    "type": "rounded", // "square"
+    "width": 500,
+    "height": 350,
+    "border": true,
+    "grid": false,
+    "style": {
+        "border": "1px solid #5e8cc2"
+    },
+    "tag": {
+        "width": 100,
+        "height": 32,
+        "context": {
+            "fillStyle": "#5e8cc2",
+            "textBaseline": "top",
+            "font": "12px Arial",
+            "strokeStyle": "#5e8cc2",
+            "lineWidth": 2, 
+            "lineJoin": "round",
+            "lineCap": "round",
+            "shadowOffsetX": 2,
+            "shadowOffsetY": 2,
+            "shadowBlur": 2,
+            "shadowColor": "rgba(54, 111, 179, 0.4)"
+        }
+    }
+});
+
+new Webtags({"id": "webtags-2", "items": [{
+    "label": "GitHub",
+    "url": "https://github.com/earthperson/Webtags"
+}], "tag": {"context": {"fillStyle": "red", "strokeStyle": "red"}}});
+
+new Webtags({"id": "webtags-3", "items": [{
+    "label": "GitHub",
+    "url": "https://github.com/earthperson/Webtags"
+}], "tag": {"context": {"fillStyle": "green", "strokeStyle": "green"}}});
+
+new Webtags({"id": "webtags-4", "items": [{
+    "label": "GitHub",
+    "url": "https://github.com/earthperson/Webtags"
+}], "tag": {"context": {"fillStyle": "blue", "strokeStyle": "blue"}}});
+
+new Webtags({"id": "webtags-5", "items": []});
+
+</script>
