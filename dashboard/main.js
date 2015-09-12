@@ -63,7 +63,7 @@ $(function() {
 			o['border'] = $('.panel :checkbox[value="border"]').prop('checked');
 			o['grid'] = $('.panel input[name="grid"]:checked').val() == 1;
 			o['style'] = {
-				"border": "1px solid " + ($('#modalCanvasMoreOptions .colorpicker-group').val() || '#5e8cc2')
+				"border": "1px solid " + ($('#modalCanvasMoreOptions .colorpicker-group input').val() || '#5e8cc2')
 			};
 			o['tag'] = {};
 			w = parseInt($('#tagWidth').val());
