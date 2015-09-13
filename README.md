@@ -20,10 +20,15 @@ You can use online version of the [Webtags dashboard][7].
 
 ## Contents
 
+* [Install via Bower](#install-via-bower)
 * [Getting started](#getting-started)
 * [Advanced options](#advanced-options)
 * [Several Webtags per page](#several-webtags-per-page)
-* [Install with Bower](#install-with-bower)
+
+## Install via Bower
+```Shell
+bower install webtags
+```
 
 ## Getting started
 ```html
@@ -122,8 +127,3 @@ new Webtags({"id": "webtags-3", "items": [{
 </script>
 ```
 Here you can download [render.min.js][11] (6.8K, gzipped ~2.1K).
-
-## Install with Bower
-```Shell
-bower install webtags
-```
