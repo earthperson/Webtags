@@ -17,6 +17,7 @@ You can use online version of the [Webtags dashboard][7].
 [8]: http://earthperson.github.io/Webtags/#screencast
 [9]: http://earthperson.github.io/Webtags/#demo
 [10]: http://earthperson.github.io/Webtags/#getting-started
+[11]: https://raw.github.com/earthperson/Webtags/master/render.min.js
 
 ## Contents
 
@@ -64,7 +65,6 @@ new Webtags({
 </script>
 ```
 Here you can download [render.min.js][11] (6.8K, gzipped ~2.1K).
-[11]: https://raw.github.com/earthperson/Webtags/master/render.min.js
 
 ## Advanced options
 ```js
