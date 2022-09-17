@@ -1,9 +1,9 @@
 /*!
- * Webtags v0.4.9-pl, Dashboard for Webtags v1.0.20-pl
+ * Webtags v0.4.10-pl, Dashboard for Webtags v1.0.21-pl
  * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
  * Webtags website: (http://earthperson.github.io/Webtags/)
  * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
- * Author website: (http://earthperson.info)
+ * Author website: (http://earthperson.info.s3-website-eu-west-1.amazonaws.com)
  *
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com)
  * Licensed under the MIT License: (http://www.opensource.org/licenses/mit-license.php)
@@ -214,7 +214,7 @@ $(function() {
 		});
 	});
 	$('#modalImport .btn-default:first').click(function() { // Paste example
-		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Personal web page","url":"http://earthperson.info/en/"},{"label":"Freelancer web page","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"grid":false,"style":{"border":"1px solid #5e8cc2"},"tag":{"width":100,"height":32,"context":{"fillStyle":"#5e8cc2","strokeStyle":"#5e8cc2","shadowColor":"rgba(54, 111, 179, 0.4)","lineWidth":"2"}}}');
+		$('#modalImport textarea').text('{"items":[{"label":"GitHub","url":"https://github.com/earthperson/Webtags"},{"label":"Webtags","url":"http://earthperson.github.io/Webtags/"},{"label":"Dashboard","url":"http://earthperson.github.io/Webtags/dashboard/"},{"label":"Personal web page","url":"http://earthperson.info.s3-website-eu-west-1.amazonaws.com/en/"},{"label":"Freelancer web page","url":"http://dev.earthperson.info/en/"}],"type":"rounded","width":500,"height":350,"border":true,"grid":false,"style":{"border":"1px solid #5e8cc2"},"tag":{"width":100,"height":32,"context":{"fillStyle":"#5e8cc2","strokeStyle":"#5e8cc2","shadowColor":"rgba(54, 111, 179, 0.4)","lineWidth":"2"}}}');
 		$('#howto').popover('hide');
 	});
 	$('.modal .btn-primary').click(function() { // Import
