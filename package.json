@@ -1,17 +1,17 @@
 {
 	"name": "Webtags",
 	"description": "Rendering web tags using HTML5 Canvas",
-	"version": "0.4.9-pl",
+	"version": "0.4.10-pl",
 	"homepage": "https://github.com/earthperson/Webtags",
 	"website": "http://earthperson.github.io/Webtags/",
 	"dashboard": {
-		"version": "1.0.20-pl",
+		"version": "1.0.21-pl",
 		"homepage": "http://earthperson.github.io/Webtags/dashboard/"
 	},
 	"author": {
 		"name": "Dmitry Ponomarev",
 		"email": "ponomarev.dev@gmail.com",
-		"url": "http://earthperson.info"
+		"url": "http://earthperson.info.s3-website-eu-west-1.amazonaws.com"
 	},
 	"license": {
 		"type": "MIT License",
