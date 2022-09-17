@@ -1,9 +1,9 @@
 /*!
- * Webtags v0.4.9-pl, Dashboard for Webtags v1.0.20-pl
+ * Webtags v0.4.10-pl, Dashboard for Webtags v1.0.21-pl
  * Webtags GitHub page (source code and links): (https://github.com/earthperson/Webtags)
  * Webtags website: (http://earthperson.github.io/Webtags/)
  * Dashboard for Webtags: (http://earthperson.github.io/Webtags/dashboard/)
- * Author website: (http://earthperson.info)
+ * Author website: (http://earthperson.info.s3-website-eu-west-1.amazonaws.com)
  *
  * Copyright (c) 2013 Dmitry Ponomarev (email: ponomarev.dev@gmail.com)
  * Licensed under the MIT License: (http://www.opensource.org/licenses/mit-license.php)
@@ -52,7 +52,7 @@
 		this._element = document.getElementById(this.id);
 	}
 	Canvas.POWERED_BY = {
-		LABEL: "Powered by Webtags v0.4.9-pl",
+		LABEL: "Powered by Webtags v0.4.10-pl",
 		URL: "https://github.com/earthperson/Webtags",
 		FONT: "10px Helvetica"
 	};

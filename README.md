@@ -8,7 +8,7 @@ On the [Webtags site][6] you'll find the [Screencast][8], [Rendering demo][9] an
 You can use online version of the [Webtags dashboard][7].
 
 [1]: https://developer.mozilla.org/en-US/docs/HTML/Canvas
-[2]: http://earthperson.info/en/
+[2]: http://earthperson.info.s3-website-eu-west-1.amazonaws.com/en/
 [3]: http://dev.earthperson.info/en/
 [4]: http://earthperson.github.io
 [5]: http://earthperson.github.io/Webtags/images/webtags.png
@@ -54,7 +54,7 @@ new Webtags({
 		},
 		{
 			"label": "Personal web page",
-			"url": "http://earthperson.info/en/"
+			"url": "http://earthperson.info.s3-website-eu-west-1.amazonaws.com/en/"
 		},
 		{
 			"label": "Freelancer web page",
