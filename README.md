@@ -9,7 +9,7 @@ You can use online version of the [Webtags dashboard][7].
 
 [1]: https://developer.mozilla.org/en-US/docs/HTML/Canvas
 [2]: http://earthperson.info.s3-website-eu-west-1.amazonaws.com/en/
-[3]: http://dev.earthperson.info/en/
+[3]: http://dev.earthperson.info.s3-website-eu-west-1.amazonaws.com/en/
 [4]: http://earthperson.github.io
 [5]: http://earthperson.github.io/Webtags/images/webtags.png
 [6]: http://earthperson.github.io/Webtags/
@@ -58,7 +58,7 @@ new Webtags({
 		},
 		{
 			"label": "Freelancer web page",
-			"url": "http://dev.earthperson.info/en/"
+			"url": "http://dev.earthperson.info.s3-website-eu-west-1.amazonaws.com/en/"
 		}
 	]
 });
